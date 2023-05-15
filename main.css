@@ -1,12 +1,13 @@
-#app{
+*{font-family: 'PT Serif', serif;}
+
+#site{
     position: relative;
+    background: #1a1a1a;
 }
 
 .content{
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 200px;
+    color: #f5eeee;
+    background: #1a1a1a;
 }
 
 .sidebar{
@@ -17,6 +18,193 @@
     width: 200px;
     z-index: 100;
     padding: 10px;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+}
+
+a {
+    text-decoration: none;
+    color: darkcyan;
+
+}
+
+/*
+    HEADER
+ */
+
+#site {
+    color: blueviolet;
+    height: 57px;
+}
+
+#site h1{
+    margin-top: 2px;
+
+}
+
+#site h1 a{
+    color: blueviolet;
+    padding-left: 90px;
+}
+
+/*
+цвет ссылки при наведении
+#site h1 a:hover{
+    color: blueviolet;
+}
+*/
+
+
+#site ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /*убрать точки перед ссылками*/
+    float: right;
+
+
+}
+
+#site ul li {
+    float: left;
+
+}
+
+#site ul li a{
+    display: block;
+    font-size: 1.53rem;
+    text-decoration: none;
+    color: darkcyan;
+    padding: 10px;
+
+}
+
+#site ul li a:hover {
+    background: #312f2f;
+    transition: 0.5s;
+    color: darkcyan;
+}
+
+#site ul li ul {
+    position: absolute;
+    top: 57px;
+    width: 173px;
+    display: none;
+    z-index: 111;
+    float: right;
+}
+
+#site ul li:hover ul {
+    display: block;
+}
+
+#site ul li ul li {
+    width: 100%;
+}
+
+#site ul li ul li a {
+    background: #1a1a1a;
+
+}
+
+#main {
+    position: relative;
+    background: #ded5d5;
+    color: black;
+    height: 500px;
+}
+
+#footer {
+    position: relative;
+    background: #1a1a1a;
+    color: blueviolet;
+
+}
+
+.footer .footer-section {
+    padding-top: 40px;
+    padding-left: 100px;
+}
+
+#footerAbout .contacts span{
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+#footerAbout .socials a {
+    border: 1px solid gray;
+    width: 41px;
+    height: 37px;
+    padding-top: 3px;
+    margin-right: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    transition: all .3s;
+    color: blueviolet;
+}
+
+#footerAbout .socials a:hover {
+    border: 1px solid white;
+    color: white;
+    transition: all .3s;
+}
+
+#footerLinks ul a {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    transition: all .3s;
+    color: blueviolet;
+    text-decoration: none;
+}
+
+#footerLinks ul a:hover {
+    color: #ded5d5;
+    margin-left: 15px;
+    transition: all .3s;
+}
+.footer-bottom {
+
+    background: #151414;
+    width: 100%;
+    height: 50px;
+    padding-top: 20px;
+    color: blueviolet;
+    text-align: center;
+
+}
+
+/*
+Registration
+ */
+
+.reg_form {
+    background: #ded5d5;
+
+}
+
+.reg_form label {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    height: 1.5rem;
+}
+
+.reg_form h2 {
+    text-align: center;
+
+}
+
+.reg_form a {
+    font-size: 1.2rem;
+    transition: all .3s;
+    color: #5c5b5b;
+    text-decoration: none;
+    margin-left: 60px;
+}
+
+.reg_form a:hover {
+    margin-left: 55px;
+    transition: all .3s;
 }
