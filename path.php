@@ -1,3 +1,3 @@
 <?php
 
-define('BASE_URL', 'http://localhost:63343/www/');
+define('BASE_URL', 'http://localhost/lab1/');

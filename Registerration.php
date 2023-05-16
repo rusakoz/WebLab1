@@ -1,6 +1,10 @@
 <!doctype html>
-<?php include("path.php"); ?>
-<html lang="en">
+<?php
+include "path.php";
+include "logic/Controllers/users.php";
+?>
+
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,31 +24,35 @@
 
 <!--Main-->
 <div class="container-fluid reg_form">
-  <h2 class="col-12"> Регистрация</h2>
-  <form class="row justify-content-center" method="post" action="Registerration.html">
+  <form class="row justify-content-center" method="post" action="Registerration.php">
+    <h2 class="col-12"> Регистрация</h2>
+    <div class="mb-3 col-12 col-md-4 error">
+        <p><?php echo $outErr; ?></p>
+    </div>
+    <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">
       <label for="formGroupExampleInput" class="form-label">Логин</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">
+      <input name="login" value="<?php echo $login; ?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">
     </div>
     <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">
       <label for="exampleInputEmail1" class="form-label">Адресс электронной почты</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите ваш email">
+      <input name="email" value="<?php echo $email; ?>" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите ваш email">
       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
     <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">
       <label for="exampleInputPassword1" class="form-label">Пароль</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
+      <input name="firstPass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
     </div>
     <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">
       <label for="exampleInputPassword2" class="form-label">Пароль</label>
-      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Повторите пароль">
+      <input name="secondPass" type="password" class="form-control" id="exampleInputPassword2" placeholder="Повторите пароль">
     </div>
     <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">
-      <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
+      <button type="submit" class="btn btn-secondary" name="button-registration">Зарегистрироваться</button>
       <a href="authorize.php">Авторизоваться</a>
     </div>
   </form>

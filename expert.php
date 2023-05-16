@@ -26,7 +26,7 @@ include "logic/DB/database.php";
     <div class="main-content container">
         <div class="row">
             <div class="main about col">
-                <h1> Что-то</h1>
+                <h1> Эксперт логика</h1>
             </div>
         </div>
     </div>
@@ -40,3 +40,4 @@ include "logic/DB/database.php";
 
 </body>
 </html>
+

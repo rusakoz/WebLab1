@@ -1,6 +1,9 @@
 <!doctype html>
-<?php include("path.php"); ?>
-<html lang="en">
+<?php
+include "path.php";
+include "logic/Controllers/users.php";
+?>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,20 +23,24 @@
 
 <!--Main-->
 <div class="container-fluid reg_form">
-    <h2 class="col-12"> Авторизация</h2>
-    <form class="row justify-content-center" method="post" action="authorize.html">
+    <form class="row justify-content-center" method="post" action="authorize.php">
+        <h2 class="col-12"> Авторизация</h2>
+        <div class="mb-3 col-12 col-md-4 error">
+            <p><?php echo $outErr; ?></p>
+        </div>
+        <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <label for="formGroupExampleInput" class="form-label">Логин</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">
+            <input name="login" type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <label for="exampleInputPassword1" class="form-label">Пароль</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <button type="submit" class="btn btn-secondary">Авторизоваться</button>
+            <button type="submit" class="btn btn-secondary" name="button-log">Авторизоваться</button>
             <a href="Registerration.php">Зарегистрироваться</a>
         </div>
     </form>

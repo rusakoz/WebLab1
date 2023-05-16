@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require('connect.php');
 
 function test($value){
@@ -67,7 +68,77 @@ function selectOne($table, $param = []){
     return $query->fetch();
 }
 
+function insert($table, $param){
+    global $pdo;
+
+    $i = 0;
+    $column = '';
+    $values = '';
+    foreach ($param as $key => $value){
+        if ($i === 0){
+            $column = $column . $key;
+            $values = $values . "'" . "$value" . "'";
+        }else{
+            $column = $column . ", $key";
+            $values = $values . ", '" . "$value"."'";
+        }
+        $i++;
+    }
+
+    $sql = "INSERT INTO $table ($column) VALUES ($values)";
+
+    $query = $pdo->prepare($sql);
+    $query->execute($param);
+    dbError($query);
+
+    return $pdo->lastInsertId();
+}
+
+function update($table, $id, $param){
+    global $pdo;
+
+    $i = 0;
+    $string = '';
+    foreach ($param as $key => $value){
+        if ($i === 0){
+            $string = $string . $key . " = '" . $value . "'";
+        }else{
+            $string = $string .", " . $key . " = '" . $value . "'";
+        }
+        $i++;
+    }
+
+    $sql = "UPDATE $table SET $string WHERE id = $id";
+
+    $query = $pdo->prepare($sql);
+    $query->execute($param);
+    dbError($query);
+}
+
+function delete($table, $id){
+    global $pdo;
+
+    $sql = "DELETE FROM $table WHERE id = $id";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbError($query);
+}
+
+
+/*
+$data = [
+    'admin' => '0',
+    'username' => 'Ru32slll',
+    'email' => 'whj32hgat@gmail.com',
+    'password' => '3223h132'
+];
+
+inset('users', $data);
+
 $param = [
 
 ];
 test(selectOne('users'));
+
+*/
