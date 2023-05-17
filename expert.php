@@ -3,7 +3,7 @@
 include("path.php");
 include "logic/DB/database.php";
 ?>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -23,11 +23,17 @@ include "logic/DB/database.php";
 
 <!--Main-->
 <div id="main" class="main container-fluid">
-    <div class="main-content container">
+    <div id="expert-button" class="main-content container">
         <div class="row">
             <div class="main about col">
-                <h1> Эксперт логика</h1>
+                <ul>
+                    <li><a href="#"> Кнопка 1</a></li>
+                    <li><a> Кнопка 2</a></li>
+                    <li><a> Кнопка 3</a></li>
+                    <li><a> Кнопка 4</a></li>
+                </ul>
             </div>
+
         </div>
     </div>
 </div>

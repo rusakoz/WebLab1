@@ -36,9 +36,12 @@ include "logic/Controllers/users.php";
     </div>
     <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">
-      <label for="exampleInputEmail1" class="form-label">Адресс электронной почты</label>
-      <input name="email" value="<?php echo $email; ?>" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите ваш email">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <label for="disabledSelect" class="form-label">Выбор роли</label>
+      <select name="role" id="disabledSelect" class="form-select">
+        <option>Пользователь</option>
+        <option>Респондент</option>
+        <option>Эксперт</option>
+      </select>
     </div>
     <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">

@@ -11,7 +11,7 @@
 
                     <ul>
                         <li>
-                            <a href="#">Пройти опрос</a>
+                            <a href="<?php echo BASE_URL ?>">Главная</a>
                         </li>
                         <li>
                             <?php if (isset($_SESSION['id'])): ?>
@@ -21,8 +21,14 @@
                                 <ul>
                                     <?php if ($_SESSION['admin']): ?>
                                         <li><a href="<?php echo BASE_URL . 'admin.php'?>">Админ панель</a></li>
+                                    <?php elseif ($_SESSION['role'] === 'Пользователь'): ?>
+                                        <li><a href="<?php echo BASE_URL . 'People.php'?>">Пользователь панель</a></li>
+                                    <?php elseif ($_SESSION['role'] === 'Респондент'): ?>
+                                        <li><a href="<?php echo BASE_URL . 'respondent.php'?>">Респондент панель</a></li>
+                                    <?php elseif ($_SESSION['role'] === 'Эксперт'): ?>
+                                        <li><a href="<?php echo BASE_URL . 'expert.php'?>">Эксперт панель</a></li>
                                     <?php endif; ?>
-                                    <li><a href="<?php echo BASE_URL . 'expert.php'?>">Эксперт панель</a></li>
+
                                     <li><a href="<?php echo BASE_URL . 'logout.php'?>">Выход</a></li>
                                 </ul>
                             <?php else: ?>

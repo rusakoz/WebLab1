@@ -6,10 +6,18 @@ function redirect($user){
     $_SESSION['id'] = $user['id'];
     $_SESSION['login'] = $user['username'];
     $_SESSION['admin'] = $user['admin'];
+    $_SESSION['role'] = $user['role'];
 
     if ($_SESSION['admin']){
         header('location: ' . BASE_URL . 'admin.php'); // редирект админа на админку
-    }else{
+    }elseif ($_SESSION['role'] === 'Пользователь'){
+        header('location: ' . BASE_URL . 'People.php'); // редирект
+    }elseif ($_SESSION['role'] === 'Респондент'){
+        header('location: ' . BASE_URL . 'respondent.php'); // редирект
+    }elseif ($_SESSION['role'] === 'Эксперт'){
+        header('location: ' . BASE_URL . 'expert.php'); // редирект
+    }
+    else{
         header('location: ' . BASE_URL); // редирект пользователя на главную страницу
     }
 }
@@ -21,12 +29,13 @@ $outErr = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-registration'])){
 
     $login = trim($_POST['login']); // trim удаляет лишние пробелы
-    $email = trim($_POST['email']);
+    $role = trim($_POST['role']);
     $password1 = trim($_POST['firstPass']);
     $password2 = trim($_POST['secondPass']);
     $admin = 0;
 
-    if ($login === '' || $email === '' || $password1 === ''){
+
+    if ($login === '' || $password1 === ''){
         $outErr = "Заполните все поля";
     }elseif (mb_strlen($login, 'UTF-8') < 2){
         $outErr = "Введите логин длиннее 2-х символов";
@@ -41,9 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-registration']
             }else {
                 $passHash = password_hash($password1, PASSWORD_DEFAULT);
                 $data = [
-                    'admin' => $admin,
+                    'role' => $role,
                     'username' => $login,
-                    'email' => $email,
+                    'admin' => $admin,
                     'password' => $passHash
                 ];
                 $id = insert('users', $data);
@@ -58,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-registration']
 }else{
 
     $login = ''; // для сохранения введенных данных
-    $email = '';
+
 }
 
 //Авторизация
@@ -79,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])){
         }
     }
 }else{
-    $email = ''; // для сохранения введенных данных
+    $login = ''; // для сохранения введенных данных
 }
 
 
