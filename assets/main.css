@@ -218,10 +218,70 @@ Registration
 Expert
  */
 
+#main-expert {
+    padding-top: 70px;
+    height: 500px;
+    position: relative;
+    background: #ded5d5
+}
+
+#expert-button ul {
+    list-style-type: none;
+    background: #1a1a1a;
+    font-size: 30px;
+    padding: 0;
+}
+
+#expert-button ul li{
+    text-align: center;
+}
+
+#expert-button ul a{
+    display: block;
+    color: blueviolet;
+    padding: 20px;
+}
 
 
+#expert-button ul a:hover {
+    background: #312f2f;
+    transition: 0.5s;
+    color: blueviolet;
+}
 
 
 /*
 Expert
+ */
+
+/*
+PVK
+ */
+
+#main-pvk {
+    height: 500px;
+
+}
+
+#profession-list {
+    position: relative;
+}
+
+#profession-button {
+    padding-top: 10px;
+
+}
+
+#profession-button2 {
+    padding-top: 10px;
+
+}
+
+#profession-button2 a{
+    color: white;
+}
+
+
+/*
+PVK
  */

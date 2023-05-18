@@ -3,7 +3,7 @@
 include("path.php");
 include "logic/DB/database.php";
 ?>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">

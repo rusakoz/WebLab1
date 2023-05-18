@@ -22,15 +22,16 @@ include "logic/DB/database.php";
 <!--Header-->
 
 <!--Main-->
-<div id="main" class="main container-fluid">
+<div id="main-expert" class="main container-fluid">
     <div id="expert-button" class="main-content container">
         <div class="row">
             <div class="main about col">
+
                 <ul>
-                    <li><a href="#"> Кнопка 1</a></li>
-                    <li><a> Кнопка 2</a></li>
-                    <li><a> Кнопка 3</a></li>
-                    <li><a> Кнопка 4</a></li>
+                    <li><a href="<?php echo BASE_URL . 'PVK.php'?>"> Пройти опрос по ПВК</a></li>
+                    <li><a href="#"> Кнопка 2</a></li>
+                    <li><a href="#"> Кнопка 3</a></li>
+                    <li><a href="#"> Кнопка 4</a></li>
                 </ul>
             </div>
 
