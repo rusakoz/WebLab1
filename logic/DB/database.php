@@ -26,6 +26,7 @@ function selectAll($table, $param = []){
         foreach ($param as $key => $value){
             if (!is_numeric($value)){
                 $value = "'".$value."'";
+                $key = "`".$key."`";
             }
             if ($i === 0){
                 $sql = $sql . " WHERE $key=$value";
@@ -35,6 +36,7 @@ function selectAll($table, $param = []){
             $i++;
         }
     }
+    //test($sql);
     $query = $pdo->prepare($sql);
     $query->execute();
     dbError($query);
@@ -50,6 +52,7 @@ function selectOne($table, $param = []){
         foreach ($param as $key => $value){
             if (!is_numeric($value)){
                 $value = "'".$value."'";
+                $key = "`".$key."`";
             }
             if ($i === 0){
                 $sql = $sql . " WHERE $key=$value";
@@ -125,6 +128,21 @@ function delete($table, $id){
     dbError($query);
 }
 
+$dat = [
+
+    'group' => 'Личностные'
+];
+
+//$res = selectAll('pvk', $dat);
+
+//test(selectAll('pvk', $dat));
+
+
+
+//foreach ($res as $row){
+
+    //echo "group: " . $row['group'];
+//}
 
 /*
 $data = [

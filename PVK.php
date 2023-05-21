@@ -2,6 +2,8 @@
 <?php
 include "path.php";
 include "logic/Controllers/ExpertPVK.php";
+include "logic/Include/SelectPVK.php";
+
 ?>
 <html lang="ru">
 <head>
@@ -23,7 +25,7 @@ include "logic/Controllers/ExpertPVK.php";
 
 <!--Main-->
 <div id="main-pvk" class="main container-fluid">
-    <div class="main-content container">
+    <!--<div class="main-content container">-->
         <div class="row">
             <form class="row justify-content-around" method="post" action="PVK.php">
                 <div>
@@ -44,9 +46,12 @@ include "logic/Controllers/ExpertPVK.php";
                         <div id="profession-button2" class="mb-3 col-12 col-md-4">
                             <button type="submit" class="btn btn-secondary" name="button-profession2"><a href="<?php echo BASE_URL . 'clearProfession.php'?>">Выход</a> </button>
                         </div>
-                    <?php else: ?>
+                        <div id="profession-button22" class="container-fluid">
+                            <button type="submit" class="btn btn-success" name="button-profession-result">Отправить</button>
+                            <?php echo $_SESSION['login'] ?>
+                        </div>
+                    <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
                         <select name="profession" id="profSelect" class="form-select">
-                            <
                             <option>Профессии</option>
                             <option>Профессия 1</option>
                             <option>Профессия 2</option>
@@ -57,17 +62,101 @@ include "logic/Controllers/ExpertPVK.php";
                         </div>
                     <?php endif; ?>
                 </div>
+                <!--FirstBlockPVK-->
                 <div class="col-4">
-                    <label for="pvkSelect" class="form-label">Выбор роли</label>
-                    <select name="PVK" id="pvkSelect" class="form-select">
-                        <option>Пользователь</option>
-                        <option>Респондент</option>
-                        <option>Эксперт</option>
-                    </select>
+                    <?php if ($_SESSION['select'] === 'true'): ?>
+                        <label for="pvkSelect" class="form-label">Выбор ПВК</label>
+                        <select name="PVK" id="pvkSelect" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect2" class="form-label"></label>
+                        <select name="pvkSelect2" id="profSelect2" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect3" class="form-label"></label>
+                        <select name="pvkSelect3" id="profSelect3" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect4" class="form-label"></label>
+                        <select name="pvkSelect4" id="profSelect4" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect5" class="form-label"></label>
+                        <select name="pvkSelect5" id="profSelect5" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                    <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
+                        <label for="pvkSelect" class="form-label">Выбор ПВК</label>
+                        <select name="PVK" id="pvkSelect" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect2" class="form-label"></label>
+                        <select name="pvkSelect2" id="profSelect2" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect3" class="form-label"></label>
+                        <select name="pvkSelect3" id="profSelect3" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect4" class="form-label"></label>
+                        <select name="pvkSelect4" id="profSelect4" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect5" class="form-label"></label>
+                        <select name="pvkSelect5" id="profSelect5" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                    <?php endif; ?>
+                </div>
+                <!--SecondBlockPVK-->
+                <div class="col-4">
+                    <?php if ($_SESSION['select'] === 'true'): ?>
+                        <label for="pvkSelect" class="form-label">Выбор ПВК</label>
+                        <select name="PVK" id="pvkSelect" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect2" class="form-label"></label>
+                        <select name="pvkSelect2" id="profSelect2" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect3" class="form-label"></label>
+                        <select name="pvkSelect3" id="profSelect3" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect4" class="form-label"></label>
+                        <select name="pvkSelect4" id="profSelect4" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect5" class="form-label"></label>
+                        <select name="pvkSelect5" id="profSelect5" class="form-select">
+                            <?php func(); ?>
+                        </select>
+                    <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
+                        <label for="pvkSelect" class="form-label">Выбор ПВК</label>
+                        <select name="PVK" id="pvkSelect" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect2" class="form-label"></label>
+                        <select name="pvkSelect2" id="profSelect2" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect3" class="form-label"></label>
+                        <select name="pvkSelect3" id="profSelect3" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect4" class="form-label"></label>
+                        <select name="pvkSelect4" id="profSelect4" class="form-select" aria-label="Disabled select example">
+                            <?php func(); ?>
+                        </select>
+                        <label for="profSelect5" class="form-label"></label>
+                        <select name="pvkSelect5" id="profSelect5" class="form-select" aria-label="Disabled select example" disabled>
+                            <?php func(); ?>
+                        </select>
+                    <?php endif; ?>
                 </div>
             </form>
         </div>
-    </div>
+    <!--</div>-->
 </div>
 <!--Main-->
 
