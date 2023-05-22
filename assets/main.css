@@ -259,8 +259,7 @@ PVK
  */
 
 #main-pvk {
-    height: 500px;
-
+    min-height: 500px;
 }
 
 #profession-list {
@@ -287,6 +286,9 @@ PVK
     bottom: 1px;
 }
 
+#profession-button22 button a {
+    color: white;
+}
 
 
 /*

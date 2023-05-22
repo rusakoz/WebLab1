@@ -2,7 +2,7 @@
 
 function func() {
 
-    echo "<option selected>-------";
+    echo "<option selected value='0'>-------";
 
     echo "<optgroup label='Личностные ПВК'>";
     $query = selectAll('pvk', ['group' => 'Личностные']);
@@ -51,6 +51,35 @@ function func() {
 
     echo "</option>";
 
+}
+
+function func2(){
+    $count = 0;
+    echo "<div id='profession-list' class='col-4'>";
+    for ($i = 1; $i <= 10; $i++) {
+        $result = selectOne('pvk', ['id' => $_SESSION["PVK$i"]]);
+        if ($result['listPVK'] !== 'Не выбрано') {
+            $count++;
+            echo "<p>";
+            echo $result['listPVK'];
+            echo "</p>";
+        }
+    }
+    echo "</div>";
+
+    echo "<div class='col-4'>";
+
+    for ($j = 0; $j < $count; $j++){
+        echo "<select name='ResultPVK{$j}' id='ResultPVKSelect{$j}' class='form-select'>";
+        echo "<option selected>Оценка</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>";
+        echo "</select>";
+    }
+    echo "</div>";
 }
 ?>
 

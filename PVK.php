@@ -33,12 +33,13 @@ include "logic/Include/SelectPVK.php";
                 </div>
                 <div id="profession-list" class="col-4">
                     <label for="profSelect" class="form-label"><?php echo $errPvk; ?></label>
-                    <?php if ($_SESSION['select'] === 'true'): ?>
+                    <?php if (isset($_SESSION['select']) && $_SESSION['select'] === 'true'): ?>
+                        <p> <?php echo $_SESSION['select']; ?></p>
                         <select id="profSelect" class="form-select" aria-label="Disabled select example" disabled>
-                            <option>Профессии</option>
-                            <option>Профессия 1</option>
-                            <option>Профессия 2</option>
-                            <option>Профессия 3</option>
+                            <option selected>Профессии</option>
+                            <option>Программист аналитик</option>
+                            <option>Системный программист</option>
+                            <option>Веб-разработчик</option>
                         </select>
                         <div>
                             <h2> <?php echo $outPutInfoOfProf; ?></h2>
@@ -47,15 +48,15 @@ include "logic/Include/SelectPVK.php";
                             <button type="submit" class="btn btn-secondary" name="button-profession2"><a href="<?php echo BASE_URL . 'clearProfession.php'?>">Выход</a> </button>
                         </div>
                         <div id="profession-button22" class="container-fluid">
-                            <button type="submit" class="btn btn-success" name="button-profession-result">Отправить</button>
+                            <button formaction="<?php echo BASE_URL . 'ResultPVK.php'?>" type="submit" class="btn btn-success" name="button-profession-result">Отправить</button>
                             <?php echo $_SESSION['login'] ?>
                         </div>
                     <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
                         <select name="profession" id="profSelect" class="form-select">
-                            <option>Профессии</option>
-                            <option>Профессия 1</option>
-                            <option>Профессия 2</option>
-                            <option>Профессия 3</option>
+                            <option selected>Профессии</option>
+                            <option>Программист аналитик</option>
+                            <option>Системный программист</option>
+                            <option>Веб-разработчик</option>
                         </select>
                         <div id="profession-button" class="mb-3 col-12 col-md-4">
                             <button type="submit" class="btn btn-secondary" name="button-profession">Подтвердить</button>
@@ -66,45 +67,45 @@ include "logic/Include/SelectPVK.php";
                 <div class="col-4">
                     <?php if ($_SESSION['select'] === 'true'): ?>
                         <label for="pvkSelect" class="form-label">Выбор ПВК</label>
-                        <select name="PVK" id="pvkSelect" class="form-select">
+                        <select name="PVK1" id="pvkSelect" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect2" class="form-label"></label>
-                        <select name="pvkSelect2" id="profSelect2" class="form-select">
+                        <select name="PVK2" id="profSelect2" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect3" class="form-label"></label>
-                        <select name="pvkSelect3" id="profSelect3" class="form-select">
+                        <select name="PVK3" id="profSelect3" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect4" class="form-label"></label>
-                        <select name="pvkSelect4" id="profSelect4" class="form-select">
+                        <select name="PVK4" id="profSelect4" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect5" class="form-label"></label>
-                        <select name="pvkSelect5" id="profSelect5" class="form-select">
+                        <select name="PVK5" id="profSelect5" class="form-select">
                             <?php func(); ?>
                         </select>
                     <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
                         <label for="pvkSelect" class="form-label">Выбор ПВК</label>
                         <select name="PVK" id="pvkSelect" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect2" class="form-label"></label>
                         <select name="pvkSelect2" id="profSelect2" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect3" class="form-label"></label>
                         <select name="pvkSelect3" id="profSelect3" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect4" class="form-label"></label>
                         <select name="pvkSelect4" id="profSelect4" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect5" class="form-label"></label>
                         <select name="pvkSelect5" id="profSelect5" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                     <?php endif; ?>
                 </div>
@@ -112,48 +113,49 @@ include "logic/Include/SelectPVK.php";
                 <div class="col-4">
                     <?php if ($_SESSION['select'] === 'true'): ?>
                         <label for="pvkSelect" class="form-label">Выбор ПВК</label>
-                        <select name="PVK" id="pvkSelect" class="form-select">
+                        <select name="PVK6" id="pvkSelect" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect2" class="form-label"></label>
-                        <select name="pvkSelect2" id="profSelect2" class="form-select">
+                        <select name="PVK7" id="profSelect2" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect3" class="form-label"></label>
-                        <select name="pvkSelect3" id="profSelect3" class="form-select">
+                        <select name="PVK8" id="profSelect3" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect4" class="form-label"></label>
-                        <select name="pvkSelect4" id="profSelect4" class="form-select">
+                        <select name="PVK9" id="profSelect4" class="form-select">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect5" class="form-label"></label>
-                        <select name="pvkSelect5" id="profSelect5" class="form-select">
+                        <select name="PVK10" id="profSelect5" class="form-select">
                             <?php func(); ?>
                         </select>
                     <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
                         <label for="pvkSelect" class="form-label">Выбор ПВК</label>
                         <select name="PVK" id="pvkSelect" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect2" class="form-label"></label>
                         <select name="pvkSelect2" id="profSelect2" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect3" class="form-label"></label>
                         <select name="pvkSelect3" id="profSelect3" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect4" class="form-label"></label>
                         <select name="pvkSelect4" id="profSelect4" class="form-select" aria-label="Disabled select example">
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                         <label for="profSelect5" class="form-label"></label>
                         <select name="pvkSelect5" id="profSelect5" class="form-select" aria-label="Disabled select example" disabled>
-                            <?php func(); ?>
+                            <option selected> -------</option>
                         </select>
                     <?php endif; ?>
                 </div>
+
             </form>
         </div>
     <!--</div>-->
