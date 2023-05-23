@@ -26,12 +26,12 @@ include "logic/DB/database.php";
     <div id="expert-button" class="main-content container">
         <div class="row">
             <div class="main about col">
-
                 <ul>
-                    <li><a href="<?php echo BASE_URL . 'PVK.php'?>"> Пройти опрос по ПВК</a></li>
-                    <li><a href="<?php echo BASE_URL . 'sens.php'?>"> Сенсомотрорный тест</a></li>
-                    <li><a href="#"> Кнопка 3</a></li>
-                    <li><a href="#"> Кнопка 4</a></li>
+                    <li><a href="<?php echo BASE_URL . 'sensLight.php'?>">Тест на свет</a></li>
+                    <li><a href="<?php echo BASE_URL . 'sensSound.php'?>">Тест на звук</a></li>
+                    <li><a href="<?php echo BASE_URL . 'sensThreeLight.php'?>">Тест на 3 цвета</a></li>
+                    <li><a href="<?php echo BASE_URL . 'sensHardSound.php'?>">Тест на сложение в уме по звуку</a></li>
+                    <li><a href="<?php echo BASE_URL . 'sensAddition.php'?>">Тест на сложение в уме визуально</a></li>
                 </ul>
             </div>
 
@@ -47,4 +47,3 @@ include "logic/DB/database.php";
 
 </body>
 </html>
-

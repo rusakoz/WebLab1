@@ -32,10 +32,15 @@ include "logic/Include/SelectPVK.php";
                 <h1> Пройдите опрос по профессиям, выберите профессию, прочитайте к ней описание и подбереите к профессии ПВК</h1>
             </div>
             <?php func2(); ?>
+            <?php if (!isset($_POST['button-pvk-result'])): ?>
             <div id="pvk-button" class="container-fluid col-md-3 offset-md-5">
                 <button type="submit" class="btn btn-success" name="button-pvk-result">Отправить</button>
-                <?php echo $_SESSION['login'] ?>
             </div>
+            <?php else: ?>
+                <div id="pvk-button2" class="container-fluid col-md-3 offset-md-5">
+                    <button formaction="<?php echo BASE_URL . 'expert.php'?>" type="submit" class="btn btn-success" name="button-pvk-redirect">Выйти</button>
+                </div>
+            <?php endif; ?>
         </form>
     </div>
     <!--</div>-->

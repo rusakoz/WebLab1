@@ -1,6 +1,6 @@
 <!doctype html>
 <?php
-include("path.php");
+include "path.php";
 include "logic/DB/database.php";
 ?>
 <html lang="ru">
@@ -14,6 +14,7 @@ include "logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+    <script src="logic/Include/sensLight.js" defer> </script> <!-- defer - запуск скрипта после загрузки html страницы -->
 </head>
 <body>
 
@@ -27,14 +28,19 @@ include "logic/DB/database.php";
         <div class="row">
             <div class="main about col">
 
-                <ul>
-                    <li><a href="<?php echo BASE_URL . 'PVK.php'?>"> Пройти опрос по ПВК</a></li>
-                    <li><a href="<?php echo BASE_URL . 'sens.php'?>"> Сенсомотрорный тест</a></li>
-                    <li><a href="#"> Кнопка 3</a></li>
-                    <li><a href="#"> Кнопка 4</a></li>
-                </ul>
-            </div>
+                <div id='sensLight' class='container-fluid col-md-3 offset-md-5'>
+                    <button id="buttonSens" type='submit' class='btn btn-success' name='sensLight'>Тест на свет1</button>
+                </div>
 
+                <div id='sensLight2' class='container-fluid col-md-3 offset-md-5'>
+                    <button id="buttonSens2" type='submit' class='btn btn-success' name='sensLight'>Тест на свет2</button>
+                </div>
+
+                <div id='sensLight3' class='container-fluid col-md-3 offset-md-5'>
+                    <button id="buttonSens3" type='submit' class='btn btn-success' name='sensLight'>Тест на свет3</button>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
@@ -47,4 +53,3 @@ include "logic/DB/database.php";
 
 </body>
 </html>
-
