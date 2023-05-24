@@ -1,3 +1,4 @@
+
 const time = document.querySelector('div.results p');
 const audio = document.querySelector('audio');
 const source = document.querySelector('source');
@@ -20,9 +21,9 @@ function formatTime(time) {
 function getRandomSound() {
     let songs =
         [
-            { filename: "sounds/1.mp3"},
-            { filename: "sounds/2.mp3"},
-            { filename: "sounds/3.mp3"}
+            { filename: "logic/Include/sounds/1.mp3"},
+            { filename: "logic/Include/sounds/2.mp3"},
+            { filename: "logic/Include/sounds/3.mp3"}
         ];
 
     let randomIndex = Math.floor(Math.random() * songs.length);
@@ -49,7 +50,6 @@ function start(){
     let rand = Math.floor(Math.random() * (max - min + 1) + min);
     time.textContent = '00.000';
 
-    $(this).css('cursor', 'default');
     timeout = setTimeout(() => {
         getRandomSound();
         playedTime = performance.now();
