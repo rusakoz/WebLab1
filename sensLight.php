@@ -29,15 +29,19 @@ include "logic/DB/database.php";
             <div class="main about col">
 
                 <div id='sensLight' class='container-fluid col-md-3 offset-md-5'>
-                    <button id="buttonSens" type='submit' class='btn btn-success' name='sensLight'>Тест на свет1</button>
+                    <button id="buttonSens" type='submit' class='btn btn-success' name='sensLight' style="background: black; height: 70px; width: 70px; border-radius: 60px;"></button>
                 </div>
 
                 <div id='sensLight2' class='container-fluid col-md-3 offset-md-5'>
-                    <button id="buttonSens2" type='submit' class='btn btn-success' name='sensLight'>Тест на свет2</button>
+                    <button id="buttonSens2" type='submit' class='btn btn-success' name='sensLight' style="background: black; height: 70px; width: 70px; border-radius: 60px; margin-top: 5px"></button>
                 </div>
 
                 <div id='sensLight3' class='container-fluid col-md-3 offset-md-5'>
-                    <button id="buttonSens3" type='submit' class='btn btn-success' name='sensLight'>Тест на свет3</button>
+                    <button id="buttonSens3" type='submit' class='btn btn-success' name='sensLight' style="background: black; height: 70px; width: 70px; border-radius: 60px; margin-top: 5px"></button>
+                </div>
+
+                <div class="results container-fluid col-md-3 offset-md-5" style="margin-top: 5px">
+                    <h3> </h3>
                 </div>
 
             </div>
