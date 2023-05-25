@@ -34,7 +34,7 @@ include "logic/Include/SelectPVK.php";
                 <div id="profession-list" class="col-4">
                     <label for="profSelect" class="form-label"><?php echo $errPvk; ?></label>
                     <?php if (isset($_SESSION['select']) && $_SESSION['select'] === 'true'): ?>
-                        <p> <?php echo $_SESSION['select']; ?></p>
+                        <p> </p>
                         <select id="profSelect" class="form-select" aria-label="Disabled select example" disabled>
                             <option selected>Профессии</option>
                             <option>Программист аналитик</option>
@@ -42,14 +42,13 @@ include "logic/Include/SelectPVK.php";
                             <option>Веб-разработчик</option>
                         </select>
                         <div>
-                            <h2> <?php echo $outPutInfoOfProf; ?></h2>
+                            <h6> <?php echo $outPutInfoOfProf; ?></h6>
                         </div>
                         <div id="profession-button2" class="mb-3 col-12 col-md-4">
                             <button type="submit" class="btn btn-secondary" name="button-profession2"><a href="<?php echo BASE_URL . 'clearProfession.php'?>">Выход</a> </button>
                         </div>
                         <div id="profession-button22" class="container-fluid">
                             <button formaction="<?php echo BASE_URL . 'ResultPVK.php'?>" type="submit" class="btn btn-success" name="button-profession-result">Отправить</button>
-                            <?php echo $_SESSION['login'] ?>
                         </div>
                     <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
                         <select name="profession" id="profSelect" class="form-select">
@@ -146,7 +145,7 @@ include "logic/Include/SelectPVK.php";
                             <option selected> -------</option>
                         </select>
                         <label for="profSelect4" class="form-label"></label>
-                        <select name="pvkSelect4" id="profSelect4" class="form-select" aria-label="Disabled select example">
+                        <select name="pvkSelect4" id="profSelect4" class="form-select" aria-label="Disabled select example" disabled>
                             <option selected> -------</option>
                         </select>
                         <label for="profSelect5" class="form-label"></label>

@@ -110,7 +110,7 @@ a {
     position: relative;
     background: #ded5d5;
     color: black;
-    height: 500px;
+    height: 700px;
 }
 
 
@@ -220,7 +220,7 @@ Expert
 
 #main-expert {
     padding-top: 70px;
-    height: 500px;
+    height: 700px;
     position: relative;
     background: #ded5d5
 }
@@ -259,7 +259,7 @@ PVK
  */
 
 #main-pvk {
-    min-height: 500px;
+    min-height: 700px;
 }
 
 #profession-list {

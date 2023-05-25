@@ -22,7 +22,7 @@ include "logic/DB/database.php";
 <?php include("logic/Include/Header.php"); ?>
 <!--Header-->
 
-<audio autoplay loop>
+<audio autoplay>
     <source src="" type="audio/mpeg">
 </audio>
 <!--Main-->
