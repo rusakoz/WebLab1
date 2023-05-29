@@ -2,7 +2,7 @@
 
 $driver = 'mysql';
 $host = 'localhost';
-$db_name = 'mysql2';
+$db_name = 'lab1';
 $db_user = 'root';
 $db_password = 'mysql';
 $charset = 'utf8';

@@ -5,6 +5,16 @@ const source = document.querySelector('source');
 let started = false;
 let playedTime = 0;
 let timeout;
+let counts = 0;
+let resul = "";
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
 
 function formatTime(time) {
     time = Math.round(time);
@@ -21,8 +31,7 @@ function formatTime(time) {
 function getRandomSound() {
     let songs =
         [
-            { filename: "logic/Include/sounds/1.mp3"},
-            { filename: "logic/Include/sounds/2.mp3"},
+
             { filename: "logic/Include/sounds/3.mp3"}
         ];
 
@@ -35,12 +44,19 @@ function getRandomSound() {
 
 function click(event){
     let timeStamp = performance.now();
+    console.log(timeStamp +"timeStamp");
     if (started){
+        // (async () => {
+        //     end(timeStamp);
+        //     started = false;
+        //     click();
+        // })();
         end(timeStamp);
         started = false;
     } else {
         start();
         started = true;
+        count++;
     }
 }
 
@@ -49,10 +65,12 @@ function start(){
         max = 4;
     let rand = Math.floor(Math.random() * (max - min + 1) + min);
     time.textContent = '00.000';
+    console.log("start")
 
     timeout = setTimeout(() => {
         getRandomSound();
         playedTime = performance.now();
+        console.log(playedTime);
     }, rand * 1000);
 }
 
@@ -60,10 +78,15 @@ function end(timeStamp){
     if(!playedTime){
         time.textContent = "Слишком быстро!";
         clearTimeout(timeout);
+        console.log("fast")
     } else {
-        const currentTime = timeStamp - playedTime;
-        playedTime = 0;
+        console.log(time);
+        console.log(playedTime +"played");
+        const currentTime = timeStamp - playedTime - 1000;
+        resul+="," + formatTime(currentTime);
         time.textContent = formatTime(currentTime).toString();
+        console.log(resul);
+        playedTime = 0;
         // source.src="";
         audio.src="";
         audio.pause();
@@ -71,5 +94,27 @@ function end(timeStamp){
 }
 
 document.querySelector('div.main').addEventListener("click", evt => {
-    click(evt);
+
+    while (counts !== 5){
+        sleep(1000);
+        click();
+        counts++;
+        console.log(counts);
+
+    }
+    if (counts === 5){
+        console.log(resul);
+        time.textContent = resul;
+    }
+    // sleep(1000);
+    // click();
+    // sleep(1000);
+    // click();
+    // sleep(1000);
+    // click();
+    // sleep(1000);
+    // click();
+
+
+
 }, {passive: false});
