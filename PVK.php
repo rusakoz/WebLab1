@@ -164,7 +164,10 @@ include "logic/Include/SelectPVK.php";
 <!--Footer-->
 <?php include("logic/Include/Footer.php"); ?>
 <!--Footer-->
-
+<script>
+    let form = document.querySelector('form');
+    let formData = form.
+</script>
 
 </body>
 </html>

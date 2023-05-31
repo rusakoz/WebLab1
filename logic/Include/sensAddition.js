@@ -8,6 +8,15 @@ let playedTime = 0;
 let timeout;
 let correctAnswer;
 
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+
 function formatTime(time) {
     time = Math.round(time);
     let outputTime = time / 1000;
@@ -71,6 +80,32 @@ function end(timeStamp){
     input.hidden = true;
 }
 
-document.querySelector('body').addEventListener("keypress", evt => {
-    if(evt.code === "Enter") click(evt);
+document.querySelector('body').addEventListener("click", evt => {
+
+    while (counts !== 3){
+        sleep(1000);
+        click();
+        counts++;
+        console.log(counts);
+
+    }
+    if (counts === 3){
+        console.log(resul);
+        time.textContent = resul;
+        let formData = new FormData();
+        formData.append('results', resul);
+        formData.append('table', 'resultSound');
+        fetch('logic/DB/databaseJS.php', {
+            body: formData,
+            method: "POST"
+        }).then(x => {
+            if(x.statusText === "OK"){
+                console.log('Data sent');
+            } else {
+                console.warn(x.statusText + " " + x.status);
+            }
+        })
+
+    }
+
 }, {passive: false});

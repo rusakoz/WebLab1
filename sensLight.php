@@ -42,6 +42,9 @@ include "logic/DB/database.php";
 
                 <div class="results container-fluid col-md-3 offset-md-5" style="margin-top: 5px">
                     <h3> </h3>
+                    <b></b>
+                    <p>Нажмите для начала теста, выполняйте тест пока не увидите слово СТОП</p>
+                    <span></span>
                 </div>
 
             </div>

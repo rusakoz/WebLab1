@@ -44,12 +44,14 @@ include "logic/DB/database.php";
                     <button id="sensThreeLight5" type='submit' class='btn btn-success' name='sensLight' style="background: black; height: 80px; width: 80px; color: #ded5d5; margin-top: 5px">Начать</button>
                 </div>
 
-                <div id="sens4" class="container-fluid col-md-3 offset-md-5" style="margin-top: 5px">
-                    <button id="sensThreeLight4" type='submit' class='btn btn-success' name='sensLight' style="background: black; height: 80px; width: 80px; color: #ded5d5; margin-top: 5px">Выход</button>
-                </div>
+<!--                <div id="sens4" class="container-fluid col-md-3 offset-md-5" style="margin-top: 5px">-->
+<!--                    <button id="sensThreeLight4" type='submit' class='btn btn-success' name='sensLight' style="background: black; height: 80px; width: 80px; color: #ded5d5; margin-top: 5px">Выход</button>-->
+<!--                </div>-->
 
                 <div class="results container-fluid col-md-3 offset-md-5" style="margin-top: 5px">
                     <h3> </h3>
+                    <span></span>
+                    <p>Для прохождение теста используйте клавиши R для КРАСНОГО, G для ЗЕЛЁНОГО, Y для ЖЁЛТОГО</p>
                 </div>
 
             </div>
