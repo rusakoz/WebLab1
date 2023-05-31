@@ -1,9 +1,17 @@
 <?php
 
+
 include "logic/DB/database.php";
+
+//use Ds\Set;
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $_SESSION['select'] = 'false';
+}
 
 $errPvk = '';
 $outPutInfoOfProf = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-profession'])){
     $_SESSION['prof'] = $_POST['profession'];
 
@@ -23,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-profession']))
     }
     else{
         $_SESSION['select'] = 'true';
-        $errPvk = "Выберите професси32131ю";
+        $errPvk = "Выберите профессию";
         $outPutInfoOfProf = 'Какая-то информация о профессии';
     }
 
@@ -55,11 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-profession-res
 
 }
 
+//$array = [true, false, null, '', 0, '0', 123, '123'];
+//echo count($array);
+//var_dump(array_unique($array));
+//$re = new Set($array);
+//echo count($re);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-pvk-result'])){
 
     $pvkScore = '';
 
-    for ($i = 0; $i < 9; $i++) {
+    for ($i = 0; $i < 10; $i++) {
         if (isset($_POST["ResultPVK{$i}"]) && $i === 0) {
             $pvkScore = $pvkScore . $_POST["ResultPVK{$i}"];
         }elseif (isset($_POST["ResultPVK{$i}"])){
