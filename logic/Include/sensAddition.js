@@ -1,12 +1,16 @@
-const input = document.querySelector('input');
-// const audio = document.querySelector('audio');
+const inputEven = document.querySelector('#even');
+const inputOdd = document.querySelector('#odd')
 const results = document.querySelector('div.results p');
 const time = document.querySelector('div.time p');
 const randomNums = document.querySelector('p.randomNums');
+const startButton = document.querySelector('button')
 let started = false;
 let playedTime = 0;
 let timeout;
 let correctAnswer;
+let counts = 0;
+const timesNeeded = 3;
+let resul = "";
 
 function sleep(milliseconds) {
     const date = Date.now();
@@ -29,20 +33,25 @@ function formatTime(time) {
     return outputTime;
 }
 
-function click(event){
+function click(evt){
+    console.debug('here1');
     let timeStamp = performance.now();
     if (started){
-        end(timeStamp);
         started = false;
+        console.debug('here2')
+        end(timeStamp, evt);
+
     } else {
-        start();
         started = true;
+        console.debug('here3')
+        start(evt);
+
     }
 }
 
-function start(){
-    input.hidden = false;
-    input.focus();
+function start(evt){
+    inputEven.hidden = false;
+    inputOdd.hidden = false;
     let min = 10,
         max = 100;
     let a = Math.floor(Math.random() * (max - min + 1) + min),
@@ -51,8 +60,6 @@ function start(){
 
 
     correctAnswer = a + b;
-    results.textContent = 'Ожидание';
-    time.textContent = '00.000';
     timeout = setTimeout(() => {
         randomNums.textContent = rand;
         playedTime = performance.now();
@@ -60,52 +67,86 @@ function start(){
     }, rand * 1000);
 }
 
-function end(timeStamp){
+function end(timeStamp, evt){
     if(!playedTime){
         results.textContent = "Слишком быстро! Повторите попытку.";
 
         clearTimeout(timeout);
     } else {
+        console.debug(timeStamp);
+        console.debug(playedTime);
         const currentTime = timeStamp - playedTime;
-        if (input.value === correctAnswer.toString()){
+        if ((evt.target === inputEven && correctAnswer % 2 === 0) ||
+            (evt.target === inputOdd && correctAnswer % 2 !== 0)){
+            console.log('Right');
             results.textContent = "Верно";
+            resul += formatTime(currentTime) + ",";
+            counts += 1;
+
+            if (counts === timesNeeded) {
+                console.log ('END' + " " + resul);
+                startButton.hidden = false;
+                inputEven.hidden = true;
+                inputOdd.hidden = true;
+                randomNums.textContent = "";
+                counts = 0;
+                console.log('Met')
+                let formData = new FormData();
+                formData.append('results', resul);
+                formData.append('table', 'resultAddition');
+                fetch('logic/DB/databaseJS.php', {
+                    body: formData,
+                    method: "POST"
+                }).then(x => {
+                    if(x.statusText === "OK"){
+                        console.log('Data sent');
+                    } else {
+                        console.warn(x.statusText + " " + x.status);
+                    }
+                })
+                resul = '';
+                return;
+            }
+
         } else {
             results.textContent = "Неверно";
+            console.log(correctAnswer);
         }
         time.textContent = formatTime(currentTime).toString();
-        input.value = "";
         playedTime = 0;
 
     }
-    input.hidden = true;
+    console.debug('here12344')
+    inputEven.hidden = true;
+    inputOdd.hidden = true;
+    click();
 }
 
-document.querySelector('body').addEventListener("click", evt => {
+// document.querySelector('body').addEventListener("click", evt => {
+//     if (counts === timesNeeded){
+//         console.log(resul);
+//         time.textContent = resul;
+//         let formData = new FormData();
+//         formData.append('results', resul);
+//         formData.append('table', 'resultAddition');
+//         fetch('logic/DB/databaseJS.php', {
+//             body: formData,
+//             method: "POST"
+//         }).then(x => {
+//             if(x.statusText === "OK"){
+//                 console.log('Data sent');
+//             } else {
+//                 console.warn(x.statusText + " " + x.status);
+//             }
+//         })
+//
+//     }
+//
+// }, {passive: false});
 
-    while (counts !== 3){
-        sleep(1000);
-        click();
-        counts++;
-        console.log(counts);
-
-    }
-    if (counts === 3){
-        console.log(resul);
-        time.textContent = resul;
-        let formData = new FormData();
-        formData.append('results', resul);
-        formData.append('table', 'resultSound');
-        fetch('logic/DB/databaseJS.php', {
-            body: formData,
-            method: "POST"
-        }).then(x => {
-            if(x.statusText === "OK"){
-                console.log('Data sent');
-            } else {
-                console.warn(x.statusText + " " + x.status);
-            }
-        })
-
-    }
-
-}, {passive: false});
+inputOdd.addEventListener('click', (evt => click(evt)));
+inputEven.addEventListener('click', (evt => click(evt)));
+startButton.addEventListener('click', () => {
+    startButton.hidden = true;
+    click();
+})
