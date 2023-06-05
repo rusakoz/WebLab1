@@ -66,23 +66,23 @@ include "logic/Include/SelectPVK.php";
                 <div class="col-4">
                     <?php if ($_SESSION['select'] === 'true'): ?>
                         <label for="pvkSelect" class="form-label">Выбор ПВК</label>
-                        <select name="PVK1" id="pvkSelect" class="form-select">
+                        <select name="PVK1" id="pvkSelect" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect2" class="form-label"></label>
-                        <select name="PVK2" id="profSelect2" class="form-select">
+                        <select name="PVK2" id="profSelect2" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect3" class="form-label"></label>
-                        <select name="PVK3" id="profSelect3" class="form-select">
+                        <select name="PVK3" id="profSelect3" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect4" class="form-label"></label>
-                        <select name="PVK4" id="profSelect4" class="form-select">
+                        <select name="PVK4" id="profSelect4" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect5" class="form-label"></label>
-                        <select name="PVK5" id="profSelect5" class="form-select">
+                        <select name="PVK5" id="profSelect5" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                     <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
@@ -112,23 +112,23 @@ include "logic/Include/SelectPVK.php";
                 <div class="col-4">
                     <?php if ($_SESSION['select'] === 'true'): ?>
                         <label for="pvkSelect" class="form-label">Выбор ПВК</label>
-                        <select name="PVK6" id="pvkSelect" class="form-select">
+                        <select name="PVK6" id="pvkSelect" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect2" class="form-label"></label>
-                        <select name="PVK7" id="profSelect2" class="form-select">
+                        <select name="PVK7" id="profSelect2" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect3" class="form-label"></label>
-                        <select name="PVK8" id="profSelect3" class="form-select">
+                        <select name="PVK8" id="profSelect3" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect4" class="form-label"></label>
-                        <select name="PVK9" id="profSelect4" class="form-select">
+                        <select name="PVK9" id="profSelect4" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                         <label for="profSelect5" class="form-label"></label>
-                        <select name="PVK10" id="profSelect5" class="form-select">
+                        <select name="PVK10" id="profSelect5" class="form-select" onchange="preventExisting(this)">
                             <?php func(); ?>
                         </select>
                     <?php elseif ($_SESSION['select'] === 'false' || $_SESSION['select'] === null): ?>
@@ -165,8 +165,22 @@ include "logic/Include/SelectPVK.php";
 <?php include("logic/Include/Footer.php"); ?>
 <!--Footer-->
 <script>
-    let form = document.querySelector('form');
-    let formData = form.
+    function preventExisting(submitter) {
+        let form = document.querySelector('form');
+        let formData = new FormData(form);
+        let existingArray = [];
+        formData.forEach((value, key, parent) => {
+            if(value !== '0'){
+                existingArray.push(value);
+            }
+        })
+        console.log(existingArray);
+        if(new Set(existingArray).size !== existingArray.length){
+            alert('Выбирайте разные ПВК, дубликат будет удалён');
+            submitter.selectedIndex = 0;
+        }
+    }
+
 </script>
 
 </body>

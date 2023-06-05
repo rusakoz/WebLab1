@@ -9,6 +9,7 @@ let timeout;
 let correctAnswer;
 let timesPassed = 0;
 let timesNeeded = 3;
+let resul = 0;
 
 function sleep(milliseconds) {
     const date = Date.now();
@@ -136,6 +137,7 @@ function checkEven(event){
 }
 function update(){
     if(++timesPassed >= timesNeeded){
+        resul += performance.now() - playedTime;
         window.speechSynthesis.cancel();
         document.querySelector('button').hidden = false;
         inputEven.hidden = true;
@@ -143,8 +145,21 @@ function update(){
         started = false;
         timesPassed = 0;
         playedTime = 0;
-        // TODO: FETCH
+        let formData = new FormData();
+        formData.append('results', resul);
+        formData.append('table', 'resultHardSound');
+        fetch('logic/DB/databaseJS.php', {
+            body: formData,
+            method: "POST"
+        }).then(x => {
+            if(x.statusText === "OK"){
+                console.log('Data sent');
+            } else {
+                console.warn(x.statusText + " " + x.status);
+            }
+        })
     } else {
+        resul += performance.now() - playedTime;
         results.textContent = timesPassed + " из " + timesNeeded;
     }
 }
