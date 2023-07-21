@@ -181,6 +181,12 @@ include "logic/Include/SelectPVK.php";
         }
     }
 
+    document.querySelector('form').addEventListener('submit', (evt) => {
+        let formData = new FormData(evt.target);
+        console.debug(formData);
+        alert();
+    })
+
 </script>
 
 </body>

@@ -7,6 +7,8 @@ const counter = document.querySelector('div.results span');
 const timesNeeded = 2;
 let timesPassed = 0;
 let resul = '';
+block2.remove();
+block3.remove();
 
 const time = document.querySelector('div.results h3');
 let coloredTime = 0;
@@ -41,15 +43,15 @@ function func(){
         block.style.background = 'red';
         console.log("1");
     }
-    else if(block.style.background === 'red' && block2.style.background !== 'red'){
-        block2.style.background = 'red';
-        console.log("2");
-    }
-    else if(block2.style.background === 'red' && block3.style.background !== 'red'){
-        block3.style.background = 'red';
-        console.log("3");
-    }
-    else if(block.style.background === 'red' && block2.style.background === 'red' && block3.style.background === 'red'){
+    // else if(block.style.background === 'red' && block2.style.background !== 'red'){
+    //     block2.style.background = 'red';
+    //     console.log("2");
+    // }
+    // else if(block2.style.background === 'red' && block3.style.background !== 'red'){
+    //     block3.style.background = 'red';
+    //     console.log("3");
+    // }
+    else if(block.style.background === 'red'){
 
             check = 2;
             block.style.background = 'green';
@@ -116,7 +118,9 @@ function update() {
         time.textContent = formatTime(performance.now() - coloredTime).toString();
         console.info(resul);
         console.info('End');
+        counter.textContent = timesPassed.toString() + ' из ' + timesNeeded.toString();
         timesPassed = 0;
+
 
         stopText.textContent = 'СТОП';
         info.textContent = "Нажмите для повтора теста";
