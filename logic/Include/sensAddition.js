@@ -80,7 +80,11 @@ function end(timeStamp, evt){
             (evt.target === inputOdd && correctAnswer % 2 !== 0)){
             console.log('Right');
             results.textContent = "Верно";
-            resul += formatTime(currentTime) + ",";
+            if(counts === 0){
+                resul += formatTime(currentTime);
+            } else {
+                resul += "," + formatTime(currentTime);
+            }
             counts += 1;
 
             if (counts === timesNeeded) {

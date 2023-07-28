@@ -2,6 +2,7 @@
 <?php
 include("path.php");
 include "logic/DB/database.php";
+include "logic/Controllers/resultPVK.php";
 ?>
 <html lang="ru">
 <head>
@@ -26,7 +27,7 @@ include "logic/DB/database.php";
     <div class="main-content container">
         <div class="row">
             <div class="main about col">
-                <h1> Что-то</h1>
+                <?php func()?>
             </div>
         </div>
     </div>
