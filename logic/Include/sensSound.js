@@ -83,7 +83,11 @@ function end(timeStamp){
         console.log(time);
         console.log(playedTime +"played");
         const currentTime = timeStamp - playedTime - 1000;
-        resul+="," + formatTime(currentTime);
+        if (counts === 0) {
+            resul += formatTime(currentTime);
+        } else {
+            resul += ',' + formatTime(currentTime);
+        }
         time.textContent = formatTime(currentTime).toString();
         console.log(resul);
         playedTime = 0;
@@ -95,26 +99,30 @@ function end(timeStamp){
 
 document.querySelector('div.main').addEventListener("click", evt => {
 
-    while (counts !== 5){
+    while (counts !== 3){
         sleep(1000);
         click();
         counts++;
         console.log(counts);
 
     }
-    if (counts === 5){
+    if (counts === 3){
         console.log(resul);
         time.textContent = resul;
+        let formData = new FormData();
+        formData.append('results', resul);
+        formData.append('table', 'resultSound');
+        fetch('logic/DB/databaseJS.php', {
+            body: formData,
+            method: "POST"
+        }).then(x => {
+            if(x.statusText === "OK"){
+                console.log('Data sent');
+            } else {
+                console.warn(x.statusText + " " + x.status);
+            }
+        })
+
     }
-    // sleep(1000);
-    // click();
-    // sleep(1000);
-    // click();
-    // sleep(1000);
-    // click();
-    // sleep(1000);
-    // click();
-
-
 
 }, {passive: false});

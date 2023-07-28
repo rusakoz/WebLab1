@@ -1,11 +1,24 @@
-const input = document.querySelector('input');
-// const audio = document.querySelector('audio');
+const inputEven = document.querySelector('#even');
+const inputOdd = document.querySelector('#odd');
+ // const audio = document.querySelector('audio');
 const results = document.querySelector('div.results p');
 const time = document.querySelector('div.time p')
 let started = false;
 let playedTime = 0;
 let timeout;
 let correctAnswer;
+let timesPassed = 0;
+let timesNeeded = 3;
+let resul = 0;
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
 
 function formatTime(time) {
     time = Math.round(time);
@@ -24,15 +37,20 @@ function click(event){
     if (started){
         end(timeStamp);
         started = false;
+        console.warn('END')
     } else {
         start();
         started = true;
+        console.warn('START')
     }
 }
 
 function start(){
-    input.hidden = false;
-    input.focus();
+    playedTime = performance.now();
+    console.log(" AAAAA " + playedTime)
+    inputEven.hidden = false;
+    inputOdd.hidden = false;
+
     let min = 10,
         max = 100;
     let a = Math.floor(Math.random() * (max - min + 1) + min),
@@ -41,36 +59,110 @@ function start(){
 
 
     correctAnswer = a + b;
-    results.textContent = 'Ожидание';
-    time.textContent = '00.000';
+    // results.textContent = 'Ожидание';
+    // time.textContent = '00.000';
     timeout = setTimeout(() => {
         let msg = new SpeechSynthesisUtterance();
         msg.text = rand.toString();
         window.speechSynthesis.speak(msg);
-        playedTime = performance.now();
+        console.log(playedTime);
 
     }, rand * 1000);
 }
 
 function end(timeStamp){
-    if(!playedTime){
+    if(speechSynthesis.speaking){
         results.textContent = "Слишком быстро! Повторите попытку.";
         clearTimeout(timeout);
+        window.speechSynthesis.cancel();
     } else {
+
         const currentTime = timeStamp - playedTime;
-        if (input.value === correctAnswer.toString()){
-            results.textContent = "Верно";
-        } else {
-            results.textContent = "Неверно";
-        }
+
         time.textContent = formatTime(currentTime).toString();
-        input.value = "";
         playedTime = 0;
 
     }
-    input.hidden = true;
 }
 
-document.querySelector('body').addEventListener("keypress", evt => {
-    if(evt.code === "Enter") click(evt);
+document.querySelector('button').addEventListener("click", evt => {
+    document.querySelector('button').hidden = true;
+
+    results.textContent = timesPassed + " из " + timesNeeded;
+    // while (counts !== 3){
+    //     sleep(1000);
+    //     click();
+    //     counts++;
+    //     console.log(counts);
+    //
+    // }
+    // if (counts === 3){
+    //     console.log(resul);
+    //     time.textContent = resul;
+    //     let formData = new FormData();
+    //     formData.append('results', resul);
+    //     formData.append('table', 'resultSound');
+    //     fetch('logic/DB/databaseJS.php', {
+    //         body: formData,
+    //         method: "POST"
+    //     }).then(x => {
+    //         if(x.statusText === "OK"){
+    //             console.log('Data sent');
+    //         } else {
+    //             console.warn(x.statusText + " " + x.status);
+    //         }
+    click(evt);
 }, {passive: false});
+
+function checkEven(event){
+    clearTimeout(timeout);
+    window.speechSynthesis.cancel();
+    let even = correctAnswer % 2 === 0;
+    console.log("BRRRR " + performance.now())
+    console.log("BRUH " + playedTime)
+    console.log(formatTime(performance.now() - playedTime).toString())
+    time.textContent = formatTime(performance.now() - playedTime).toString();
+    if (event.currentTarget === inputEven && even) {
+        console.debug('True');
+        start();
+        update();
+    } else if (event.currentTarget === inputOdd && !even){
+        console.debug('True');
+        start();
+        update();
+    } else {
+        console.debug('False')
+        start();
+    }
+}
+function update(){
+    if(++timesPassed >= timesNeeded){
+        resul += performance.now() - playedTime;
+        window.speechSynthesis.cancel();
+        document.querySelector('button').hidden = false;
+        inputEven.hidden = true;
+        inputOdd.hidden = true;
+        started = false;
+        timesPassed = 0;
+        playedTime = 0;
+        let formData = new FormData();
+        formData.append('results', resul);
+        formData.append('table', 'resultHardSound');
+        fetch('logic/DB/databaseJS.php', {
+            body: formData,
+            method: "POST"
+        }).then(x => {
+            if(x.statusText === "OK"){
+                console.log('Data sent');
+            } else {
+                console.warn(x.statusText + " " + x.status);
+            }
+        })
+    } else {
+        resul += performance.now() - playedTime;
+        results.textContent = timesPassed + " из " + timesNeeded;
+    }
+}
+
+inputEven.addEventListener('click', ev => checkEven(ev));
+inputOdd.addEventListener('click', ev => checkEven(ev));
