@@ -81,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-pvk-result']))
                 'pvkScore' => $_POST["ResultPVK{$i}"]
             ];
             insert('resultPVK', $info);
-            print_r($_POST);
-            print_r($info);
+//            print_r($_POST);
+//            print_r($info);
         }
     }
 

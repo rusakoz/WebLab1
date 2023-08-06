@@ -57,7 +57,7 @@ function func2(){
     $count = 0;
     echo "<div id='profession-list' class='col-4'>";
     for ($i = 0; $i <= 9; $i++) {
-        print_r($_SESSION);
+//        print_r($_SESSION);
         $result = selectOne('pvk', ['id' => $_SESSION["PVK{$i}"]]);
         if ($result['listPVK'] !== 'Не выбрано') {
             $count++;
