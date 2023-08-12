@@ -25,10 +25,25 @@ include "../logic/DB/database.php";
 <!--Main-->
 <div id="main-expert" class="main container-fluid">
     <div id="expert-button" class="main-content container">
-        <div class="row">
-            <div class="main about col">
-
+        <div class="row" id="super">
+            <!--<canvas id="game" width="600" height="600">-->
+            <div class="col">
+                <h3 id="textTimer"></h3>
             </div>
+            <div class="col">
+                <form name="form1">
+                    <select class="form-select" aria-label="Пример выбора по умолчанию" id="timer">
+                        <option disabled>Время прохождения теста</option>
+                        <option value="5">5сек</option>
+                        <option value="60">1 минута</option>
+                        <option value="180">3 минуты</option>
+                    </select>
+                    <button type="submit" class="btn btn-secondary" name="button-lab4-start" style="margin-top: 150px; margin-left: 50px"> Начать тестирование</button>
+                </form>
+            </div>
+            <div class="col">
+            </div>
+            <!--</canvas>-->
         </div>
     </div>
 </div>

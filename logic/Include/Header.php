@@ -3,8 +3,8 @@
         <div id="site" class="container-fluid" style="position: fixed; z-index: 1000">
             <div id="appin" class="container">
                 <div class="row">
-                    <div class="col-4">
-                        <h1>
+                    <div class="col-4" id="logo1">
+                        <h1 id="logo">
                             <a href="<?php echo BASE_URL ?>">Logo</a>
                         </h1>
                     </div>
