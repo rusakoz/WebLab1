@@ -151,12 +151,10 @@ function update(){
         fetch('logic/DB/databaseJS.php', {
             body: formData,
             method: "POST"
-        }).then(x => {
-            if(x.statusText === "OK"){
-                console.log('Data sent');
-            } else {
-                console.warn(x.statusText + " " + x.status);
-            }
+        }).then(function (response)  {
+            return response.text()
+        }).then(function (body) {
+            console.log(body)
         })
     } else {
         resul += performance.now() - playedTime;

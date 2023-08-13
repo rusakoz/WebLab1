@@ -14,6 +14,13 @@ var mins = 0;
 var sec = 0;
 var i = 0;
 
+var good = 0;
+var superGood = 0;
+var loss = 0;
+
+var goodPercent = 0;
+var superPercent = 0;
+var lossPercent = 0;
 
 
     buttonStart.addEventListener('click', function () {
@@ -31,14 +38,15 @@ var i = 0;
 
 
 
-        supers.innerHTML = "<canvas id=\"game\" width=\"600\" height=\"600\"></canvas>"
+        supers.innerHTML = "<canvas id=\"game\" width=\"600\" height=\"300\" style='cursor: none'></canvas>"
 
         textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
 
         var canvas = document.getElementById('game');
         var context = canvas.getContext('2d');
 
-        var target = {x:30,y:30,dx:1,dy:2}
+        var target = {x:30,y:30,dx:0.2,dy:0.2}
+        var aim = {x:150,y:150}
 
 
         var fonimg = new Image();
@@ -50,6 +58,11 @@ var i = 0;
         var aimimg = new Image();
         aimimg.src = 'aim.png';
 
+        canvas.addEventListener('mousemove', function (event){
+            aim.x = event.offsetX - 300;
+            aim.y = event.offsetY - 150;
+        })
+
         fonimg.onload = function (){
             game();
         }
@@ -58,25 +71,47 @@ var i = 0;
 
             if (i<120){
                 i++
-                textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
+                textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
 
             }
             if (i === 120){
                 if (sec > 0){
                     sec--
                     i = 0
-                    textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
+                    textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
                 }
             }
             if (sec === 0){
                 if (mins > 0){
                     mins--
                     sec = 60
-                    textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
+                    textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
                 }
             }
 
             if (sec === 0 && mins === 0){
+
+                let sum = good + superGood + loss;
+                superPercent = Math.floor((superGood * 100) / sum)
+                goodPercent = Math.floor((good * 100) / sum)
+                lossPercent = Math.floor((loss * 100) / sum)
+                textTimer.innerHTML = "<h1>"  + goodPercent + ":" + superPercent + ":" + lossPercent + "</h1>"
+                let formData = new FormData();
+                formData.append('super', superPercent);
+                formData.append('good', goodPercent);
+                formData.append('loss', lossPercent);
+                formData.append('time', timerTime);
+                formData.append('table', 'resultLab4-2');
+                fetch('../logic/DB/lab4-2DB.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(function (response)  {
+                    return response.text()
+                }).then(function (body) {
+                    console.log(body)
+                })
+
+
                 window.location.replace("http://localhost/WebLab1/lab4/pursuit.php");
                 return;
             }
@@ -98,12 +133,21 @@ var i = 0;
             if(target.y >= 270 || target.y < 0){
                 target.dy = -target.dy
             }
+
+            if (Math.abs(target.x - aim.x) < 15 && Math.abs(target.y - aim.y) < 15){
+                superGood++
+            }
+            else if (Math.abs(target.x - aim.x) < 30 && Math.abs(target.y - aim.y) < 30){
+                good++
+            }else {
+                loss++
+            }
         }
 
         function render(){
             context.drawImage(fonimg, 0, 0, 600, 300);
-            context.drawImage(aimimg, 10, 10, 30, 30);
             context.drawImage(targetimg, target.x, target.y, 30, 30);
+            context.drawImage(aimimg, aim.x, aim.y, 30, 30);
         }
 
         var requestAnimFrame = (function (){
@@ -142,7 +186,7 @@ var i = 0;
 
 
 function aim() {
-    let b = document.onmousemove = function () {
+    document.onmousemove = function () {
         document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',
             '<img src="https://cdn-icons-png.flaticon.com/512/63/63413.png" width="30" height="30" id="aim">');
 
@@ -150,7 +194,7 @@ function aim() {
 
         aim.style.position = 'fixed';
 
-        let bb = document.onmousemove = function (event) {
+        document.onmousemove = function (event) {
 
             aim.style.left = event.clientX - 12 + 'px';
             aim.style.top = event.clientY - 12 + 'px';

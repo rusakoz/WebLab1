@@ -1,5 +1,6 @@
 <?php
 include ('database.php');
+
 $data = [
     'id' => $_SESSION['id'],
     'time' => $_POST['results']
