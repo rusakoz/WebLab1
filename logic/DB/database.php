@@ -88,7 +88,33 @@ function insert($table, $param){
         $i++;
     }
 
-    $sql = "INSERT INTO $table ($column) VALUES ($values)";
+    $sql = "INSERT INTO " . "`" . "$table" . "`" . " ($column) VALUES ($values)";
+
+    $query = $pdo->prepare($sql);
+    $query->execute($param);
+    dbError($query);
+
+    return $pdo->lastInsertId();
+}
+
+function insertInt($table, $param){
+    global $pdo;
+
+    $i = 0;
+    $column = '';
+    $values = '';
+    foreach ($param as $key => $value){
+        if ($i === 0){
+            $column = $column . $key;
+            $values = $values . "$value";
+        }else{
+            $column = $column . ", $key";
+            $values = $values . ", " . "$value";
+        }
+        $i++;
+    }
+
+    $sql = "INSERT INTO " . "`" . "$table" . "`" . " ($column) VALUES ($values)";
 
     $query = $pdo->prepare($sql);
     $query->execute($param);
