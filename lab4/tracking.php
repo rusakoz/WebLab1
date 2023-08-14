@@ -34,7 +34,7 @@ include "../logic/DB/database.php";
                 <form name="form1">
                     <select class="form-select" aria-label="Пример выбора по умолчанию" id="timer">
                         <option disabled>Время прохождения теста</option>
-                        <option value="5">5сек</option>
+                        <option value="10">10сек</option>
                         <option value="60">1 минута</option>
                         <option value="180">3 минуты</option>
                     </select>
