@@ -1,6 +1,4 @@
 
-
-
 const supers = document.querySelector('#super');
 
 const buttonStart = document.querySelector('button');
@@ -159,47 +157,24 @@ var lossPercent = 0;
 
         })();
 
-        // alert(start + " " +end);
-        // buttonStart.remove();
-        // timer.remove();
-
-        //aim()
-
-        // aim();
-
-
-        /*while (true) {
-
-            if (performance.now() >= end) {
-                console.log(performance.now())
-                stop = 1;
-                return;
-            }else aim()
-        }*/
-
-
-        // buttonStart.remove();
-        // timer.remove();
-        // alert(performance.now())
-
     },)
 
 
-function aim() {
-    document.onmousemove = function () {
-        document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',
-            '<img src="https://cdn-icons-png.flaticon.com/512/63/63413.png" width="30" height="30" id="aim">');
-
-        var aim = document.getElementById('aim');
-
-        aim.style.position = 'fixed';
-
-        document.onmousemove = function (event) {
-
-            aim.style.left = event.clientX - 12 + 'px';
-            aim.style.top = event.clientY - 12 + 'px';
-
-
-        }
-    }
-}
+// function aim() {
+//     document.onmousemove = function () {
+//         document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',
+//             '<img src="https://cdn-icons-png.flaticon.com/512/63/63413.png" width="30" height="30" id="aim">');
+//
+//         var aim = document.getElementById('aim');
+//
+//         aim.style.position = 'fixed';
+//
+//         document.onmousemove = function (event) {
+//
+//             aim.style.left = event.clientX - 12 + 'px';
+//             aim.style.top = event.clientY - 12 + 'px';
+//
+//
+//         }
+//     }
+// }
