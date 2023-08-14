@@ -20,8 +20,34 @@ var goodPercent = 0;
 var superPercent = 0;
 var lossPercent = 0;
 
+let fps = 60;
+let fpss = 0;
+
 
     buttonStart.addEventListener('click', function () {
+
+        // Вычисление FPS для таймера
+        function returnFPS() {
+            const raf = window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame
+
+            const rafLoop = timestamp => {
+                if (fpss !== 0){
+                    fps = fpss
+                    return;
+                }
+                let interval = timestamp - previousTimestamp;
+                fpss = 1000 / interval;
+                previousTimestamp = timestamp;
+                raf(rafLoop);
+            };
+            raf(timestamp => {
+                previousTimestamp = timestamp;
+                raf(rafLoop);
+            });
+        }
+
+        returnFPS();
 
         timerTime = timer.value;
         mins = Math.floor(timerTime / 60)
@@ -67,12 +93,12 @@ var lossPercent = 0;
 
         function game(){
 
-            if (i<120){
+            if (i < Math.floor(fps)){
                 i++
                 textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
 
             }
-            if (i === 120){
+            if (i === Math.floor(fps)){
                 if (sec > 0){
                     sec--
                     i = 0

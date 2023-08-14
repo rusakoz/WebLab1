@@ -22,8 +22,35 @@ var lossPercent = 0;
 let teleportTime = 0;
 let timerToSend = 0;
 
+let fps = 60;
+let fpss = 0;
+var previousTimestamp;
 
 buttonStart.addEventListener('click', function () {
+
+    // Вычисление FPS для таймера
+    function returnFPS() {
+        const raf = window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame
+
+        const rafLoop = timestamp => {
+            if (fpss !== 0){
+                fps = fpss
+                return;
+            }
+            let interval = timestamp - previousTimestamp;
+            fpss = 1000 / interval;
+            previousTimestamp = timestamp;
+            raf(rafLoop);
+        };
+        raf(timestamp => {
+            previousTimestamp = timestamp;
+            raf(rafLoop);
+        });
+    }
+
+    returnFPS();
+
 
     timerTime = timer.value;
     timerToSend = timer.value;
@@ -129,18 +156,20 @@ buttonStart.addEventListener('click', function () {
 
 
     fonimg.onload = function (){
-        game();
+
+        setTimeout(game, 150); // Таймаут нужен для того, чтобы функция returnFPS успела высчитать FPS
 
     }
 
     function game(){
 
-        if (i<120){
+
+        if (i < Math.floor(fps)){
             i++
             textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
 
         }
-        if (i === 120){
+        if (i === Math.floor(fps)){
             if (sec > 0){
                 sec--
                 timerTime--
@@ -210,7 +239,6 @@ buttonStart.addEventListener('click', function () {
 
     function update(){
         // телепорт
-        console.log(startTime +" "+ teleportTime)
         if (checkTarget() && startTime > teleportTime){
             target.x = Math.random() * 500 + 100;
             target.y = Math.random() * 200 + 100;
