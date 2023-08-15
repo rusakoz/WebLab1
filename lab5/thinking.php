@@ -14,7 +14,7 @@ include "../logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
-    <script src="pursuit.js" defer> </script> <!-- defer - запуск скрипта после загрузки html страницы -->
+    <script src="" defer> </script> <!-- defer - запуск скрипта после загрузки html страницы -->
 </head>
 <body>
 
@@ -34,7 +34,7 @@ include "../logic/DB/database.php";
                 <form name="form1">
                     <select class="form-select" aria-label="Пример выбора по умолчанию" id="timer">
                         <option disabled>Время прохождения теста</option>
-                        <option value="10">10сек</option>
+                        <option value="5">5сек</option>
                         <option value="60">1 минута</option>
                         <option value="180">3 минуты</option>
                     </select>

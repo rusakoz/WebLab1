@@ -1,8 +1,18 @@
 *{font-family: 'PT Serif', serif;}
 
-/*canvas {*/
-/*    cursor: none;*/
-/*}*/
+.cell {
+    width: 90px;
+    height: 90px;
+    float: left;
+    margin: 2px;
+    text-align: center;
+    font: bold 40px sans-serif;
+    line-height: 100px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #0c0c0c;
+}
 
 #site{
     position: relative;
