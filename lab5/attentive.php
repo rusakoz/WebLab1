@@ -84,7 +84,7 @@ include "../logic/DB/database.php";
             </div>
             <div class="col">
 
-                <button type="submit" class="btn btn-secondary" name="button-lab4-start" style="margin-top: 30px; margin-left: 50px; margin-bottom: 15px"> Начать тестирование</button>
+                <button type="submit" class="btn btn-secondary" name="button-lab5-start" style="margin-top: 30px; margin-left: 50px; margin-bottom: 15px"> Начать тестирование</button>
 
             </div>
             <div class="col">
