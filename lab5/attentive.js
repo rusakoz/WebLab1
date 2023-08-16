@@ -57,11 +57,11 @@ function forEach(b = []) {
         }
 
         count++;
-        console.log('збс черн')
+        //console.log('збс черн')
 
         if (parseInt(b[1]) === 25){
 
-            console.log('Черные цифры успешно пройдены')
+            //console.log('Черные цифры успешно пройдены')
             time = 0;
             count = 1;
             flag = true;
@@ -71,11 +71,11 @@ function forEach(b = []) {
     else if (parseInt(b[1]) === count && b[0] === 'red' && flag){
 
         count++;
-        console.log('збс красн')
+        //console.log('збс красн')
 
         if (parseInt(b[1]) === 24){
 
-            console.log('Все цифры успешно пройдены time='+formatTime(performance.now() - startTime))
+            //console.log('Все цифры успешно пройдены')
             time = 0;
             count = 1;
             flag = false
@@ -102,7 +102,8 @@ function forEach(b = []) {
         time = 0;
         count = 1;
         flag = false;
-        console.log("ппц"+b[1])
+        alert("Вы допустили ошибку, повторите попытку")
+        window.location.replace("http://localhost/WebLab1/lab5/attentive.php");
     }
 
 }
