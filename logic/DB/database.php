@@ -4,9 +4,9 @@ session_start();
 require('connect.php');
 
 function test($value){
-    echo '<pre>';
+    //echo '<pre>';
     print_r($value);
-    echo '</pre>';
+    //echo '</pre>';
 }
 
 function dbError($query){
