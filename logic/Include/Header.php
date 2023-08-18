@@ -21,28 +21,28 @@
                                     </a>
                                     <ul>
                                         <?php if ($_SESSION['admin']): ?>
-                                            <li><a href="<?php echo BASE_URL . 'admin.php'?>">Админ панель</a></li>
+                                            <li><a href="<?php echo BASE_URL . 'menu/main/admin.php'?>">Админ панель</a></li>
                                         <?php elseif ($_SESSION['role'] === 'Пользователь'): ?>
-                                            <li><a href="<?php echo BASE_URL . 'People.php'?>">Пользователь панель</a></li>
-                                            <li><a href="<?php echo BASE_URL . 'personalPeople.php'?>">Личный кабинет</a></li>
+                                            <li><a href="<?php echo BASE_URL . 'menu/main/People.php'?>">Пользователь панель</a></li>
+                                            <li><a href="<?php echo BASE_URL . 'menu/main/personalPeople.php'?>">Личный кабинет</a></li>
                                         <?php elseif ($_SESSION['role'] === 'Респондент'): ?>
-                                            <li><a href="<?php echo BASE_URL . 'respondent.php'?>">Респондент панель</a></li>
-                                            <li><a href="<?php echo BASE_URL . 'personalRespondent.php'?>">Личный кабинет</a></li>
+                                            <li><a href="<?php echo BASE_URL . 'menu/main/respondent.php'?>">Респондент панель</a></li>
+                                            <li><a href="<?php echo BASE_URL . 'menu/main/personalRespondent.php'?>">Личный кабинет</a></li>
                                         <?php elseif ($_SESSION['role'] === 'Эксперт'): ?>
-                                            <li><a href="<?php echo BASE_URL . 'expert.php'?>">Эксперт панель</a></li>
-                                            <li><a href="<?php echo BASE_URL . 'personalExpert.php'?>">Личный кабинет</a></li>
+                                            <li><a href="<?php echo BASE_URL . 'menu/main/expert.php'?>">Эксперт панель</a></li>
+                                            <li><a href="<?php echo BASE_URL . 'menu/main/personalExpert.php'?>">Личный кабинет</a></li>
                                         <?php endif; ?>
 
                                         <li><a href="<?php echo BASE_URL . 'logout.php'?>">Выход</a></li>
                                     </ul>
                                 <?php else: ?>
-                                    <a href="#">
+                                    <a href="<?php echo BASE_URL . 'login/authorize.php'?>">
                                         Авторизация
                                     </a>
-                                    <ul>
-                                        <li><a href="<?php echo BASE_URL . 'authorize.php'?>">Админ панель</a></li>
-                                        <li><a href="<?php echo BASE_URL . 'authorize.php'?>">Эксперт панель</a></li>
-                                    </ul>
+<!--                                    <ul>-->
+<!--                                        <li><a href="--><?php //echo BASE_URL . 'authorize.php'?><!--">Админ панель</a></li>-->
+<!--                                        <li><a href="--><?php //echo BASE_URL . 'authorize.php'?><!--">Эксперт панель</a></li>-->
+<!--                                    </ul>-->
                                 <?php endif; ?>
 
                             </li>

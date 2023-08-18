@@ -1,6 +1,6 @@
 <?php
 
-include "logic/DB/database.php";
+include "../logic/DB/database.php";
 
 function redirect($user){
     $_SESSION['id'] = $user['id'];
@@ -9,13 +9,13 @@ function redirect($user){
     $_SESSION['role'] = $user['role'];
 
     if ($_SESSION['admin']){
-        header('location: ' . BASE_URL . 'admin.php'); // редирект админа на админку
+        header('location: ' . BASE_URL . 'menu/main/admin.php'); // редирект админа на админку
     }elseif ($_SESSION['role'] === 'Пользователь'){
-        header('location: ' . BASE_URL . 'People.php'); // редирект
+        header('location: ' . BASE_URL . 'menu/main/People.php'); // редирект
     }elseif ($_SESSION['role'] === 'Респондент'){
-        header('location: ' . BASE_URL . 'respondent.php'); // редирект
+        header('location: ' . BASE_URL . 'menu/main/respondent.php'); // редирект
     }elseif ($_SESSION['role'] === 'Эксперт'){
-        header('location: ' . BASE_URL . 'expert.php'); // редирект
+        header('location: ' . BASE_URL . 'menu/main/expert.php'); // редирект
     }
     else{
         header('location: ' . BASE_URL); // редирект пользователя на главную страницу
