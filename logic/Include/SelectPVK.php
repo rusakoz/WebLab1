@@ -61,8 +61,8 @@ function func2(){
         $result = selectOne('pvk', ['id' => $_SESSION["PVK{$i}"]]);
         if ($result['listPVK'] !== 'Не выбрано') {
             $count++;
-            echo "<p>";
-            echo $result['listPVK'];
+            echo "<p style='margin-top: 15px'>";
+            echo $i+1 . ') ' . $result['listPVK'];
             echo "</p>";
         }
     }
@@ -71,7 +71,7 @@ function func2(){
     echo "<div class='col-4'>";
 
     for ($j = 0; $j < $count; $j++){
-        echo "<select name='ResultPVK{$j}' id='ResultPVKSelect{$j}' class='form-select'>";
+        echo "<select style='margin-top: 10px' name='ResultPVK{$j}' id='ResultPVKSelect{$j}' class='form-select'>";
         echo "<option selected>Оценка</option>
                     <option>1</option>
                     <option>2</option>

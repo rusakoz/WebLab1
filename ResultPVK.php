@@ -29,7 +29,7 @@ include "logic/Include/SelectPVK.php";
     <div class="row">
         <form class="row justify-content-around" method="post" action="ResultPVK.php">
             <div>
-                <h1> Пройдите опрос по профессиям, выберите профессию, прочитайте к ней описание и подбереите к профессии ПВК</h1>
+                <h1> Оцените каждое ПВК по пятибальной шкале, где 1 - совсем не нужно, 5 - очень нужно </h1>
             </div>
             <?php func2(); ?>
             <?php if (!isset($_POST['button-pvk-result'])): ?>
@@ -38,7 +38,7 @@ include "logic/Include/SelectPVK.php";
             </div>
             <?php else: ?>
                 <div id="pvk-button2" class="container-fluid col-md-3 offset-md-5">
-                    <button formaction="<?php echo BASE_URL . 'expert.php'?>" type="submit" class="btn btn-success" name="button-pvk-redirect">Выйти</button>
+                    <button formaction="<?php echo BASE_URL . 'menu/main/expert.php'?>" type="submit" class="btn btn-success" name="button-pvk-redirect">Выйти</button>
                 </div>
             <?php endif; ?>
         </form>
