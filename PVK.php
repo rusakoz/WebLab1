@@ -29,7 +29,7 @@ include "logic/Include/SelectPVK.php";
         <div class="row">
             <form class="row justify-content-around" method="post" action="PVK.php">
                 <div>
-                    <h1> Пройдите опрос по профессиям, выберите профессию, прочитайте к ней описание и подбереите к профессии ПВК</h1>
+                    <h1> Выберите профессию, прочитайте к ней описание и подберите к профессии ПВК затем оценить ПВК</h1>
                 </div>
                 <div id="profession-list" class="col-4">
                     <label for="profSelect" class="form-label"><?php echo $errPvk; ?></label>
@@ -182,9 +182,8 @@ include "logic/Include/SelectPVK.php";
     }
 
     document.querySelector('form').addEventListener('submit', (evt) => {
-        let formData = new FormData(evt.target);
-        console.debug(formData);
-        alert();
+
+        //alert();
     })
 
 </script>

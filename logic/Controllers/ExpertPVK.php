@@ -3,7 +3,6 @@
 
 include "logic/DB/database.php";
 
-//use Ds\Set;
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     $_SESSION['select'] = 'false';
@@ -16,25 +15,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-profession']))
     $_SESSION['prof'] = $_POST['profession'];
 
 
+
     if ($_SESSION['prof'] === "Профессии"){
         $errPvk = "Выберите профессию";
-        $_SESSION['select'] = 'false';
+        //$_SESSION['select'] = 'false';
     }elseif ($_SESSION['prof'] === "Программист аналитик"){
-        $_SESSION['select'] = 'true';
-        $outPutInfoOfProf = 'Программист аналитик - умеет извлекать из данных полезные знания, находить взаимосвязи, визуализировать данные и давать бизнесу полезные рекомендации, которые помогают улучшить продукт или наладить какие-то процессы.';
+
+        $select = selectAll('resultpvk', ['id'=>$_SESSION['id'], 'profession'=>$_SESSION['prof']]);
+        if (!$select){
+            $_SESSION['select'] = 'true';
+            $outPutInfoOfProf = 'Программист аналитик - умеет извлекать из данных полезные знания, находить взаимосвязи, визуализировать данные и давать бизнесу полезные рекомендации, которые помогают улучшить продукт или наладить какие-то процессы.';
+        }else{
+            $errPvk = 'Вы уже прошли опрос по данной профессии';
+        }
+
     }elseif ($_SESSION['prof'] === "Системный программист"){
-        $_SESSION['select'] = 'true';
-        $outPutInfoOfProf = 'Системный программист - Разрабатывает, тестирует и поддерживает операционные, сетевые или мобильные системы, создает интерфейсы распределенных баз данных.';
+
+        $select = selectAll('resultpvk', ['id'=>$_SESSION['id'], 'profession'=>$_SESSION['prof']]);
+        if (!$select){
+            $_SESSION['select'] = 'true';
+            $outPutInfoOfProf = 'Системный программист - Разрабатывает, тестирует и поддерживает операционные, сетевые или мобильные системы, создает интерфейсы распределенных баз данных.';
+        }else{
+            $errPvk = 'Вы уже прошли опрос по данной профессии';
+        }
+
     }elseif ($_SESSION['prof'] === "Веб-разработчик"){
-        $_SESSION['select'] = 'true';
-        $outPutInfoOfProf = 'Веб-разработчик - Специалист, который разрабатывает, тестирует, исправляет, обновляет, совершенствует сайты, веб-сервисы и мультимедийные приложения с помощью языков программирования.';
+
+        $select = selectAll('resultpvk', ['id'=>$_SESSION['id'], 'profession'=>$_SESSION['prof']]);
+        if (!$select){
+            $_SESSION['select'] = 'true';
+            $outPutInfoOfProf = 'Веб-разработчик - Специалист, который разрабатывает, тестирует, исправляет, обновляет, совершенствует сайты, веб-сервисы и мультимедийные приложения с помощью языков программирования.';
+        }else{
+            $errPvk = 'Вы уже прошли опрос по данной профессии';
+        }
+
     }
     else{
         $_SESSION['select'] = 'true';
-        $errPvk = "Выберите профессию";
-        $outPutInfoOfProf = 'Какая-то информация о профессии';
+        $errPvk = "ERROR";
+        $outPutInfoOfProf = 'ERROR';
     }
-
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-profession-result'])){
