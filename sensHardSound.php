@@ -34,7 +34,7 @@ include "logic/DB/database.php";
                 <div id='sensHardSound' class='container-fluid col-md-3 offset-md-5'>
                     <p>Когда будете готовы, нажмите на панель. <br>Вы услышите два числа, сложите их в уме и введите ответ внутрь поля, нажмите Enter.</p>
                     <input id="even" type="button" value="ЧЁТ" hidden> <input id="odd" type="button" value="НЕЧЁТ" hidden>
-                    <button>ENTER</button>
+                    <button id="button-main">ENTER</button>
                     <div class="results col-md-3 offset-md-5">
                         <p>Ожидание</p>
                     </div>

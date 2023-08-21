@@ -7,8 +7,8 @@ const time = document.querySelector('div.results h3')
 const counter = document.querySelector('div.results span');
 let coloredTime = 0;
 let timeoutInterval;
-const timesNeeded = 5;
-let resul = '';
+const timesNeeded = 3;
+let resul = 0;
 
 
 
@@ -35,7 +35,7 @@ function formatTime(time) {
 let count = 0;
 let resCount = 0;
 let check = 0;
-let timeout;
+
 function func(){
     if(block.style.background === 'red' || block2.style.background === 'yellow' || block3.style.background === 'green'){
         return;
@@ -83,12 +83,12 @@ function start(){
 function dasd(){
 
     start();
-    console.log("kto")
+    //console.log("kto")
 
     block.style.background = 'black';
     block2.style.background = 'black';
     block3.style.background = 'black';
-    console.log("312")
+    //console.log("312")
 }
 
 function evente() {
@@ -97,7 +97,7 @@ function evente() {
 
         if (event.button === 0 && check === 0) {
             dasd();
-            console.log('rer');
+            //console.log('rer');
             block5.hidden = true;
             counter.textContent = '';
         } else if (event.button === 0 && check === 1) {
@@ -163,12 +163,15 @@ function evente() {
 // }, {passive: false});
 
 addEventListener('keypress', event => {
-    if(event.key === 'r' && block.style.background === 'red') {
+    if(event.key === 'z' && block.style.background === 'red') {
         update();
-    } else if(event.key === 'y' && block2.style.background === 'yellow'){
+    } else if(event.key === 'x' && block2.style.background === 'yellow'){
         update();
-    } else if(event.key === 'g' && block3.style.background === 'green'){
+    } else if(event.key === 'c' && block3.style.background === 'green'){
         update();
+    }else {
+        alert('Вы ошиблись, попробуйте прости тест еще раз')
+        window.location.reload();
     }
 })
 evente();
@@ -179,18 +182,17 @@ function update() {
     block2.style.background = 'black';
     block3.style.background = 'black';
     if (++resCount >= timesNeeded){
+        resul += parseFloat(formatTime(performance.now() - coloredTime));
+        resul = parseFloat((resul / timesNeeded).toFixed(3));
         check = 0;
         clearInterval(timeoutInterval);
         time.textContent = '';
-        counter.textContent = resCount + "из" + timesNeeded;
 
+        counter.textContent = resCount + "из" + timesNeeded;
         resCount = 0;
+
         block5.hidden = false;
-        if (resCount === 1) {
-            resul += formatTime(performance.now() - coloredTime).toString();
-        } else {
-            resul += ',' + formatTime(performance.now() - coloredTime).toString();
-        }
+
         let formData = new FormData();
         formData.append('results', resul);
         formData.append('table', 'resultThreeLight');
@@ -209,16 +211,14 @@ function update() {
         //         console.warn(x.statusText + " " + x.status);
         //     }
         // })
-        resul = '';
+        resul = 0;
         coloredTime = 0;
+        window.location.replace('http://localhost/WebLab1/sens.php');
 
-        evente();
     } else {
-        if (resCount === 1) {
-            resul += formatTime(performance.now() - coloredTime).toString();
-        } else {
-            resul += ',' + formatTime(performance.now() - coloredTime).toString();
-        }
+
+        resul += parseFloat(formatTime(performance.now() - coloredTime));
+
         time.textContent = formatTime(performance.now() - coloredTime).toString();
         coloredTime = 0;
     }

@@ -10,6 +10,7 @@ let correctAnswer;
 let timesPassed = 0;
 let timesNeeded = 3;
 let resul = 0;
+let flat = true;
 
 function sleep(milliseconds) {
     const date = Date.now();
@@ -37,37 +38,40 @@ function click(event){
     if (started){
         end(timeStamp);
         started = false;
-        console.warn('END')
+        console.debug('END')
     } else {
         start();
         started = true;
-        console.warn('START')
+        console.debug('START')
     }
 }
 
 function start(){
-    playedTime = performance.now();
-    console.log(" AAAAA " + playedTime)
-    inputEven.hidden = false;
-    inputOdd.hidden = false;
+    //playedTime = performance.now();
 
-    let min = 10,
-        max = 100;
-    let a = Math.floor(Math.random() * (max - min + 1) + min),
-        b = Math.floor(Math.random() * (max - min + 1) + min),
-        rand = a + " + " + b;
+        console.debug(" AAAAA " + playedTime)
+        inputEven.hidden = false;
+        inputOdd.hidden = false;
+
+        let min = 10,
+            max = 100;
+        let a = Math.floor(Math.random() * (max - min + 1) + min),
+            b = Math.floor(Math.random() * (max - min + 1) + min),
+            rand = a + " + " + b;
 
 
-    correctAnswer = a + b;
-    // results.textContent = 'Ожидание';
-    // time.textContent = '00.000';
-    timeout = setTimeout(() => {
-        let msg = new SpeechSynthesisUtterance();
-        msg.text = rand.toString();
-        window.speechSynthesis.speak(msg);
-        console.log(playedTime);
+        correctAnswer = a + b;
+        // results.textContent = 'Ожидание';
+        // time.textContent = '00.000';
+        timeout = setTimeout(async () => {
+            let msg = new SpeechSynthesisUtterance();
+            msg.text = rand.toString();
+            await window.speechSynthesis.speak(msg);
+            playedTime = performance.now();
+            console.debug(playedTime);
 
-    }, rand * 1000);
+        }, rand * 1000);
+
 }
 
 function end(timeStamp){
@@ -85,8 +89,8 @@ function end(timeStamp){
     }
 }
 
-document.querySelector('button').addEventListener("click", evt => {
-    document.querySelector('button').hidden = true;
+document.querySelector('#button-main').addEventListener("click", evt => {
+    document.querySelector('#button-main').hidden = true;
 
     results.textContent = timesPassed + " из " + timesNeeded;
     // while (counts !== 3){
@@ -114,30 +118,37 @@ document.querySelector('button').addEventListener("click", evt => {
     click(evt);
 }, {passive: false});
 
-function checkEven(event){
+async function checkEven(event){
     clearTimeout(timeout);
     window.speechSynthesis.cancel();
     let even = correctAnswer % 2 === 0;
-    console.log("BRRRR " + performance.now())
-    console.log("BRUH " + playedTime)
-    console.log(formatTime(performance.now() - playedTime).toString())
+    console.debug("BRRRR " + performance.now())
+    console.debug("BRUH " + playedTime)
+    console.debug(formatTime(performance.now() - playedTime).toString())
     time.textContent = formatTime(performance.now() - playedTime).toString();
     if (event.currentTarget === inputEven && even) {
         console.debug('True');
-        start();
+        await start();
         update();
     } else if (event.currentTarget === inputOdd && !even){
         console.debug('True');
-        start();
+        await start();
         update();
-    } else {
+    }
+    else {
         console.debug('False')
         start();
     }
 }
-function update(){
+async function update(){
     if(++timesPassed >= timesNeeded){
-        resul += performance.now() - playedTime;
+
+
+        resul += parseFloat(performance.now() - playedTime);
+        resul = (resul / timesNeeded).toFixed(3);
+
+        //resul += performance.now() - playedTime;
+        console.debug("!!!"+resul+"!!!"+playedTime)
         window.speechSynthesis.cancel();
         document.querySelector('button').hidden = false;
         inputEven.hidden = true;
@@ -148,17 +159,25 @@ function update(){
         let formData = new FormData();
         formData.append('results', resul);
         formData.append('table', 'resultHardSound');
-        fetch('logic/DB/databaseJS.php', {
+        await fetch('logic/DB/databaseJS.php', {
             body: formData,
             method: "POST"
         }).then(function (response)  {
+            resul = '';
             return response.text()
         }).then(function (body) {
             console.log(body)
         })
+
+        window.location.replace('http://localhost/WebLab1/sens.php');
     } else {
-        resul += performance.now() - playedTime;
-        results.textContent = timesPassed + " из " + timesNeeded;
+        if (resul === ''){
+            resul += parseFloat(performance.now() - playedTime);
+            results.textContent = timesPassed + " из " + timesNeeded;
+        }else {
+            resul += parseFloat(performance.now() - playedTime);
+            results.textContent = timesPassed + " из " + timesNeeded;
+        }
     }
 }
 

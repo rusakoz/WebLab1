@@ -6,7 +6,6 @@ let results;
 async function returnPromiseAdminDB(){
 
     let formData = new FormData();
-    formData.append('id', 75);
     formData.append('table', 'resultpvk');
     let response = await fetch('../../logic/DB/forMenu/adminDB.php', {
         method: 'POST',
@@ -51,21 +50,25 @@ async function parsePromise(promise){
     )
 
     if (counter !== 0) {
-        promise.then(
+        let res
+        await promise.then(
             function (result) {
-                result.forEach((a) => {
-
-                    console.log(a)
-
-                })
+                // result.forEach((a) => {
+                //
+                //     console.log(a)
+                //
+                // })
+                //console.log(result.length)
+                res = result;
             }
         )
+        return res;
     }else {
         console.log('ERR')
     }
 
 }
 
-parsePromise(returnPromiseAdminDB())
+//parsePromise(returnPromiseAdminDB())
 
 //returnPromiseAdminDB().then(function (result){result.forEach((a)=> {console.log(a)})});

@@ -51,7 +51,7 @@ include "logic/DB/database.php";
                 <div class="results container-fluid col-md-3 offset-md-5" style="margin-top: 5px">
                     <h3> </h3>
                     <span></span>
-                    <p>Для прохождение теста используйте клавиши R для КРАСНОГО, G для ЗЕЛЁНОГО, Y для ЖЁЛТОГО</p>
+                    <p>Для прохождение теста используйте клавиши Z для КРАСНОГО, C для ЗЕЛЁНОГО, X для ЖЁЛТОГО</p>
                 </div>
 
             </div>

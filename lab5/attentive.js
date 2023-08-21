@@ -82,7 +82,7 @@ function forEach(b = []) {
             startTime = 0;
 
             let formData = new FormData();
-            formData.append('time', parseFloat(formatTime(performance.now() - startTime)));
+            formData.append('time', parseInt(formatTime(performance.now() - startTime)));
             formData.append('table', 'resultLab5-1');
             fetch('../logic/DB/lab5-1DB.php', {
                 method: 'POST',

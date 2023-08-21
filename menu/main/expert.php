@@ -14,6 +14,7 @@ include "../../logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -29,13 +30,13 @@ include "../../logic/DB/database.php";
 
                 <ul>
                     <li><a href="<?php echo BASE_URL . 'PVK.php'?>"> Пройти опрос по ПВК</a></li>
-                    <li><a href="<?php echo BASE_URL . 'sens.php'?>"> Сенсомотрорный тест</a></li>
+                    <li><a id="Sens" href="<?php echo BASE_URL . 'sens.php'?>"> Сенсомотрорный тест</a></li>
                     <li><a href="<?php echo BASE_URL . 'testLab3.php'?>"> 3-я лаба</a></li>
                     <li><a href="<?php echo BASE_URL . 'lab4/main-Lab4.php'?>"> 4-я лаба</a></li>
                     <li><a href="<?php echo BASE_URL . 'lab5/main-Lab5.php'?>"> 5-я лаба</a></li>
                 </ul>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>

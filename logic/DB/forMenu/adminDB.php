@@ -17,9 +17,9 @@ function select(){
             GROUP BY resultpvk.profession, pvk.id 
             ORDER BY ПРОФЕССИЯ";
 
-    $sql2 = "SELECT resultpvk.id AS resID, resultpvk.profession, resultpvk.listPVK AS reslistPVK, resultpvk.pvkScore, pvk.listPVK, pvk.group 
-            FROM `resultpvk` 
-            JOIN `pvk` ON pvk.id = resultpvk.listPVK";
+//    $sql2 = "SELECT resultpvk.id AS resID, resultpvk.profession, resultpvk.listPVK AS reslistPVK, resultpvk.pvkScore, pvk.listPVK, pvk.group
+//            FROM `resultpvk`
+//            JOIN `pvk` ON pvk.id = resultpvk.listPVK";
 
 
     $query = $pdo->prepare($sql);

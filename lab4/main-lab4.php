@@ -14,6 +14,14 @@ include "../logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+    <!--START LOCK logic-->
+    <script src="../logic/Include/lock/getResultsInfo.js" defer crossorigin="anonymous"></script>
+    <script src="../logic/Include/lock/LOCK-Test.js" defer crossorigin="anonymous"></script>
+    <script src="lock/LOCK-lab4.js" defer crossorigin="anonymous"></script>
+    <script type="text/javascript" defer crossorigin="anonymous">
+        var idSession = <?php echo json_encode($_SESSION['id']); ?>;
+    </script>
+    <!--END LOCK logic-->
 </head>
 <body>
 
@@ -27,8 +35,8 @@ include "../logic/DB/database.php";
         <div class="row">
             <div class="main about col">
                 <ul>
-                    <li><a href="<?php echo BASE_URL . 'lab4/tracking.php'?>">Аналоговое слежение</a></li>
-                    <li><a href="<?php echo BASE_URL . 'lab4/pursuit.php'?>">Аналоговое преследование</a></li>
+                    <li><a id="tracking" href="<?php echo BASE_URL . 'lab4/tracking.php'?>">Аналоговое слежение</a></li>
+                    <li><a id="pursuit" href="<?php echo BASE_URL . 'lab4/pursuit.php'?>">Аналоговое преследование</a></li>
                 </ul>
             </div>
 

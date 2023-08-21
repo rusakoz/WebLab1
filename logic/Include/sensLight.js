@@ -4,9 +4,9 @@ var block3 = document.getElementById('buttonSens3');
 const info = document.querySelector('div.results p');
 const stopText = document.querySelector('div.results b');
 const counter = document.querySelector('div.results span');
-const timesNeeded = 2;
+const timesNeeded = 10;
 let timesPassed = 0;
-let resul = '';
+let resul = 0;
 block2.remove();
 block3.remove();
 
@@ -37,11 +37,11 @@ function formatTime(time) {
 
 
 let check = 0;
-let timeout;
+
 function func(){
     if (block.style.background !== 'red'){
         block.style.background = 'red';
-        console.log("1");
+        //console.log("1");
     }
     // else if(block.style.background === 'red' && block2.style.background !== 'red'){
     //     block2.style.background = 'red';
@@ -76,10 +76,10 @@ function start(){
 function dasd(){
 
     start();
-    console.log("kto")
+    //console.log("kto")
 
     block.style.background = 'red';
-    console.log("312")
+    //console.log("312")
 }
 
 document.querySelector('body').addEventListener('click', event =>{
@@ -87,7 +87,7 @@ document.querySelector('body').addEventListener('click', event =>{
     info.textContent = 'Нажмите, когда все круги станут зелёными.'
     if (check === 0){
         dasd();
-        console.log('rer');
+        //console.log('rer');
     }else if(check === 1){
         check = 0;
         clearInterval(timeoutInterval);
@@ -109,19 +109,17 @@ document.querySelector('body').addEventListener('click', event =>{
 }, {passive: false});
 
 function update() {
-    if (timesPassed === 0) {
-        resul += formatTime(performance.now() - coloredTime);
-    } else {
-        resul += ',' + formatTime(performance.now() - coloredTime);
-    }
+
+    resul += parseFloat(formatTime(performance.now() - coloredTime));
+
     if(++timesPassed >= timesNeeded) {
         time.textContent = formatTime(performance.now() - coloredTime).toString();
-        console.info(resul);
-        console.info('End');
+        //console.info(resul);
+        //console.info('End');
         counter.textContent = timesPassed.toString() + ' из ' + timesNeeded.toString();
         timesPassed = 0;
 
-
+        resul = parseFloat((resul / timesNeeded).toFixed(3));
         stopText.textContent = 'СТОП';
         info.textContent = "Нажмите для повтора теста";
         let formData = new FormData();
@@ -135,11 +133,12 @@ function update() {
         }).then(function (body) {
             console.log(body)
         })
-        resul = '';
+        resul = 0;
+        window.location.replace('http://localhost/WebLab1/sens.php');
 
     } else {
         time.textContent = formatTime(performance.now() - coloredTime).toString();
-        console.info(resul);
+        //console.info(resul);
         counter.textContent = timesPassed.toString() + ' из ' + timesNeeded.toString();
         setTimeout ( () => {
             document.querySelector('body').dispatchEvent(new Event('click'));
