@@ -136,7 +136,7 @@ let fpss = 0;
                 })
 
 
-                window.location.replace("http://localhost/WebLab1/lab4/pursuit.php");
+                window.location.replace("http://localhost/WebLab1/lab4/main-lab4.php");
                 return;
             }
 

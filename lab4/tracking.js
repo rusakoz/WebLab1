@@ -188,7 +188,7 @@ buttonStart.addEventListener('click', function () {
         if (sec === 0 && mins === 0){
 
             let formData = new FormData();
-            let res = sum / count;
+            let res = parseFloat((sum / count).toFixed(2));
             formData.append('time', timerToSend);
             formData.append('result', res);
             formData.append('table', 'resultLab4-1');
@@ -202,7 +202,7 @@ buttonStart.addEventListener('click', function () {
             })
 
 
-            window.location.replace("http://localhost/WebLab1/lab4/tracking.php");
+            window.location.replace("http://localhost/WebLab1/lab4/main-lab4.php");
             return;
         }
 

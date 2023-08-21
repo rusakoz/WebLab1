@@ -14,6 +14,14 @@ include "../logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+    <!--START LOCK logic-->
+    <script src="../logic/Include/lock/getResultsInfo.js" defer crossorigin="anonymous"></script>
+    <script src="../logic/Include/lock/LOCK-Test.js" defer crossorigin="anonymous"></script>
+    <script src="lock/LOCK-lab5.js" defer crossorigin="anonymous"></script>
+    <script type="text/javascript" defer crossorigin="anonymous">
+        var idSession = <?php echo json_encode($_SESSION['id']); ?>;
+    </script>
+    <!--END LOCK logic-->
 </head>
 <body>
 
@@ -27,9 +35,9 @@ include "../logic/DB/database.php";
         <div class="row">
             <div class="main about col">
                 <ul>
-                    <li><a href="<?php echo BASE_URL . 'lab5/attentive.php'?>">Внимание</a></li>
-                    <li><a href="<?php echo BASE_URL . 'lab5/memory.php'?>">Память</a></li>
-                    <li><a href="<?php echo BASE_URL . 'lab5/thinking.php'?>">Мышление</a></li>
+                    <li><a id="attentive" href="<?php echo BASE_URL . 'lab5/attentive.php'?>">Внимание</a></li>
+                    <li><a id="memory" href="<?php echo BASE_URL . 'lab5/memory.php'?>">Память</a></li>
+                    <li><a id="thinking" href="<?php echo BASE_URL . 'lab5/thinking.php'?>">Мышление</a></li>
                 </ul>
             </div>
 

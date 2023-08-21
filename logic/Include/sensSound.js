@@ -6,7 +6,8 @@ let started = false;
 let playedTime = 0;
 let timeout;
 let counts = 0;
-let resul = "";
+let resul = 0;
+let loop = 10;
 
 function sleep(milliseconds) {
     const date = Date.now();
@@ -31,20 +32,20 @@ function formatTime(time) {
 function getRandomSound() {
     let songs =
         [
-
-            { filename: "logic/Include/sounds/3.mp3"}
+            { filename: "logic/Include/sounds/5.mp3"}
         ];
 
     let randomIndex = Math.floor(Math.random() * songs.length);
     let song = songs[randomIndex];
     audio.src = song.filename;
     audio.volume = 1;
-    audio.play();
+    audio.play()
+
 }
 
 function click(event){
     let timeStamp = performance.now();
-    console.log(timeStamp +"timeStamp");
+    //console.log(timeStamp +"timeStamp");
     if (started){
         // (async () => {
         //     end(timeStamp);
@@ -65,12 +66,14 @@ function start(){
         max = 4;
     let rand = Math.floor(Math.random() * (max - min + 1) + min);
     time.textContent = '00.000';
-    console.log("start")
+    //console.log("start")
 
-    timeout = setTimeout(() => {
-        getRandomSound();
+    timeout = setTimeout(  async () => {
+        getRandomSound()
+
         playedTime = performance.now();
-        console.log(playedTime);
+
+        //console.log(playedTime);
     }, rand * 1000);
 }
 
@@ -78,18 +81,16 @@ function end(timeStamp){
     if(!playedTime){
         time.textContent = "Слишком быстро!";
         clearTimeout(timeout);
-        console.log("fast")
+        //console.log("fast")
     } else {
-        console.log(time);
-        console.log(playedTime +"played");
+        //console.log(time);
+        //console.log(playedTime +"played");
         const currentTime = timeStamp - playedTime - 1000;
-        if (counts === 0) {
-            resul += formatTime(currentTime);
-        } else {
-            resul += ',' + formatTime(currentTime);
-        }
+
+        resul += parseFloat(formatTime(currentTime));
+
         time.textContent = formatTime(currentTime).toString();
-        console.log(resul);
+        //console.log(resul);
         playedTime = 0;
         // source.src="";
         audio.src="";
@@ -99,16 +100,17 @@ function end(timeStamp){
 
 document.querySelector('div.main').addEventListener("click", evt => {
 
-    while (counts !== 3){
+    while (counts !== loop){
         sleep(1000);
         click();
         counts++;
-        console.log(counts);
+        //console.log(counts);
 
     }
-    if (counts === 3){
-        console.log(resul);
+    if (counts === loop){
+        //console.log(resul);
         time.textContent = resul;
+        resul = parseFloat((resul / counts).toFixed(loop));
         let formData = new FormData();
         formData.append('results', resul);
         formData.append('table', 'resultSound');
@@ -120,7 +122,7 @@ document.querySelector('div.main').addEventListener("click", evt => {
         }).then(function (body) {
             console.log(body)
         })
-
+        window.location.replace('http://localhost/WebLab1/sens.php');
     }
 
 }, {passive: false});

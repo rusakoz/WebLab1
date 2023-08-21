@@ -14,6 +14,14 @@ include "logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+    <!--START LOCK logic-->
+    <script src="logic/Include/lock/getResultsInfo.js" defer crossorigin="anonymous"></script>
+    <script src="logic/Include/lock/LOCK-Test.js" defer crossorigin="anonymous"></script>
+    <script src="menu/lock/LOCK-lab2.js" defer crossorigin="anonymous"></script>
+    <script type="text/javascript" defer crossorigin="anonymous">
+        var idSession = <?php echo json_encode($_SESSION['id']); ?>;
+    </script>
+    <!--END LOCK logic-->
 </head>
 <body>
 
@@ -27,11 +35,11 @@ include "logic/DB/database.php";
         <div class="row">
             <div class="main about col">
                 <ul>
-                    <li><a href="<?php echo BASE_URL . 'sensLight.php'?>">Тест на свет</a></li>
-                    <li><a href="<?php echo BASE_URL . 'sensSound.php'?>">Тест на звук</a></li>
-                    <li><a href="<?php echo BASE_URL . 'sensThreeLight.php'?>">Тест на 3 цвета</a></li>
-                    <li><a href="<?php echo BASE_URL . 'sensHardSound.php'?>">Тест на сложение в уме по звуку</a></li>
-                    <li><a href="<?php echo BASE_URL . 'sensAddition.php'?>">Тест на сложение в уме визуально</a></li>
+                    <li><a id="sensLight" href="<?php echo BASE_URL . 'sensLight.php'?>">Тест на свет</a></li>
+                    <li><a id="sensSound" href="<?php echo BASE_URL . 'sensSound.php'?>">Тест на звук</a></li>
+                    <li><a id="sensThreeLight" href="<?php echo BASE_URL . 'sensThreeLight.php'?>">Тест на 3 цвета</a></li>
+                    <li><a id="sensHardSound" href="<?php echo BASE_URL . 'sensHardSound.php'?>">Тест на сложение в уме по звуку</a></li>
+                    <li><a id="sensAddition" href="<?php echo BASE_URL . 'sensAddition.php'?>">Тест на сложение в уме визуально</a></li>
                 </ul>
             </div>
 

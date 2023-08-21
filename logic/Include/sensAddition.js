@@ -10,7 +10,7 @@ let timeout;
 let correctAnswer;
 let counts = 0;
 const timesNeeded = 3;
-let resul = "";
+let resul = 0;
 
 function sleep(milliseconds) {
     const date = Date.now();
@@ -34,16 +34,16 @@ function formatTime(time) {
 }
 
 function click(evt){
-    console.debug('here1');
+    //console.debug('here1');
     let timeStamp = performance.now();
     if (started){
         started = false;
-        console.debug('here2')
+        //console.debug('here2')
         end(timeStamp, evt);
 
     } else {
         started = true;
-        console.debug('here3')
+        //console.debug('here3')
         start(evt);
 
     }
@@ -78,23 +78,24 @@ function end(timeStamp, evt){
         const currentTime = timeStamp - playedTime;
         if ((evt.target === inputEven && correctAnswer % 2 === 0) ||
             (evt.target === inputOdd && correctAnswer % 2 !== 0)){
-            console.log('Right');
+            //console.log('Right');
             results.textContent = "Верно";
             if(counts === 0){
-                resul += formatTime(currentTime);
+                resul += parseFloat(formatTime(currentTime));
             } else {
-                resul += "," + formatTime(currentTime);
+                resul += parseFloat(formatTime(currentTime));
             }
             counts += 1;
 
             if (counts === timesNeeded) {
-                console.log ('END' + " " + resul);
+                resul = (resul / counts).toFixed(3);
+                //console.log ('END' + " " + resul);
                 startButton.hidden = false;
                 inputEven.hidden = true;
                 inputOdd.hidden = true;
                 randomNums.textContent = "";
                 counts = 0;
-                console.log('Met')
+                //console.log('Met')
                 let formData = new FormData();
                 formData.append('results', resul);
                 formData.append('table', 'resultAddition');
@@ -106,19 +107,20 @@ function end(timeStamp, evt){
                 }).then(function (body) {
                     console.log(body)
                 })
-                resul = '';
+                resul = 0;
+                window.location.replace('http://localhost/WebLab1/sens.php');
                 return;
             }
 
         } else {
             results.textContent = "Неверно";
-            console.log(correctAnswer);
+            //console.log(correctAnswer);
         }
         time.textContent = formatTime(currentTime).toString();
         playedTime = 0;
 
     }
-    console.debug('here12344')
+    //console.debug('here12344')
     inputEven.hidden = true;
     inputOdd.hidden = true;
     click();
