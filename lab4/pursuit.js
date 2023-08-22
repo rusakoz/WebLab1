@@ -69,7 +69,7 @@ let fpss = 0;
         var canvas = document.getElementById('game');
         var context = canvas.getContext('2d');
 
-        var target = {x:30,y:30,dx:0.2,dy:0.2}
+        var target = {x:Math.floor(Math.random() * 570),y:Math.floor(Math.random() * 270),dx:1.0,dy:1.0}
         var aim = {x:150,y:150}
 
 
