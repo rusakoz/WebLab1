@@ -12,8 +12,11 @@ function processStat(){
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-2', idSession),
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-3', idSession)
     ]).then((result)=>{
-        result.forEach((a) => {console.log(a)})
-    }).catch(()=> alert('ошибка'))
+        result.forEach((a) => {
+            a.forEach((b => console.log(b)));
+            console.log('---------')
+        })
+    }).catch(()=> alert('Ошибка загрузки данных с базы данных'))
 }
 
 processStat();

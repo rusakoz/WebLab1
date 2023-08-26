@@ -25,9 +25,40 @@ include "../../logic/DB/database.php";
 <!--Main-->
 <div id="main" class="main container-fluid">
     <div class="main-content container">
-        <div class="row">
-            <div class="main about col">
+        <div id="main-row" class="row">
+            <div id="main-col" class="main about col">
+
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            Колонка
+                        </div>
+                        <div id="test" class="col">
+                            Колонка
+                        </div>
+                        <div class="col">
+                            Колонка
+                        </div>
+                    </div>
+                </div>
+
+
                 <h1> Админ логика</h1>
+
+                <div class="mb-3">
+
+                    <h4 class="getInfo">3313123123</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="customRange3" class="form-label getInfo">Пример диапазона</label>
+                    <input type="range" class="form-range getInfo" min="0" max="100" step="10" id="customRange3">
+
+                </div>
+                <div class="mb-3 form-check">
+
+                    <h4 class="getInfo">ghfsdgjhgh</h4>
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить</button>
             </div>
         </div>
     </div>

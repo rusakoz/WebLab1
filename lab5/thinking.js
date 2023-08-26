@@ -72,7 +72,7 @@ function startTest(){
                 console.log(body)
             })
 
-            window.location.replace("http://localhost/WebLab1/lab5/thinking.php")
+            window.location.replace("http://localhost/WebLab1/lab5/main-lab5.php")
 
         }
     })

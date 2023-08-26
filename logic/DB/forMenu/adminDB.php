@@ -2,24 +2,25 @@
 require ('../database.php');
 
 
-$data = [
-    'id' => $_POST['id']
-
-];
+//$data = [
+//    'id' => $_POST['id']
+//
+//];
 
 function select(){
 
     global $pdo;
 
-    $sql = "SELECT resultpvk.profession AS ПРОФЕССИЯ, pvk.listpvk AS ИД_ПВК, ROUND(AVG(resultpvk.pvkScore),1) AS СР_ОЦЕНКА
+    $sql = "SELECT resultpvk.profession AS ПРОФЕССИЯ, pvk.listpvk AS ПВК, ROUND(AVG(resultpvk.pvkScore),1) AS СР_ОЦЕНКА
             FROM `resultpvk` 
             JOIN `pvk` ON pvk.id = resultpvk.listPVK 
             GROUP BY resultpvk.profession, pvk.id 
             ORDER BY ПРОФЕССИЯ";
 
-//    $sql2 = "SELECT resultpvk.id AS resID, resultpvk.profession, resultpvk.listPVK AS reslistPVK, resultpvk.pvkScore, pvk.listPVK, pvk.group
-//            FROM `resultpvk`
-//            JOIN `pvk` ON pvk.id = resultpvk.listPVK";
+    $sql2 = "SELECT profession, listPVK, AVG(resultpvk.pvkScore)
+             FROM `resultpvk`
+             GROUP BY profession, listPVK
+             ORDER BY `resultpvk`.`profession` ASC";
 
 
     $query = $pdo->prepare($sql);
