@@ -94,7 +94,7 @@ function forEach(b = []) {
             })
 
 
-            window.location.replace("http://localhost/WebLab1/lab5/attentive.php");
+            window.location.replace("http://localhost/WebLab1/lab5/main-lab5.php");
 
         }
 
