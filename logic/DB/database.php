@@ -79,10 +79,10 @@ function insert($table, $param){
     $values = '';
     foreach ($param as $key => $value){
         if ($i === 0){
-            $column = $column . $key;
+            $column = $column . "`" . "$key" . "`";
             $values = $values . "'" . "$value" . "'";
         }else{
-            $column = $column . ", $key";
+            $column = $column . ", " . "`" . "$key" . "`";
             $values = $values . ", '" . "$value"."'";
         }
         $i++;
