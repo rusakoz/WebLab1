@@ -151,10 +151,6 @@ buttonStart.addEventListener('click', function () {
 
 
 
-
-
-
-
     fonimg.onload = function (){
 
         setTimeout(game, 150); // Таймаут нужен для того, чтобы функция returnFPS успела высчитать FPS
@@ -211,7 +207,7 @@ buttonStart.addEventListener('click', function () {
         requestAnimFrame(game);
     }
 
-    let startTime = teleportTime - 2;
+    let startTime = teleportTime - 2; // интервал телепорта
     let delta;
     let sum = 0;
     let count = 0;
@@ -228,7 +224,7 @@ buttonStart.addEventListener('click', function () {
                 count++;
 
                 teleportTime = timerTime;
-                startTime = teleportTime - 2;
+                startTime = teleportTime - 2; // интервал телепорта
 
                 lock = false;
 

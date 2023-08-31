@@ -18,23 +18,6 @@ async function returnPromiseAdminDB(){
     return response.json().catch(()=>alert('Произошла ошибка запроса'));
 
 
-    // let formData = new FormData();
-    // formData.append('id', 75);
-    // formData.append('table', 'resultpvk');
-    // fetch('../../logic/DB/forMenu/adminDB.php', {
-    //     method: 'POST',
-    //     body: formData
-    // }).then(function (response)  {
-    //
-    //     return response.json()
-    //
-    // }).then(function (body) {
-    //
-    //     results = body
-    //
-
-    // })
-
 }
 
 function sleep(ms) {
@@ -269,16 +252,30 @@ async function createElement(str){
         await forEachNode();
         sendData(arrayFormData);
 
-        function sendData(a){
+        async function sendData(arrayFormData) {
 
-                for (const aElement of a) {
-                    fetch('../../logic/DB/forMenu/insetAdminResult.php', {
-                        method: 'POST',
-                        body: aElement
-                    }).then((res) => {
-                        if (res.status !== 200) throw new Error('Ошибка отправки данных')
-                    }).catch((err)=>alert(err.message))
-                }
+            const mapOfFetch = arrayFormData.map(b => fetch('../../logic/DB/forMenu/insertAdminResult.php', {
+                method: 'POST',
+                body: b
+            }).then((res) => {
+                if (res.statusText !== 'OK')throw new Error('Ошибка отправки данных')
+            }))
+
+            await Promise.all(mapOfFetch)
+                .catch((err) => {
+                alert(err.message)
+            })
+
+            // for (const aElement of a) {
+            //     fetch('../../logic/DB/forMenu/insetAdminResult.php', {
+            //         method: 'POST',
+            //         body: aElement
+            //     }).then((res) => {
+            //         if (res.status !== 200) throw new Error('Ошибка отправки данных')
+            //     }).catch((err) => {
+            //         alert(err.message)
+            //     })
+            // }
 
         }
 
@@ -352,24 +349,11 @@ async function createElement(str){
                             del();
                         }
                     }
-                    // else if (regCount === 11) {
-                    //     // console.log(formData.get('профессия'))
-                    //     // console.log(formData.get('пвк'))
-                    //     // console.log(formData.get('Сенсомоторные тесты'))
-                    //     // console.log(formData.get('Тесты 3-й лабы'))
-                    //     // console.log(formData.get('Тесты 4-й лабы'))
-                    //     // console.log(formData.get('Тесты 5-й лабы'))
-                    //     // console.log(formData.get('ср_оценка_эксперта'))
-                    //     console.log('wtf')
-                    //     regCount = 1;
-                    //     formData = new FormData();
-                    // }
-                    //console.log(node);
+
                 } else {
                     alert('err2')
                 }
-                // if (node)
-                //console.log(countProf);
+
             }
         }
 
@@ -378,15 +362,17 @@ async function createElement(str){
 
 }
 
+createElement(parsePromise(returnPromiseAdminDB()))
+
+
 // let test = document.getElementById('test');
+
+
 // test.innerHTML = '<input type="range" className="form-range getInfo" min="0" max="100" step="10" id="customRange3">'
-
-
 // document.body.querySelectorAll('.getInfo').forEach(function(node) {
 //     if (node){
 //         console.log(node);
 //     }
 // });
-createElement(parsePromise(returnPromiseAdminDB()))
 
 //returnPromiseAdminDB().then(function (result){result.forEach((a)=> {console.log(a)})});

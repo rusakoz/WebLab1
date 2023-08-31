@@ -31,8 +31,10 @@ function selectInfo($table, $param = []){
 
 $result = selectInfo($_POST['table'], $data);
 
+
 $to_encode = array();
 forEach($result as $key) {
+    $to_encode[0] = $_POST['test'];
     $to_encode[] = $key;
 }
 
