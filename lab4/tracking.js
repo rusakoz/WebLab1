@@ -105,7 +105,6 @@ buttonStart.addEventListener('click', function () {
 
     var flag = false;
 
-    var flagTarget = true;
 
     canvas.addEventListener("mousedown", initialClick, false)
 
