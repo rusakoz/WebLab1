@@ -1,6 +1,6 @@
-var block = document.getElementById('buttonSens');
-var block2 = document.getElementById('buttonSens2');
-var block3 = document.getElementById('buttonSens3');
+let block = document.getElementById('buttonSens');
+let block2 = document.getElementById('buttonSens2');
+let block3 = document.getElementById('buttonSens3');
 const info = document.querySelector('div.results p');
 const stopText = document.querySelector('div.results b');
 const counter = document.querySelector('div.results span');

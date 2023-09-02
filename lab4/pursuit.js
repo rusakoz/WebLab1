@@ -8,17 +8,17 @@ let timerTime;
 let stop;
 let check
 
-var mins = 0;
-var sec = 0;
-var i = 0;
+let mins = 0;
+let sec = 0;
+let i = 0;
 
-var good = 0;
-var superGood = 0;
-var loss = 0;
+let good = 0;
+let superGood = 0;
+let loss = 0;
 
-var goodPercent = 0;
-var superPercent = 0;
-var lossPercent = 0;
+let goodPercent = 0;
+let superPercent = 0;
+let lossPercent = 0;
 
 let fps = 60;
 let fpss = 0;
@@ -66,20 +66,20 @@ let fpss = 0;
 
         textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
 
-        var canvas = document.getElementById('game');
-        var context = canvas.getContext('2d');
+        let canvas = document.getElementById('game');
+        let context = canvas.getContext('2d');
 
-        var target = {x:Math.floor(Math.random() * 570),y:Math.floor(Math.random() * 270),dx:1.0,dy:1.0}
-        var aim = {x:150,y:150}
+        let target = {x:Math.floor(Math.random() * 570),y:Math.floor(Math.random() * 270),dx:1.0,dy:1.0}
+        let aim = {x:150,y:150}
 
 
-        var fonimg = new Image();
+        let fonimg = new Image();
         fonimg.src = '../logic/Include/image/fon.jpg';
 
-        var targetimg = new Image();
+        let targetimg = new Image();
         targetimg.src = '../logic/Include/image/target.png';
 
-        var aimimg = new Image();
+        let aimimg = new Image();
         aimimg.src = '../logic/Include/image/aim.png';
 
         canvas.addEventListener('mousemove', function (event){

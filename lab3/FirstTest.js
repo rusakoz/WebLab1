@@ -4,22 +4,20 @@ const buttonStart = document.querySelector('button');
 const timer = document.querySelector('#timer');
 const textTimer = document.querySelector('#logo1');
 let timerTime;
-let stop;
-let check
 
-var mins = 0;
-var sec = 0;
-var i = 0;
+let mins = 0;
+let sec = 0;
+let i = 0;
 
-var far = 0;
-var hit = 0;
-var close = 0;
-var loss = 0;
+let far = 0;
+let hit = 0;
+let close = 0;
+let loss = 0;
 
-var farPercent = 0;
-var closePercent = 0;
-var hitPercent = 0;
-var lossPercent = 0;
+let farPercent = 0;
+let closePercent = 0;
+let hitPercent = 0;
+let lossPercent = 0;
 
 let fps = 60;
 let fpss = 0;
@@ -65,12 +63,12 @@ buttonStart.addEventListener('click', function () {
 
     textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
 
-    var canvas = document.getElementById('game');
-    var context = canvas.getContext('2d');
+    let canvas = document.getElementById('game');
+    let context = canvas.getContext('2d');
 
-    var circle = {x:0,y:0,dx:0,dy:0,angle:2.5,iterr:0.015}
-    var target2 = {x:Math.floor(Math.random() * 570),y:Math.floor(Math.random() * 270),dx:1.0,dy:1.0}
-    var aim = {x:150,y:150}
+    let circle = {x:0,y:0,dx:0,dy:0,angle:2.5,iterr:0.015}
+    let target2 = {x:Math.floor(Math.random() * 570),y:Math.floor(Math.random() * 270),dx:1.0,dy:1.0}
+    let aim = {x:150,y:150}
     let centerX = 300;
     let centerY = 150;
     let radiusCircle = 50;
@@ -80,23 +78,23 @@ buttonStart.addEventListener('click', function () {
     let circle3 = {x:centerX + Math.cos(3.17) * radiusCircle,y:centerY + Math.sin(3.17) * radiusCircle}
     let circle4 = {x:centerX + Math.cos(2.83) * radiusCircle,y:centerY + Math.sin(2.83) * radiusCircle}
 
-    var fonimg = new Image();
+    let fonimg = new Image();
     fonimg.src = '../logic/Include/image/fon.jpg';
 
-    var circleimg = new Image();
+    let circleimg = new Image();
     circleimg.src = '../logic/Include/image/blueCircle.png';
 
-    var circleimg2 = new Image();
+    let circleimg2 = new Image();
     circleimg2.src = '../logic/Include/image/greenCircle.png';
 
-    var circleimg3 = new Image();
+    let circleimg3 = new Image();
     circleimg3.src = '../logic/Include/image/yellowCircle.png';
 
-    var circleimg4 = new Image();
+    let circleimg4 = new Image();
     circleimg4.src = '../logic/Include/image/yellowCircle.png';
 
 
-    var rectangleimg = new Image();
+    let rectangleimg = new Image();
     rectangleimg.src = '../logic/Include/image/rectangle.png';
 
     document.addEventListener('keydown', function (event){
@@ -226,7 +224,7 @@ buttonStart.addEventListener('click', function () {
         context.restore();
     }
 
-    var requestAnimFrame = (function (){
+    let requestAnimFrame = (function (){
         return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
             function (callback){

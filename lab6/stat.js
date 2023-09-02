@@ -14,7 +14,6 @@ async function bestFromTests(promiseStat){
     let arrayRes = new Map();
     await promiseStat.then((result)=>{
         let test = '';
-        let count = 0;
         let lastRes = -12345;
         if (result.length !== 0) {
 
@@ -158,6 +157,7 @@ async function bestFromTests(promiseStat){
                     lastRes = -12345;
                     console.log('---------')
                 }else {
+                    arrayRes.set(a[0], 'Не пройден ни разу')
                     console.log('Вы не прошли еще ни одного теста в ' + a[0])
                 }
             })
@@ -172,33 +172,23 @@ async function bestFromTests(promiseStat){
 
 async function processStat() {
     return await Promise.all([
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlight', idSession, 'Тест на свет'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultaddition', idSession, 'Тест на сложение визуально'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultsound', idSession, 'Тест на звук'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resulthardsound', idSession, 'Тест на сложение в уме'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultthreelight', idSession, 'Тест на 3 цвета'),
-        //getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab3-1', idSession, 'Тест 3-1 лаба'),
-        //getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab3-2', idSession, 'Тест 3-2 лаба),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab4-1', idSession, 'Тест на слежение'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab4-2', idSession, 'Тест на преследование'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-1', idSession, 'Тест на внимание'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-2', idSession, 'Тест на память'),
-        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-3', idSession, 'Тест на мышление')
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlight', idSession, 'Тест_на_свет'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultaddition', idSession, 'Тест_на_сложение визуально'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultsound', idSession, 'Тест_на_звук'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resulthardsound', idSession, 'Тест_на_сложение_в_уме'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultthreelight', idSession, 'Тест_на_3_цвета'),
+        //getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab3-1', idSession, 'Тест_3лаба_легкий'),
+        //getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab3-2', idSession, 'Тест_3лаба_сложный'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab4-1', idSession, 'Тест_на_слежение'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab4-2', idSession, 'Тест_на_преследование'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-1', idSession, 'Тест_на_внимание'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-2', idSession, 'Тест_на_память'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-3', idSession, 'Тест_на_мышление')
     ]).catch((errr) => alert('Ошибка запроса ' + errr.message))
         .then((result) => {
 
             return result;
-            // result.forEach((a) => {
-            //     a.forEach((b => {
-            //         if (b === 'resultlight') {
-            //
-            //         }
-            //         console.log(b)
-            //
-            //
-            //     }));
-            //     console.log('---------')
-            // })
+
         }).catch((err) => console.error(err.message))
 }
 

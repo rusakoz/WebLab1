@@ -1,5 +1,5 @@
-var scene = document.getElementById('super');
-var startButton = document.querySelector('button');
+let scene = document.getElementById('super');
+let startButton = document.querySelector('button');
 let waitAnswer;
 let countLoop = 1;
 let rightAnswer = 0;

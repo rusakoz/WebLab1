@@ -7,17 +7,10 @@ const textTimer = document.querySelector('#logo1');
 let timerTime;
 
 
-var mins = 0;
-var sec = 0;
-var i = 0;
+let mins = 0;
+let sec = 0;
+let i = 0;
 
-var good = 0;
-var superGood = 0;
-var loss = 0;
-
-var goodPercent = 0;
-var superPercent = 0;
-var lossPercent = 0;
 
 let teleportTime = 0;
 let timerToSend = 0;
@@ -75,23 +68,23 @@ buttonStart.addEventListener('click', function () {
 
     textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>";
 
-    var canvas = document.getElementById('game');
-    var context = canvas.getContext('2d');
+    let canvas = document.getElementById('game');
+    let context = canvas.getContext('2d');
 
-    var target = {x:270,y:120,dx:0,dy:0};
-    var cursor = {x:270,y:120};
-    var start = {x:270,y:120};
+    let target = {x:270,y:120,dx:0,dy:0};
+    let cursor = {x:270,y:120};
+    let start = {x:270,y:120};
 
-    var fonimg = new Image();
+    let fonimg = new Image();
     fonimg.src = '../logic/Include/image/fon.jpg';
 
-    var targetimg = new Image();
+    let targetimg = new Image();
     targetimg.src = '../logic/Include/image/target.png';
 
-    var cursorimg = new Image();
+    let cursorimg = new Image();
     cursorimg.src = '../logic/Include/image/cursor.png';
 
-    var startimg = new Image();
+    let startimg = new Image();
     startimg.src = '../logic/Include/image/start.png';
 
 
@@ -101,9 +94,9 @@ buttonStart.addEventListener('click', function () {
 
     })
 
-    var moving = false;
+    let moving = false;
 
-    var flag = false;
+    let flag = false;
 
 
     canvas.addEventListener("mousedown", initialClick, false)

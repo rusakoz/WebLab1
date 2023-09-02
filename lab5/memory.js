@@ -1,5 +1,5 @@
-var scene = document.getElementById('super');
-var startButton = document.querySelector('button');
+let scene = document.getElementById('super');
+let startButton = document.querySelector('button');
 let res = [];
 
 let arrayWords = ['яблоко', 'апельсин', 'мандарин', 'стул', 'стол', 'яма',
