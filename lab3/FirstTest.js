@@ -11,12 +11,14 @@ var mins = 0;
 var sec = 0;
 var i = 0;
 
-var good = 0;
-var superGood = 0;
+var far = 0;
+var hit = 0;
+var close = 0;
 var loss = 0;
 
-var goodPercent = 0;
-var superPercent = 0;
+var farPercent = 0;
+var closePercent = 0;
+var hitPercent = 0;
 var lossPercent = 0;
 
 let fps = 60;
@@ -103,13 +105,27 @@ buttonStart.addEventListener('click', function () {
 
             //попадание
             if (Math.abs(circle2.x - circle.x) < 4.2 && Math.abs(circle2.y - circle.y) < 4.2){
-                console.log('попал')
+                hit++
+                console.debug('попал')
             }else if (Math.abs(circle3.x - circle.x) < 4 && Math.abs(circle3.y - circle.y) < 4){
-                console.log('попал222')
+                if (circle.iterr < 0){
+                    close++
+                    console.debug('недолет')
+                }else {
+                    far++
+                    console.debug('перелет')
+                }
             }else if (Math.abs(circle4.x - circle.x) < 4.2 && Math.abs(circle4.y - circle.y) < 4.2){
-                console.log('попал333')
+                if (circle.iterr < 0){
+                    far++
+                    console.debug('перелет')
+                }else {
+                    close++
+                    console.debug('недолет')
+                }
             }else {
-                console.log('не попал')
+                loss++
+                console.debug('не попал')
             }
 
         }
@@ -124,34 +140,36 @@ buttonStart.addEventListener('click', function () {
 
         if (i < Math.floor(fps)){
             i++
-            textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
+            textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + hit + ":" + far + ":" + close + ":" + loss + "</h1>"
 
         }
         if (i === Math.floor(fps)){
             if (sec > 0){
                 sec--
                 i = 0
-                textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
+                textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + hit + ":" + far + ":" + close + ":" + loss + "</h1>"
             }
         }
         if (sec === 0){
             if (mins > 0){
                 mins--
                 sec = 60
-                textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
+                textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + hit + ":" + far + ":" + close + ":" + loss + "</h1>"
             }
         }
 
         if (sec === 0 && mins === 0){
 
-            let sum = good + superGood + loss;
-            superPercent = Math.floor((superGood * 100) / sum)
-            goodPercent = Math.floor((good * 100) / sum)
+            let sum = hit + far + close + loss;
+            hitPercent = Math.floor((hit * 100) / sum)
+            farPercent = Math.floor((far * 100) / sum)
+            closePercent = Math.floor((close * 100) / sum)
             lossPercent = Math.floor((loss * 100) / sum)
-            textTimer.innerHTML = "<h1>"  + goodPercent + ":" + superPercent + ":" + lossPercent + "</h1>"
+            textTimer.innerHTML = "<h1>"  + farPercent + ":" + hitPercent + ":" + closePercent + ":" + lossPercent + "</h1>"
             let formData = new FormData();
-            formData.append('super', superPercent);
-            formData.append('good', goodPercent);
+            formData.append('hit', hitPercent);
+            formData.append('far', farPercent);
+            formData.append('close', closePercent);
             formData.append('loss', lossPercent);
             formData.append('time', timerTime);
             formData.append('table', 'resultLab3-1');
