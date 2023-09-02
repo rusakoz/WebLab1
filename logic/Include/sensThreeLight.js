@@ -1,8 +1,8 @@
-var block = document.getElementById('sensThreeLight');
-var block2 = document.getElementById('sensThreeLight2');
-var block3 = document.getElementById('sensThreeLight3');
-var block4 = document.getElementById('sensThreeLight4');
-var block5 = document.getElementById('sensThreeLight5');
+let block = document.getElementById('sensThreeLight');
+let block2 = document.getElementById('sensThreeLight2');
+let block3 = document.getElementById('sensThreeLight3');
+let block4 = document.getElementById('sensThreeLight4');
+let block5 = document.getElementById('sensThreeLight5');
 const time = document.querySelector('div.results h3')
 const counter = document.querySelector('div.results span');
 let coloredTime = 0;

@@ -1,10 +1,10 @@
-var mainBlock = document.getElementById('ul1');
-var block = document.getElementById('li1');
-var block2 = document.getElementById('li2');
-var block3 = document.getElementById('li3');
-var block4 = document.getElementById('li4');
-var block5 = document.getElementById('li5');
-var block6 = document.getElementById('li6');
+let mainBlock = document.getElementById('ul1');
+let block = document.getElementById('li1');
+let block2 = document.getElementById('li2');
+let block3 = document.getElementById('li3');
+let block4 = document.getElementById('li4');
+let block5 = document.getElementById('li5');
+let block6 = document.getElementById('li6');
 
 
 

@@ -14,7 +14,11 @@ include "../../logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
-    <script src="../scripts/test.js" defer> </script> <!-- defer - запуск скрипта после загрузки html страницы -->
+    <script type="text/javascript" defer crossorigin="anonymous">
+        var idSession = <?php echo json_encode($_SESSION['id']); ?>;
+    </script>
+    <script src="../../logic/Include/lock/getResultsInfo.js" defer crossorigin="anonymous"> </script>
+    <script src="../scripts/test.js" defer crossorigin="anonymous"> </script> <!-- defer - запуск скрипта после загрузки html страницы -->
 </head>
 <body>
 
