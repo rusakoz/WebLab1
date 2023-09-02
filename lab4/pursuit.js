@@ -74,13 +74,13 @@ let fpss = 0;
 
 
         var fonimg = new Image();
-        fonimg.src = 'fon.jpg';
+        fonimg.src = '../logic/Include/image/fon.jpg';
 
         var targetimg = new Image();
-        targetimg.src = 'target.png';
+        targetimg.src = '../logic/Include/image/target.png';
 
         var aimimg = new Image();
-        aimimg.src = 'aim.png';
+        aimimg.src = '../logic/Include/image/aim.png';
 
         canvas.addEventListener('mousemove', function (event){
             aim.x = event.offsetX - 300;
