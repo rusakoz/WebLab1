@@ -83,16 +83,16 @@ buttonStart.addEventListener('click', function () {
     var start = {x:270,y:120};
 
     var fonimg = new Image();
-    fonimg.src = 'fon.jpg';
+    fonimg.src = '../logic/Include/image/fon.jpg';
 
     var targetimg = new Image();
-    targetimg.src = 'target.png';
+    targetimg.src = '../logic/Include/image/target.png';
 
     var cursorimg = new Image();
-    cursorimg.src = 'cursor.png';
+    cursorimg.src = '../logic/Include/image/cursor.png';
 
     var startimg = new Image();
-    startimg.src = 'start.png';
+    startimg.src = '../logic/Include/image/start.png';
 
 
     document.body.addEventListener('mousemove', function (event){

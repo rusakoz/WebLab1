@@ -81,23 +81,23 @@ buttonStart.addEventListener('click', function () {
     let circle4 = {x:centerX + Math.cos(2.83) * radiusCircle,y:centerY + Math.sin(2.83) * radiusCircle}
 
     var fonimg = new Image();
-    fonimg.src = 'fon.jpg';
+    fonimg.src = '../logic/Include/image/fon.jpg';
 
     var circleimg = new Image();
-    circleimg.src = 'blueCircle.png';
+    circleimg.src = '../logic/Include/image/blueCircle.png';
 
     var circleimg2 = new Image();
-    circleimg2.src = 'greenCircle.png';
+    circleimg2.src = '../logic/Include/image/greenCircle.png';
 
     var circleimg3 = new Image();
-    circleimg3.src = 'yellowCircle.png';
+    circleimg3.src = '../logic/Include/image/yellowCircle.png';
 
     var circleimg4 = new Image();
-    circleimg4.src = 'yellowCircle.png';
+    circleimg4.src = '../logic/Include/image/yellowCircle.png';
 
 
     var rectangleimg = new Image();
-    rectangleimg.src = 'rectangle.png';
+    rectangleimg.src = '../logic/Include/image/rectangle.png';
 
     document.addEventListener('keydown', function (event){
         event.preventDefault()
