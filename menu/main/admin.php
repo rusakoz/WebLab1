@@ -19,6 +19,7 @@ include "../../logic/DB/database.php";
     </script>
     <script src="../../logic/Include/lock/getResultsInfo.js" defer crossorigin="anonymous"> </script>
     <script src="../scripts/test.js" defer crossorigin="anonymous"> </script> <!-- defer - запуск скрипта после загрузки html страницы -->
+    <script src="../scripts/test2.js" defer crossorigin="anonymous"> </script>
 </head>
 <body>
 
@@ -27,42 +28,21 @@ include "../../logic/DB/database.php";
 <!--Header-->
 
 <!--Main-->
-<div id="main" class="main container-fluid">
-    <div class="main-content container">
+<div id="main-admin" class="main container-fluid">
+    <div id="admin-button" class="main-content container">
         <div id="main-row" class="row">
             <div id="main-col" class="main about col">
 
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col">
-                            Колонка
-                        </div>
-                        <div id="test" class="col">
-                            Колонка
-                        </div>
-                        <div class="col">
-                            Колонка
-                        </div>
-                    </div>
-                </div>
+                <button class="c-button" id="buttonOne" type="submit"> Установить срезы по тестам</button>
+
+                <button class="c-button" id="buttonTwo" type="submit"> Установить баллы тестов</button>
+
+                <!--<button class="c-button" id="buttonThree" type="submit"> </button>
+                <button class="c-button" id="buttonFour" type="submit"> /button>
+                <button class="c-button" id="buttonFive" type="submit"> </button>
+                <button class="c-button" id="buttonSix" type="submit"> </button>-->
 
 
-                <h1> Админ логика</h1>
-
-                <div class="mb-3">
-
-                    <h4 class="getInfo">3313123123</h4>
-                </div>
-                <div class="mb-3">
-                    <label for="customRange3" class="form-label getInfo">Пример диапазона</label>
-                    <input type="range" class="form-range getInfo" min="0" max="100" step="10" id="customRange3">
-
-                </div>
-                <div class="mb-3 form-check">
-
-                    <h4 class="getInfo">ghfsdgjhgh</h4>
-                </div>
-                <button type="submit" class="btn btn-primary">Отправить</button>
             </div>
         </div>
     </div>

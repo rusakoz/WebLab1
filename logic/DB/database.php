@@ -123,21 +123,21 @@ function insertInt($table, $param){
     return $pdo->lastInsertId();
 }
 
-function update($table, $id, $param){
+function update($table, $name, $param){
     global $pdo;
 
     $i = 0;
     $string = '';
     foreach ($param as $key => $value){
         if ($i === 0){
-            $string = $string . $key . " = '" . $value . "'";
+            $string = $string . "`" . $key . "`" . " = '" . $value . "'";
         }else{
-            $string = $string .", " . $key . " = '" . $value . "'";
+            $string = $string .", `" . $key . "`" . " = '" . $value . "'";
         }
         $i++;
     }
 
-    $sql = "UPDATE $table SET $string WHERE id = $id";
+    $sql = "UPDATE $table SET $string WHERE `name` = " . "'" . "$name" . "'";
 
     $query = $pdo->prepare($sql);
     $query->execute($param);

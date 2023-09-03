@@ -269,6 +269,42 @@ Expert
 Expert
  */
 
+
+/*
+Admin
+ */
+
+#main-admin {
+    padding-top: 70px;
+    min-height: 700px;
+    position: relative;
+    background: #ded5d5
+}
+
+
+#admin-button .c-button {
+
+    list-style-type: none;
+    background: #1a1a1a;
+    font-size: 30px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    color: blueviolet;
+    padding: 20px;
+
+
+}
+#admin-button .c-button:hover {
+    background: #312f2f;
+    transition: 0.5s;
+    color: blueviolet;
+}
+
+/*
+Admin
+ */
+
 /*
 PVK
  */

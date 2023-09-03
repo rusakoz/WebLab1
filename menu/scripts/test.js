@@ -1,8 +1,15 @@
 let results;
 let mainRow = document.getElementById('main-row')
 let mainCol = document.getElementById('main-col')
+let buttonOne = document.getElementById('buttonOne')
 let countProf = 0;
 let checkData
+
+
+buttonOne.addEventListener('click', function (){
+    createElement(parsePromise(returnPromiseAdminDB(), getPromiseResultAdminDB()))
+
+})
 
 
 // Асинхранные функции ВСЕГДА возвращают промисы
@@ -509,7 +516,8 @@ async function createElement(str){
         let lastProf = ''
         let arrayFormData = [];
         await forEachNode();
-        sendData(arrayFormData);
+        await sendData(arrayFormData);
+        window.location.reload()
 
         async function sendData(arrayFormData) {
 
@@ -525,16 +533,6 @@ async function createElement(str){
                 alert(err.message)
             })
 
-            // for (const aElement of a) {
-            //     fetch('../../logic/DB/forMenu/insetAdminResult.php', {
-            //         method: 'POST',
-            //         body: aElement
-            //     }).then((res) => {
-            //         if (res.status !== 200) throw new Error('Ошибка отправки данных')
-            //     }).catch((err) => {
-            //         alert(err.message)
-            //     })
-            // }
 
         }
 
@@ -579,18 +577,6 @@ async function createElement(str){
                             formData.append('table', 'adminResult')
                             arrayFormData.push(formData)
 
-                            // formData.append('table', 'adminResult')
-                            //
-                            // await fetch('../../logic/DB/forMenu/insertAdmiResult.php', {
-                            //     method: 'POST',
-                            //     body: formData
-                            // }).then((res) => {
-                            //     if (res.status !== 200) throw new Error()
-                            // })
-                            //     .catch(() => {
-                            //
-                            //     })
-
 
                             // console.log(formData.get('профессия'))
                             // console.log(formData.get('пвк'))
@@ -621,7 +607,9 @@ async function createElement(str){
 
 }
 
-createElement(parsePromise(returnPromiseAdminDB(), getPromiseResultAdminDB()))
+
+
+//createElement(parsePromise(returnPromiseAdminDB(), getPromiseResultAdminDB()))
 
 
 // let test = document.getElementById('test');
