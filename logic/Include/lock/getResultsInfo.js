@@ -11,7 +11,10 @@ async function getResultsInfo(url, nameTable, id, test = '') {
     })
         .then((res)=>{
         if (res.ok){
-            return res.json()
+            return res.json().then(function(json) {
+                json.test = test;
+                return json;
+            })
 
         }else {
             throw new Error('')

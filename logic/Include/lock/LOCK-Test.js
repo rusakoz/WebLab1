@@ -22,7 +22,7 @@ function getCountElemArray(array){
     let count = 0;
 
     array.forEach((a) => {
-        if (a !== 'undefined' && a !== null){
+        if (a !== 'undefined' && a !== null && a !== ''){
             count++
         }
     })

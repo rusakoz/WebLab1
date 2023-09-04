@@ -66,7 +66,7 @@ buttonStart.addEventListener('click', function () {
     let canvas = document.getElementById('game');
     let context = canvas.getContext('2d');
 
-    let circle = {x:0,y:0,dx:0,dy:0,angle:2.5,iterr:0.015}
+    let circle = {x:0,y:0,dx:0,dy:0,angle:2.5,iterr:0.02}
     let target2 = {x:Math.floor(Math.random() * 570),y:Math.floor(Math.random() * 270),dx:1.0,dy:1.0}
     let aim = {x:150,y:150}
     let centerX = 300;
