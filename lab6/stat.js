@@ -1,4 +1,5 @@
 
+console.log(bestFromTests(processStat()));
 
 function conclusion(bestFromTests){
 
@@ -9,17 +10,21 @@ function conclusion(bestFromTests){
     * */
 
 }
-
+let flag = 'не пройден ни разу'
 async function bestFromTests(promiseStat){
     let arrayRes = new Map();
+    console.log(promiseStat)
     await promiseStat.then((result)=>{
+        let count = 0;
         let test = '';
         let lastRes = -12345;
         if (result.length !== 0) {
 
             result.forEach((a) => {
+
                 if(a.length > 1) {
-                    console.log(a[0])
+                    count++
+                    //console.log(result)
                     a.forEach((b) => {
 
                         if (typeof b === 'string') {
@@ -137,17 +142,17 @@ async function bestFromTests(promiseStat){
                                 lastRes = res;
                             }
                         }
-                        //
-                        // if (test === 'Тест_3лаба_сложный' && typeof b !== 'string') {
-                        //     console.log(b)
-                        //     let res = parseInt(b.result)
-                        //     if (lastRes === -12345){
-                        //         lastRes = res;
-                        //     }
-                        //     else if (res > lastRes){
-                        //         lastRes = res;
-                        //     }
-                        // }
+                        console.log(test)
+                        if (test === 'Тест_3лаба_сложный' && typeof b !== 'string') {
+                            console.log(b)
+                            let res = parseInt(b.hit) + Math.floor(b.far / 2) + Math.floor(b.close / 2)
+                            if (lastRes === -12345){
+                                lastRes = res;
+                            }
+                            else if (res > lastRes){
+                                lastRes = res;
+                            }
+                        }
 
 
 
@@ -157,8 +162,8 @@ async function bestFromTests(promiseStat){
                     lastRes = -12345;
                     console.log('---------')
                 }else {
-                    arrayRes.set(a[0], 'Не пройден ни разу')
-                    console.log('Вы не прошли еще ни одного теста в ' + a[0])
+                    arrayRes.set(result[count].test, 'Не пройден ни разу')
+                    console.log('Вы не прошли еще ни одного теста в ' + result[count].test)
                 }
             })
         }else {
@@ -178,7 +183,7 @@ async function processStat() {
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resulthardsound', idSession, 'Тест_на_сложение_в_уме'),
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultthreelight', idSession, 'Тест_на_3_цвета'),
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab3-1', idSession, 'Тест_3лаба_легкий'),
-        //getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab3-2', idSession, 'Тест_3лаба_сложный'),
+        getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab3-2', idSession, 'Тест_3лаба_сложный'),
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab4-1', idSession, 'Тест_на_слежение'),
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab4-2', idSession, 'Тест_на_преследование'),
         getResultsInfo('../logic/DB/resultInfo/selectAll.php', 'resultlab5-1', idSession, 'Тест_на_внимание'),
@@ -192,4 +197,3 @@ async function processStat() {
         }).catch((err) => console.error(err.message))
 }
 
-console.log(bestFromTests(processStat()));
