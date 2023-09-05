@@ -1,19 +1,139 @@
 
 console.log(bestFromTests(processStat()));
+conclusion(bestFromTests(processStat()));
 
-function conclusion(bestFromTests){
+function conclusion(bestFromTests) {
+
+    let localMap = new Map()
+    let resMap = new Map()
+    let resulMap = new Map()
+    let resul = 0
+    bestFromTests.then((a) => {
+
+        for (var key of a) {
+
+            localMap.set(key[0], key[1])
+        }
+
+    })
+
+    getResultsInfo('../logic/DB/forMenu/selectAll.php', 'scale').then((res) => {
+        res.forEach((a) => {
+            //console.log(a.name)
+            //console.log(localMap.get(a.name))
+
+            for (var key of Object.keys(a)) {
+                console.log(a[key] + ' ' + parseFloat(localMap.get(a.name)) + ' ' + key)
+                //console.log(a.name)
+                if (a.name === 'Тест_на_свет' || a.name === 'Тест_на_сложение_визуально' ||
+                    a.name === 'Тест_на_звук' || a.name === 'Тест_на_сложение_в_уме' ||
+                    a.name === 'Тест_на_3_цвета' || a.name === 'Тест_на_слежение' ||
+                    a.name === 'Тест_на_внимание'){
+
+                    if (parseFloat(a[key]) >= parseFloat(localMap.get(a.name))){
+                        resul = parseFloat(key)
+                        //console.debug(resul)
+                    }
+
+                }else {
+                    if (parseFloat(a[key]) <= parseFloat(localMap.get(a.name))){
+                        resul = parseFloat(key)
+                        //console.debug(resul)
+                    }
+                }
+            }
+
+            // bestFromTests.then((res)=>{
+
+            //     console.log(res.get(a.name))
+            // })
+            resMap.set(a.name, resul)
+            console.log(resMap)
+            resul = 0
+
+        })
+        for (const resulMapElement of resMap) {
+            console.log(resulMapElement)
+        }
+        return resMap
+    }).then((res) =>{
+
+        getResultsInfo('../logic/DB/forMenu/selectAll.php', 'adminresult').then((resTwo)=>{
+
+            let sens = 0
+            let countSens = 0
+            let lab3 = 0
+            let count3 = 0
+            let lab4 = 0
+            let count4 = 0
+            let lab5 = 0
+            let count5 = 0
+
+            console.log(res)
+            console.log(res)
+            resTwo.forEach((a) =>{
+                if (a[0] === 'Тест_на_свет'){
+                    countSens++
+                    sens += a[1]
+                }else if (a[0] === 'Тест_на_сложение_визуальн'){
+                    countSens++
+                    sens += a[1]
+                }else if (a[0] === 'Тест_на_звук'){
+                    countSens++
+                    sens += a[1]
+                }else if (a[0] === 'Тест_на_сложение_в_уме'){
+                    countSens++
+                    sens += a[1]
+                }else if (a[0] === 'Тест_на_3_цвета'){
+                    countSens++
+                    sens += a[1]
+                }else if (a[0] === 'Тест_на_сложение_в_уме'){
+                    countSens++
+                    sens += a[1]
+                }else if(a[0] === 'Тест_3лаба_легкий'){
+                    count3++
+                    lab3 += a[1]
+                }else if(a[0] === 'Тест_3лаба_сложный'){
+                    count3++
+                    lab3 += a[1]
+                }else if(a[0] === 'Тест_на_слежение'){
+                    count4++
+                    lab4 += a[1]
+                }else if(a[0] === 'Тест_на_преследование'){
+                    count4++
+                    lab4 += a[1]
+                }else if(a[0] === 'Тест_на_внимание'){
+                    count5++
+                    lab5 += a[1]
+                }else if(a[0] === 'Тест_на_память'){
+                    count5++
+                    lab5 += a[1]
+                }else if(a[0] === 'Тест_на_мышление'){
+                    count5++
+                    lab5 += a[1]
+                    console.log(sens + ' ' + lab3 + ' ' + lab4 + ' ' + lab5)
+                }
+
+            })
+            console.log(sens + ' ' + lab3 + ' ' + lab4 + ' ' + lab5)
+        })
+
+    })
 
     /*
     * 1. Запрос к adminResult
-    * 2. Сверка по bestFromTests и adminResult
+    * 2. Запрос к scale
+    * 2. Сверка по bestFromTests и scale
     * 3. Вывод, какая профессия подходит
     * */
 
 }
-let flag = 'не пройден ни разу'
+
+
+let flag = true
 async function bestFromTests(promiseStat){
     let arrayRes = new Map();
-    console.log(promiseStat)
+
     await promiseStat.then((result)=>{
         let count = 0;
         let test = '';
@@ -142,7 +262,7 @@ async function bestFromTests(promiseStat){
                                 lastRes = res;
                             }
                         }
-                        console.log(test)
+
                         if (test === 'Тест_3лаба_сложный' && typeof b !== 'string') {
                             console.log(b)
                             let res = parseInt(b.hit) + Math.floor(b.far / 2) + Math.floor(b.close / 2)
@@ -162,11 +282,13 @@ async function bestFromTests(promiseStat){
                     lastRes = -12345;
                     console.log('---------')
                 }else {
+                    flag = false
                     arrayRes.set(result[count].test, 'Не пройден ни разу')
                     console.log('Вы не прошли еще ни одного теста в ' + result[count].test)
                 }
             })
         }else {
+            flag = false
             console.log('Вы не прошли еще ни одного теста')
         }
     })
