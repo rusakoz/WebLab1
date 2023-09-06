@@ -1,5 +1,5 @@
 
-console.log(bestFromTests(processStat()));
+//console.log(bestFromTests(processStat()));
 conclusion(bestFromTests(processStat()));
 
 function conclusion(bestFromTests) {
@@ -23,7 +23,7 @@ function conclusion(bestFromTests) {
             //console.log(localMap.get(a.name))
 
             for (var key of Object.keys(a)) {
-                console.log(a[key] + ' ' + parseFloat(localMap.get(a.name)) + ' ' + key)
+                //console.log(a[key] + ' ' + parseFloat(localMap.get(a.name)) + ' ' + key)
                 //console.log(a.name)
                 if (a.name === 'Тест_на_свет' || a.name === 'Тест_на_сложение_визуально' ||
                     a.name === 'Тест_на_звук' || a.name === 'Тест_на_сложение_в_уме' ||
@@ -43,79 +43,84 @@ function conclusion(bestFromTests) {
                 }
             }
 
-            // bestFromTests.then((res)=>{
 
-            //     console.log(res.get(a.name))
-            // })
             resMap.set(a.name, resul)
-            console.log(resMap)
             resul = 0
 
         })
-        for (const resulMapElement of resMap) {
-            console.log(resulMapElement)
-        }
         return resMap
     }).then((res) =>{
+        console.log(res)
 
-        getResultsInfo('../logic/DB/forMenu/selectAll.php', 'adminresult').then((resTwo)=>{
+        let sens = 0
+        let countSens = 0
+        let lab3 = 0
+        let count3 = 0
+        let lab4 = 0
+        let count4 = 0
+        let lab5 = 0
+        let count5 = 0
 
-            let sens = 0
-            let countSens = 0
-            let lab3 = 0
-            let count3 = 0
-            let lab4 = 0
-            let count4 = 0
-            let lab5 = 0
-            let count5 = 0
 
+        for (let r of res) {
+
+            if (r[0] === 'Тест_на_свет' || r[0] === 'Тест_на_сложение_визуально' || r[0] === 'Тест_на_звук' ||
+                r[0] === 'Тест_на_сложение_в_уме' || r[0] === 'Тест_на_3_цвета'){
+                countSens++
+                sens += r[1]
+            }else if(r[0] === 'Тест_3лаба_легкий' || r[0] === 'Тест_3лаба_сложный'){
+                count3++
+                lab3 += r[1]
+                console.log(count3 + ' ' + lab3)
+            }else if(r[0] === 'Тест_на_слежение' || r[0] === 'Тест_на_преследование'){
+                count4++
+                lab4 += r[1]
+            }else if(r[0] === 'Тест_на_внимание' || r[0] === 'Тест_на_память' || r[0] === 'Тест_на_мышление'){
+                count5++
+                lab5 += r[1]
+            }
+
+        }
+
+        return new Map().set('Сенсомоторные тесты', Math.floor(sens / countSens))
+                        .set('Тесты_3-й_лабы', Math.floor(lab3 / count3))
+                        .set('Тесты_4-й_лабы', Math.floor(lab4 / count4))
+                        .set('Тесты_5-й_лабы', Math.floor(lab5 / count5))
+
+    }).then((res)=> {
+
+        function makeObj(prof, pvk, state){
+            return {
+                'профессия': prof,
+                'пвк': pvk,
+                'состояние': state
+            }
+        }
+
+        console.log()
+        let array = []
+
+        getResultsInfo('../logic/DB/forMenu/selectAll.php', 'adminresult').then((resTwo) => {
             console.log(res)
-            console.log(res)
-            resTwo.forEach((a) =>{
-                if (a[0] === 'Тест_на_свет'){
-                    countSens++
-                    sens += a[1]
-                }else if (a[0] === 'Тест_на_сложение_визуальн'){
-                    countSens++
-                    sens += a[1]
-                }else if (a[0] === 'Тест_на_звук'){
-                    countSens++
-                    sens += a[1]
-                }else if (a[0] === 'Тест_на_сложение_в_уме'){
-                    countSens++
-                    sens += a[1]
-                }else if (a[0] === 'Тест_на_3_цвета'){
-                    countSens++
-                    sens += a[1]
-                }else if (a[0] === 'Тест_на_сложение_в_уме'){
-                    countSens++
-                    sens += a[1]
-                }else if(a[0] === 'Тест_3лаба_легкий'){
-                    count3++
-                    lab3 += a[1]
-                }else if(a[0] === 'Тест_3лаба_сложный'){
-                    count3++
-                    lab3 += a[1]
-                }else if(a[0] === 'Тест_на_слежение'){
-                    count4++
-                    lab4 += a[1]
-                }else if(a[0] === 'Тест_на_преследование'){
-                    count4++
-                    lab4 += a[1]
-                }else if(a[0] === 'Тест_на_внимание'){
-                    count5++
-                    lab5 += a[1]
-                }else if(a[0] === 'Тест_на_память'){
-                    count5++
-                    lab5 += a[1]
-                }else if(a[0] === 'Тест_на_мышление'){
-                    count5++
-                    lab5 += a[1]
-                    console.log(sens + ' ' + lab3 + ' ' + lab4 + ' ' + lab5)
+            console.log(resTwo)
+            resTwo.forEach((a)=>{
+                console.log()
+                if (a['Сенсомоторные_тесты'] > res.get('Сенсомоторные тесты') ||
+                    a['Тесты_3-й_лабы'] > res.get('Тесты_3-й_лабы') ||
+                    a['Тесты_4-й_лабы'] > res.get('Тесты_4-й_лабы') ||
+                    a['Тесты_5-й_лабы'] > res.get('Тесты_5-й_лабы')){
+                    array.push(makeObj(a['профессия'], a['пвк'], false))
+                }else{
+                    array.push(makeObj(a['профессия'], a['пвк'], true))
                 }
 
             })
-            console.log(sens + ' ' + lab3 + ' ' + lab4 + ' ' + lab5)
+
+            return array
+
+        }).then((res)=>{
+            console.log(res)
+            // доработать если тест не пройден ни разу
         })
 
     })
