@@ -1,21 +1,34 @@
 
-//console.log(bestFromTests(processStat()));
-conclusion(bestFromTests(processStat()));
+const buttonStart = document.getElementById('button')
+const mainCol = document.getElementById('main-col')
+
+buttonStart.addEventListener('click', function (event){
+    conclusion(bestFromTests(processStat()));
+})
+
+
 
 function conclusion(bestFromTests) {
+
 
     let localMap = new Map()
     let resMap = new Map()
     let resulMap = new Map()
     let resul = 0
-    bestFromTests.then((a) => {
 
+    bestFromTests.then((a) => {
+        if (a === 'stop'){
+            return Promise.reject('Пользователь не прошел все тесты')
+            //throw new Error('teret')
+        }
         for (var key of a) {
 
             localMap.set(key[0], key[1])
         }
 
-    })
+    }).then((b)=>{
+
+
 
     getResultsInfo('../logic/DB/forMenu/selectAll.php', 'scale').then((res) => {
         res.forEach((a) => {
@@ -50,7 +63,7 @@ function conclusion(bestFromTests) {
         })
         return resMap
     }).then((res) =>{
-        console.log(res)
+        //console.log(res)
 
         let sens = 0
         let countSens = 0
@@ -89,28 +102,45 @@ function conclusion(bestFromTests) {
 
     }).then((res)=> {
 
-        function makeObj(prof, pvk, state){
+        function makeObj(prof, pvk, state, requirement, your, test){
             return {
                 'профессия': prof,
                 'пвк': pvk,
-                'состояние': state
+                'состояние': state,
+                'требуемо': requirement,
+                'ваше': your,
+                'тест': test
             }
         }
 
-        console.log()
+        //console.log()
         let array = []
 
         getResultsInfo('../logic/DB/forMenu/selectAll.php', 'adminresult').then((resTwo) => {
-            console.log(res)
-            console.log(resTwo)
+            console.log(res) // map с баллами
+            console.log(resTwo) // массив из бд
             resTwo.forEach((a)=>{
-                console.log()
-                if (a['Сенсомоторные_тесты'] > res.get('Сенсомоторные тесты') ||
-                    a['Тесты_3-й_лабы'] > res.get('Тесты_3-й_лабы') ||
-                    a['Тесты_4-й_лабы'] > res.get('Тесты_4-й_лабы') ||
-                    a['Тесты_5-й_лабы'] > res.get('Тесты_5-й_лабы')){
-                    array.push(makeObj(a['профессия'], a['пвк'], false))
+                if (parseInt(a['Сенсомоторные_тесты']) > parseInt(res.get('Сенсомоторные тесты'))){
+                    console.log(a['Тесты_5-й_лабы'])
+                    console.log(res.get('Тесты_5-й_лабы'))
+                    array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Сенсомоторные_тесты']), parseInt(res.get('Сенсомоторные тесты')), 'Сенсомоторные_тесты'))
                 }else{
+                    array.push(makeObj(a['профессия'], a['пвк'], true))
+                }
+                if (parseInt(a['Тесты_3-й_лабы']) > parseInt(res.get('Тесты_3-й_лабы'))){
+                    array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Тесты_3-й_лабы']), parseInt(res.get('Тесты_3-й_лабы')), 'Тесты_3-й_лабы'))
+                }else{
+                    array.push(makeObj(a['профессия'], a['пвк'], true))
+                }
+                if (parseInt(a['Тесты_4-й_лабы']) > parseInt(res.get('Тесты_4-й_лабы'))){
+                    array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Тесты_4-й_лабы']), parseInt(res.get('Тесты_4-й_лабы')), 'Тесты_4-й_лабы'))
+                }else{
+                    array.push(makeObj(a['профессия'], a['пвк'], true))
+                }
+                if (parseInt(a['Тесты_5-й_лабы']) > parseInt(res.get('Тесты_5-й_лабы'))){
+                    array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Тесты_5-й_лабы']), parseInt(res.get('Тесты_5-й_лабы')), 'Тесты_5-й_лабы'))
+                }
+                else{
                     array.push(makeObj(a['профессия'], a['пвк'], true))
                 }
 
@@ -120,7 +150,91 @@ function conclusion(bestFromTests) {
 
         }).then((res)=>{
             console.log(res)
-            // доработать если тест не пройден ни разу
+            let countProf = 0
+            let countPvk = 0
+            let lastCountProf = ''
+            res.forEach((a)=>{
+                countPvk++
+                if (a['профессия'] !== lastCountProf){
+                    countProf++
+                    lastCountProf = a['профессия']
+                }
+            })
+            console.log(res)
+            let lastProf = ''
+            let resStr = ''
+            let resArray = []
+            let checkTrue = true
+            let countAll = 0
+            let countTrue = 0
+            let count = 0
+            if (countProf > 1){
+                res.forEach((a)=>{
+                    count++
+
+                    if (a['профессия'] === lastProf){
+                        //lastProf = a['профессия']
+                        countAll++
+                        if (!a['состояние']){
+                            resArray.push('Профессия: ' + lastProf + ' --- Вы не набрали необходимое кол-во баллов для пвк по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
+                            //return Promise.reject('не набрано необходимое кол-во баллов')
+                        }else{
+                            countTrue++
+                        }
+
+                    }else{
+
+                        if (countAll === countTrue && count > 1)
+                            resArray.push('Вам подходит профессия - ' + lastProf)
+
+                        lastProf = a['профессия']
+                        countAll = 1
+                        countTrue = 0
+
+                        if (!a['состояние']){
+                            resArray.push('Профессия: ' + lastProf + ' --- Вы не набрали необходимое кол-во баллов для пвк по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
+                            //return Promise.reject('не набрано необходимое кол-во баллов')
+                        }else {
+                            countTrue++
+                        }
+                    }
+
+                })
+
+            }else if(countProf === 1){
+
+                res.forEach((a)=> {
+                    countAll++
+                    if (!a['состояние']) {
+                        resArray.push('Вы не набрали необходимое кол-во баллов для пвк по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
+                        //return Promise.reject('не набрано необходимое кол-во баллов')
+                    } else {
+                        countTrue++
+                    }
+                })
+                if (countAll === countTrue){
+                    resArray.push('Вам подходит профессия - ' + lastProf)
+                }
+
+            }else if(countProf === 0){
+                alert('Произошла непредвиденная ошибка')
+            }
+
+            if(count === countPvk){
+                if (countAll === countTrue)
+                    resArray.push('Вам подходит профессия - ' + lastProf)
+            }
+            return resArray
+        }).then((res)=>{
+            console.log(res)
+            let resHTML = ''
+            res.forEach((a)=>{
+                resHTML += '<h4>' + a + '</h4>'
+            })
+            mainCol.innerHTML = resHTML
+        })
+    }).catch((err)=>{
+            alert(err)
         })
 
     })
@@ -138,6 +252,7 @@ function conclusion(bestFromTests) {
 let flag = true
 async function bestFromTests(promiseStat){
     let arrayRes = new Map();
+    let warnAlert = ''
 
     await promiseStat.then((result)=>{
         let count = 0;
@@ -289,15 +404,20 @@ async function bestFromTests(promiseStat){
                 }else {
                     flag = false
                     arrayRes.set(result[count].test, 'Не пройден ни разу')
-                    console.log('Вы не прошли еще ни одного теста в ' + result[count].test)
+                    warnAlert = 'Вы не прошли еще ни одного теста в ' + result[count].test
                 }
             })
         }else {
             flag = false
-            console.log('Вы не прошли еще ни одного теста')
+            warnAlert = 'Вы не прошли еще ни одного теста'
         }
     })
-    return arrayRes;
+    if (warnAlert !== ''){
+        alert(warnAlert)
+        return 'stop'
+    }else{
+        return arrayRes;
+    }
 }
 
 

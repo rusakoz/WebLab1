@@ -306,6 +306,65 @@ Admin
  */
 
 /*
+Lab6
+ */
+
+#main-lab6 {
+    padding-top: 70px;
+    min-height: 700px;
+    position: relative;
+    background: #ded5d5
+}
+
+
+#lab6-button .c-button {
+
+    list-style-type: none;
+    background: #1a1a1a;
+    font-size: 30px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    color: blueviolet;
+    padding: 20px;
+
+
+}
+#lab6-button .c-button:hover {
+    background: #312f2f;
+    transition: 0.5s;
+    color: blueviolet;
+}
+
+#lab6-button ul {
+    list-style-type: none;
+    background: #1a1a1a;
+    font-size: 30px;
+    padding: 0;
+}
+
+#lab6-button ul li{
+    text-align: center;
+}
+
+#lab6-button ul a{
+    display: block;
+    color: blueviolet;
+    padding: 20px;
+}
+
+
+#lab6-button ul a:hover {
+    background: #312f2f;
+    transition: 0.5s;
+    color: blueviolet;
+}
+
+/*
+Lab6
+ */
+
+/*
 PVK
  */
 
