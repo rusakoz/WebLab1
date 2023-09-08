@@ -24,6 +24,7 @@ function getCountElemArray(array){
     array.forEach((a) => {
         if (a !== 'undefined' && a !== null && a !== ''){
             count++
+            console.log(count)
         }
     })
     return count;

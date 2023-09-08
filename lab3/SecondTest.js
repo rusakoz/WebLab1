@@ -54,11 +54,6 @@ buttonStart.addEventListener('click', function () {
 
 
 
-
-
-
-
-
     supers.innerHTML = "<canvas id=\"game\" width=\"600\" height=\"300\" <!--style='cursor: none'-->></canvas>"
 
     textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + "</h1>"
@@ -274,8 +269,8 @@ buttonStart.addEventListener('click', function () {
             formData.append('close', closePercent);
             formData.append('loss', lossPercent);
             formData.append('time', timerTime);
-            formData.append('table', 'resultLab3-1');
-            fetch('../logic/DB/lab3-1DB.php', {
+            formData.append('table', 'resultLab3-2');
+            fetch('../logic/DB/lab3-2DB.php', {
                 method: 'POST',
                 body: formData
             }).then(function (response)  {
