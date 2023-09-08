@@ -27,15 +27,16 @@ include "../logic/DB/database.php";
 <!--Header-->
 
 <!--Main-->
-<div id="main-expert" class="main container-fluid">
-    <div id="expert-button" class="main-content container">
+<div id="main-lab6" class="main container-fluid">
+    <div id="lab6-button" class="main-content container">
         <div class="row">
-            <div class="main about col">
+            <div id="main-col" class="main about col">
                 <ul>
 
                     <li><a id="pursuit" href="<?php echo BASE_URL . 'lab6/pursuit.php'?>">Реакция на движущийся объект</a></li>
 
                 </ul>
+                <button class="c-button" id="button" type="submit"> Установить баллы тестов</button>
             </div>
 
         </div>
