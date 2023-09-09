@@ -32,6 +32,7 @@ include "../logic/DB/database.php";
             </div>
             <div class="col">
                 <form name="form1">
+                    <h4>В данном тесте вам необходимо нажимать "ПРОБЕЛ", когда движущийся кружок будет попадать в зеленую и желтые зоны</h4>
                     <select class="form-select" aria-label="Пример выбора по умолчанию" id="timer">
                         <option disabled>Время прохождения теста</option>
                         <option value="10">10сек</option>

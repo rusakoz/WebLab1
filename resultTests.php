@@ -14,6 +14,11 @@ include "logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+    <script src="logic/Include/lock/getResultsInfo.js" crossorigin="anonymous" defer></script>
+    <script src="logic/Include/resultFromTests.js" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" defer crossorigin="anonymous">
+        var idSession = <?php echo json_encode($_SESSION['id']); ?>;
+    </script>
 <!--    <script src="logic/Include/resultTests.js" defer> </script> defer - запуск скрипта после загрузки html страницы -->
 </head>
 <body>
@@ -23,21 +28,26 @@ include "logic/DB/database.php";
 <!--Header-->
 
 <!--Main-->
-<div id="main-expert" class="main container-fluid">
-    <div id="expert-button" class="main-content container">
+<div id="main-result" class="main container-fluid">
+    <div id="result-button" class="main-content container">
         <div class="row">
-            <div class="main about col">
-                <ul id="ul1">
-                    <li id="li1"><a href="PVKtest.php"> Результаты ПВК</a></li>
-                    <li id="li2"><a> Результаты теста на звук</a></li>
-                    <li id="li3"><a> Результаты теста на свет</a></li>
-                    <li id="li4"><a> Результаты теста на 3 цвета</a></li>
-                    <li id="li5"><a> Результаты теста на сложение в уме по звуку</a></li>
-                    <li id="li6"><a> Результаты теста на сложение в уме визуально</a></li>
-                </ul>
+            <div id="main-row" class="main-cols about col">
+
+<!--                    <li id="li1"><a href="PVKtest.php"> Результаты ПВК</a></li>-->
+                    <button class="c-button" id="button1"> Результаты теста на звук</button>
+                    <button class="c-button" id="button2"> Результаты теста на свет</button>
+                    <button class="c-button" id="button3"> Результаты теста на 3 цвета</button>
+                    <button class="c-button" id="button4"> Результаты теста на сложение в уме по звуку</button>
+                    <button class="c-button" id="button5"> Результаты теста на сложение в уме визуально</button>
+                    <button class="c-button" id="button6"> Результаты теста 3-й лабы легкий</button>
+                    <button class="c-button" id="button7"> Результаты теста 3-й лабы сложный</button>
+                    <button class="c-button" id="button8"> Результаты теста на слежение</button>
+                    <button class="c-button" id="button9"> Результаты теста на преследование</button>
+                    <button class="c-button" id="button10"> Результаты теста на внимание</button>
+                    <button class="c-button" id="button11"> Результаты теста на память</button>
+                    <button class="c-button" id="button12"> Результаты теста на мышление</button>
 
             </div>
-
         </div>
     </div>
 </div>
