@@ -185,7 +185,7 @@ function conclusion(bestFromTests) {
                     }else{
 
                         if (countAll === countTrue && count > 1)
-                            resArray.push('Вам подходит профессия - ' + lastProf)
+                            resArray.unshift('Вам подходит профессия - ' + lastProf)
 
                         lastProf = a['профессия']
                         countAll = 1
@@ -213,7 +213,7 @@ function conclusion(bestFromTests) {
                     }
                 })
                 if (countAll === countTrue){
-                    resArray.push('Вам подходит профессия - ' + lastProf)
+                    resArray.unshift('Вам подходит профессия - ' + lastProf)
                 }
 
             }else if(countProf === 0){
@@ -222,7 +222,7 @@ function conclusion(bestFromTests) {
 
             if(count === countPvk){
                 if (countAll === countTrue)
-                    resArray.push('Вам подходит профессия - ' + lastProf)
+                    resArray.unshift('Вам подходит профессия - ' + lastProf)
             }
             return resArray
         }).then((res)=>{
@@ -255,17 +255,18 @@ async function bestFromTests(promiseStat){
     let warnAlert = ''
 
     await promiseStat.then((result)=>{
-        let count = 0;
+        let count = -1;
         let test = '';
         let lastRes = -12345;
         if (result.length !== 0) {
 
             result.forEach((a) => {
-
+                console.log(result)
                 if(a.length > 1) {
                     count++
                     //console.log(result)
                     a.forEach((b) => {
+
 
                         if (typeof b === 'string') {
                             test = b;
@@ -402,6 +403,8 @@ async function bestFromTests(promiseStat){
                     lastRes = -12345;
                     console.log('---------')
                 }else {
+                    count++
+                    console.log(count)
                     flag = false
                     arrayRes.set(result[count].test, 'Не пройден ни разу')
                     warnAlert = 'Вы не прошли еще ни одного теста в ' + result[count].test

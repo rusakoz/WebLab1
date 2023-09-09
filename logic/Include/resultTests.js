@@ -1,3 +1,16 @@
+
+
+
+
+
+// Что это такое в душе не чаю, но пусть будет :)
+
+
+
+
+
+
+
 let mainBlock = document.getElementById('ul1');
 let block = document.getElementById('li1');
 let block2 = document.getElementById('li2');
