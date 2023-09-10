@@ -4,6 +4,7 @@ const buttonStart = document.querySelector('button');
 const timer = document.querySelector('#timer');
 const textTimer = document.querySelector('#logo1');
 let timerTime;
+let time;
 
 let mins = 0;
 let sec = 0;
@@ -49,6 +50,7 @@ buttonStart.addEventListener('click', function () {
     returnFPS();
 
     timerTime = timer.value;
+    time = timerTime
     mins = Math.floor(timerTime / 60)
     sec = timerTime % 60
 
@@ -92,7 +94,7 @@ buttonStart.addEventListener('click', function () {
     let rectangleimg = new Image();
     rectangleimg.src = '../logic/Include/image/rectangle.png';
 
-    let circle = {x:0,y:0,dx:0,dy:0,angle:28,iterr:0.02}
+    let circle = {x:0,y:0,dx:0,dy:0,angle:28,iterr:0.012}
     let rectangle = {x:centerX + Math.cos(4.7) * radiusCircle,y:centerY + Math.sin(4.7) * radiusCircle}
     let circle2 = {x:centerX + Math.cos(3) * radiusCircle,y:centerY + Math.sin(3) * radiusCircle}
     let circle3 = {x:centerX + Math.cos(3.17) * radiusCircle,y:centerY + Math.sin(3.17) * radiusCircle}
@@ -115,7 +117,7 @@ buttonStart.addEventListener('click', function () {
     let rectangleimg2 = new Image();
     rectangleimg2.src = '../logic/Include/image/rectangle.png';
 
-    let circle5 = {x:0,y:0,dx:0,dy:0,angle:6.4,iterr:0.02}
+    let circle5 = {x:0,y:0,dx:0,dy:0,angle:6.4,iterr:0.012}
     let rectangle2 = {x:centerX2 + Math.cos(4.7) * radiusCircle,y:centerY2 + Math.sin(4.7) * radiusCircle}
     let circle6 = {x:centerX2 + Math.cos(6.5) * radiusCircle,y:centerY2 + Math.sin(6.5) * radiusCircle}
     let circle7 = {x:centerX2 + Math.cos(6.67) * radiusCircle,y:centerY2 + Math.sin(6.67) * radiusCircle}
@@ -138,7 +140,7 @@ buttonStart.addEventListener('click', function () {
     let rectangleimg3 = new Image();
     rectangleimg3.src = '../logic/Include/image/rectangle.png';
 
-    let circle9 = {x:0,y:0,dx:0,dy:0,angle:1.85,iterr:0.02}
+    let circle9 = {x:0,y:0,dx:0,dy:0,angle:1.85,iterr:0.012}
     let rectangle3 = {x:centerX3 + Math.cos(4.7) * radiusCircle,y:centerY3 + Math.sin(4.7) * radiusCircle}
     let circle10 = {x:centerX3 + Math.cos(2) * radiusCircle,y:centerY3 + Math.sin(2) * radiusCircle}
     let circle11 = {x:centerX3 + Math.cos(2.17) * radiusCircle,y:centerY3 + Math.sin(2.17) * radiusCircle}
@@ -243,6 +245,7 @@ buttonStart.addEventListener('click', function () {
         if (i === Math.floor(fps)){
             if (sec > 0){
                 sec--
+                time--
                 i = 0
                 textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + hit + ":" + far + ":" + close + ":" + loss + "</h1>"
             }
@@ -289,6 +292,8 @@ buttonStart.addEventListener('click', function () {
         requestAnimFrame(game);
     }
 
+    let flagSpeed1 = false
+    let flagSpeed2 = false
     function update(){
         // физика
 
@@ -316,7 +321,20 @@ buttonStart.addEventListener('click', function () {
         }
         circle9.angle += circle9.iterr
 
+        //Ускорение
+        if ((timerTime - Math.floor(timerTime / 3)) > time && !flagSpeed1){
+            flagSpeed1 = true
+            circle.iterr = circle.iterr * 1.6;
+            circle5.iterr = circle5.iterr * 1.6;
+            circle9.iterr = circle9.iterr * 1.6;
 
+        }
+        if((timerTime - Math.floor(timerTime / 1.5)) > time && !flagSpeed2){
+            flagSpeed2 = true
+            circle.iterr = circle.iterr * 1.2;
+            circle5.iterr = circle5.iterr * 1.2;
+            circle9.iterr = circle9.iterr * 1.2;
+        }
 
     }
 

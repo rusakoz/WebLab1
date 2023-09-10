@@ -229,6 +229,24 @@ Registration
 Registration
  */
 
+
+/*
+PVK
+ */
+
+#main-pvk{
+
+    min-height: 700px;
+    position: relative;
+    background: #ded5d5;
+}
+
+/*
+PVK
+ */
+
+
+
 /*
 Expert
  */
@@ -237,20 +255,23 @@ Expert
     padding-top: 70px;
     min-height: 700px;
     position: relative;
-    background: #ded5d5
+    background: #ded5d5;
 }
 
 #expert-button ul {
     margin-bottom: 1px;
     border-radius: 36px;
     list-style-type: none;
-    background: #1a1a1a;
+    background: #ded5d5;
     font-size: 30px;
     padding: 0;
 }
 
 #expert-button ul li{
+    border-radius: 36px;
+    background: #1a1a1a;
     text-align: center;
+    margin-bottom: 1px;
 }
 
 #expert-button ul a{
@@ -261,9 +282,11 @@ Expert
 
 
 #expert-button ul a:hover {
-    background: #312f2f;
-    transition: 0.5s;
+    background: #2f2e2e;
+    transition: 0.01s;
     color: blueviolet;
+    border-radius: 36px;
+
 }
 
 
@@ -300,7 +323,7 @@ Admin
 }
 #admin-button .c-button:hover {
     background: #312f2f;
-    transition: 0.5s;
+    transition: 0.01s;
     color: blueviolet;
 }
 
@@ -336,7 +359,7 @@ Lab6
 }
 #lab6-button .c-button:hover {
     background: #312f2f;
-    transition: 0.5s;
+    transition: 0.01s;
     color: blueviolet;
 }
 
@@ -357,12 +380,13 @@ Lab6
     display: block;
     color: blueviolet;
     padding: 20px;
+    border-radius: 36px;
 }
 
 
 #lab6-button ul a:hover {
     background: #312f2f;
-    transition: 0.5s;
+    transition: 0.01s;
     color: blueviolet;
 }
 
@@ -397,8 +421,9 @@ Respondent
 
 }
 #result-button .c-button:hover {
+
     background: #312f2f;
-    transition: 0.5s;
+    transition: 0.01s;
     color: blueviolet;
 }
 

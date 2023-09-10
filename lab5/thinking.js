@@ -1,12 +1,13 @@
 let scene = document.getElementById('super');
 let startButton = document.querySelector('button');
 let waitAnswer;
-let countLoop = 1;
+let countLoop = 0;
 let rightAnswer = 0;
 
-startButton.addEventListener('click', function (){
+startButton.addEventListener('click', async function (event) {
 
     startTest();
+
 
 })
 
@@ -42,7 +43,7 @@ function startTest(){
 
     let button = document.getElementById('form');
 
-    button.addEventListener('submit', function (){
+    button.addEventListener('submit', function (event){
         const name = button.querySelector('[name="inputWord"]')
 
         let answer = name.value;
@@ -50,12 +51,16 @@ function startTest(){
             countLoop++;
             rightAnswer++
             startTest();
+            console.log(countLoop)
         }
         else if(answer !== waitAnswer && countLoop !== 5){
             countLoop++;
             startTest();
-        }else if (countLoop === 5){
-
+            console.log(countLoop)
+        }
+        else if (countLoop === 5){
+            event.preventDefault()
+            console.log('423423')
             if (answer === waitAnswer){
                 rightAnswer++
             }
@@ -70,10 +75,9 @@ function startTest(){
                 return response.text()
             }).then(function (body) {
                 console.log(body)
+
             })
-
             window.location.replace("http://localhost/WebLab1/lab5/main-lab5.php")
-
         }
     })
 

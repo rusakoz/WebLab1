@@ -27,7 +27,7 @@ include "../../logic/DB/database.php";
         <div class="row">
             <div class="main about col">
                 <ul>
-                    <li><a href="<?php echo BASE_URL . 'resultTests.php'?>"> Посмотреть результаты</a></li>
+                    <li><a href="<?php echo BASE_URL . 'resultTestsExpert.php'?>"> Посмотреть результаты</a></li>
 <!--                    <li><a href="--><?php //echo BASE_URL?><!--"> Что-то еще</a></li>-->
 <!--                    <li><a href="--><?php //echo BASE_URL?><!--"> Что-то еще</a></li>-->
 <!--                    <li><a href="--><?php //echo BASE_URL?><!--"> Что-то еще</a></li>-->

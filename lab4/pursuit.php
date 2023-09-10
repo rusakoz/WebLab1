@@ -32,6 +32,7 @@ include "../logic/DB/database.php";
             </div>
             <div class="col">
                 <form name="form1">
+                    <h4>ВНИМАНИЕ! Кол-во попыток теста - 3</h4>
                     <h4>В данном тесте вам необходимо удерживать как можно точнее прицел на движущейся мишени</h4>
                     <select class="form-select" aria-label="Пример выбора по умолчанию" id="timer">
                         <option disabled>Время прохождения теста</option>
