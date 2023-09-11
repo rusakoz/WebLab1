@@ -14,6 +14,14 @@ include "../logic/DB/database.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+    <!--START LOCK logic-->
+    <script src="../logic/Include/lock/getResultsInfo.js" defer crossorigin="anonymous"></script>
+    <script src="../logic/Include/lock/LOCK-Test.js" defer crossorigin="anonymous"></script>
+    <script src="lock/LOCK-thinking.js" defer crossorigin="anonymous"></script>
+    <script type="text/javascript" defer crossorigin="anonymous">
+        var idSession = <?php echo json_encode($_SESSION['id']); ?>;
+    </script>
+    <!--END LOCK logic-->
     <script src="thinking.js" defer> </script> <!-- defer - запуск скрипта после загрузки html страницы -->
 </head>
 <body>
@@ -27,6 +35,7 @@ include "../logic/DB/database.php";
     <div id="expert-button" class="main-content container">
         <div class="row" id="super">
 
+            <h4>ВНИМАНИЕ! Кол-во попыток теста - 3</h4>
             <h4>Суть данного теста заключается в том, чтобы определить последовательность и ввести правильный ответ вместо знака "?"</h4>
             <h4>Количество вопросов - 5</h4>
 <!--            <h3>Результаты теста можно посмотреть в Личном кабинете</h3>-->
@@ -36,7 +45,7 @@ include "../logic/DB/database.php";
             </div>
             <div class="col">
 
-                <button type="submit" class="btn btn-secondary" name="button-lab4-start" style="margin-top: 150px; margin-left: 50px"> Начать тестирование</button>
+                <button id="start-button" type="submit" class="btn btn-secondary" name="button-lab4-start" style="margin-top: 150px; margin-left: 50px"> Начать тестирование</button>
 
             </div>
             <div class="col">

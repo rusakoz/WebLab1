@@ -6,7 +6,7 @@ const timer = document.querySelector('#timer');
 const textTimer = document.querySelector('#logo1');
 let timerTime;
 let stop;
-let check
+let time
 
 let mins = 0;
 let sec = 0;
@@ -50,6 +50,7 @@ let fpss = 0;
         returnFPS();
 
         timerTime = timer.value;
+        time = timerTime;
         mins = Math.floor(timerTime / 60)
         sec = timerTime % 60
 
@@ -101,6 +102,7 @@ let fpss = 0;
             if (i === Math.floor(fps)){
                 if (sec > 0){
                     sec--
+                    time--
                     i = 0
                     textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + good + ":" + superGood + ":" + loss + "</h1>"
                 }
@@ -165,6 +167,24 @@ let fpss = 0;
                 good++
             }else {
                 loss++
+            }
+
+            //Ускорение
+            if ((timerTime - Math.floor(timerTime / 3)) > time){
+                if (target.dx < 0){
+                    target.dx = -1.5;
+                }else target.dx = 1.5;
+                if (target.dy < 0){
+                    target.dy = -1.5;
+                }else target.dy = 1.5;
+            }
+            if((timerTime - Math.floor(timerTime / 1.5)) > time){
+                if (target.dx < 0){
+                    target.dx = -2.0;
+                }else target.dx = 2.0;
+                if (target.dy < 0){
+                    target.dy = -2.0;
+                }else target.dy = 2.0;
             }
         }
 

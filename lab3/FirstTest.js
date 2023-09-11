@@ -4,6 +4,7 @@ const buttonStart = document.querySelector('button');
 const timer = document.querySelector('#timer');
 const textTimer = document.querySelector('#logo1');
 let timerTime;
+let time;
 
 let mins = 0;
 let sec = 0;
@@ -49,6 +50,7 @@ buttonStart.addEventListener('click', function () {
     returnFPS();
 
     timerTime = timer.value;
+    time = timerTime
     mins = Math.floor(timerTime / 60)
     sec = timerTime % 60
 
@@ -66,7 +68,7 @@ buttonStart.addEventListener('click', function () {
     let canvas = document.getElementById('game');
     let context = canvas.getContext('2d');
 
-    let circle = {x:0,y:0,dx:0,dy:0,angle:2.5,iterr:0.02}
+    let circle = {x:0,y:0,dx:0,dy:0,angle:2.5,iterr:0.015}
     let target2 = {x:Math.floor(Math.random() * 570),y:Math.floor(Math.random() * 270),dx:1.0,dy:1.0}
     let aim = {x:150,y:150}
     let centerX = 300;
@@ -75,8 +77,8 @@ buttonStart.addEventListener('click', function () {
 
     let rectangle = {x:centerX + Math.cos(4.7) * radiusCircle,y:centerY + Math.sin(4.7) * radiusCircle}
     let circle2 = {x:centerX + Math.cos(3) * radiusCircle,y:centerY + Math.sin(3) * radiusCircle}
-    let circle3 = {x:centerX + Math.cos(3.17) * radiusCircle,y:centerY + Math.sin(3.17) * radiusCircle}
-    let circle4 = {x:centerX + Math.cos(2.83) * radiusCircle,y:centerY + Math.sin(2.83) * radiusCircle}
+    let circle3 = {x:centerX + Math.cos(3.17) * radiusCircle,y:centerY + Math.sin(3.20) * radiusCircle}
+    let circle4 = {x:centerX + Math.cos(2.83) * radiusCircle,y:centerY + Math.sin(2.80) * radiusCircle}
 
     let fonimg = new Image();
     fonimg.src = '../logic/Include/image/fon.jpg';
@@ -102,10 +104,10 @@ buttonStart.addEventListener('click', function () {
         if (event.code === 'Space'){
 
             //попадание
-            if (Math.abs(circle2.x - circle.x) < 4.2 && Math.abs(circle2.y - circle.y) < 4.2){
+            if (Math.abs(circle2.x - circle.x) < 4.2 && Math.abs(circle2.y - circle.y) < 5){
                 hit++
                 console.debug('попал')
-            }else if (Math.abs(circle3.x - circle.x) < 4 && Math.abs(circle3.y - circle.y) < 4){
+            }else if (Math.abs(circle3.x - circle.x) < 4 && Math.abs(circle3.y - circle.y) < 5){
                 if (circle.iterr < 0){
                     close++
                     console.debug('недолет')
@@ -113,7 +115,7 @@ buttonStart.addEventListener('click', function () {
                     far++
                     console.debug('перелет')
                 }
-            }else if (Math.abs(circle4.x - circle.x) < 4.2 && Math.abs(circle4.y - circle.y) < 4.2){
+            }else if (Math.abs(circle4.x - circle.x) < 4.2 && Math.abs(circle4.y - circle.y) < 5){
                 if (circle.iterr < 0){
                     far++
                     console.debug('перелет')
@@ -144,6 +146,7 @@ buttonStart.addEventListener('click', function () {
         if (i === Math.floor(fps)){
             if (sec > 0){
                 sec--
+                time--
                 i = 0
                 textTimer.innerHTML = "<h1>" + " " + mins + ":" + sec + " " + hit + ":" + far + ":" + close + ":" + loss + "</h1>"
             }
@@ -190,6 +193,8 @@ buttonStart.addEventListener('click', function () {
         requestAnimFrame(game);
     }
 
+    let flagSpeed1 = false
+    let flagSpeed2 = false
     function update(){
         // физика
 
@@ -202,15 +207,24 @@ buttonStart.addEventListener('click', function () {
         circle.angle += circle.iterr
 
 
+        //Ускорение
+        if ((timerTime - Math.floor(timerTime / 3)) > time && !flagSpeed1){
+            flagSpeed1 = true
+            circle.iterr = circle.iterr * 1.4;
 
+        }
+        if((timerTime - Math.floor(timerTime / 1.5)) > time && !flagSpeed2){
+            flagSpeed2 = true
+            circle.iterr = circle.iterr * 1.3;
+        }
     }
 
     function render(){
         context.drawImage(fonimg, 0, 0, 600, 300);
         drawRotated(context, rectangleimg, rectangle.x, rectangle.y, 90)
-        context.drawImage(circleimg2, circle2.x, circle2.y, 9, 9);
-        context.drawImage(circleimg3, circle3.x, circle3.y, 9, 9);
-        context.drawImage(circleimg4, circle4.x, circle4.y, 9, 9);
+        context.drawImage(circleimg2, circle2.x, circle2.y, 11, 11);
+        context.drawImage(circleimg3, circle3.x, circle3.y, 11, 11);
+        context.drawImage(circleimg4, circle4.x, circle4.y, 11, 11);
         context.drawImage(circleimg, circle.x, circle.y, 7, 7);
 
 

@@ -32,12 +32,16 @@ include "../logic/DB/database.php";
             </div>
             <div class="col">
                 <form name="form1">
-                    <h4>В данном тесте вам необходимо нажимать "ПРОБЕЛ", когда движущийся кружок будет попадать в зеленую и желтые зоны</h4>
+
+                    <h4>ВНИМАНИЕ! Кол-во попыток теста - 3</h4>
+                    <h4>В данном тесте вам необходимо нажимать "ПРОБЕЛ", когда движущийся кружок будет попадать в зеленую зону</h4>
                     <select class="form-select" aria-label="Пример выбора по умолчанию" id="timer">
                         <option disabled>Время прохождения теста</option>
-                        <option value="10">10сек</option>
-                        <option value="60">1 минута</option>
-                        <option value="180">3 минуты</option>
+                        <option value="7">7сек</option>
+                        <option value="20">20сек</option>
+                        <option value="540">9 минут</option>
+                        <option value="1080">18 минут</option>
+                        <option value="2700">45 минут</option>
                     </select>
                     <button type="submit" class="btn btn-secondary" name="button-lab3-start" style="margin-top: 150px; margin-left: 50px"> Начать тестирование</button>
                 </form>

@@ -29,7 +29,7 @@ include "../../logic/DB/database.php";
             <div class="main about col">
 
                 <ul>
-                    <li><a id="Sens" href="<?php echo BASE_URL . 'sens.php'?>"> Сенсомотрорный тест</a></li>
+                    <li><a id="Sens" href="<?php echo BASE_URL . 'sens.php'?>"> Сенсомоторные тест</a></li>
                     <li><a href="<?php echo BASE_URL . 'lab3/main-lab3.php'?>"> 3-я лаба</a></li>
                     <li><a href="<?php echo BASE_URL . 'lab4/main-Lab4.php'?>"> 4-я лаба</a></li>
                     <li><a href="<?php echo BASE_URL . 'lab5/main-Lab5.php'?>"> 5-я лаба</a></li>

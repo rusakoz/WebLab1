@@ -10,10 +10,9 @@ buttonStart.addEventListener('click', function (event){
 
 function conclusion(bestFromTests) {
 
-
+    let score = 0;
     let localMap = new Map()
     let resMap = new Map()
-    let resulMap = new Map()
     let resul = 0
 
     bestFromTests.then((a) => {
@@ -24,20 +23,24 @@ function conclusion(bestFromTests) {
         for (var key of a) {
 
             localMap.set(key[0], key[1])
+
         }
 
     }).then((b)=>{
 
+        console.log(localMap)
 
 
     getResultsInfo('../logic/DB/forMenu/selectAll.php', 'scale').then((res) => {
-        res.forEach((a) => {
-            //console.log(a.name)
-            //console.log(localMap.get(a.name))
+        console.log(res)
+
+            res.forEach((a) => {
+            //console.debug(a.name)
+            //console.debug(localMap.get(a.name))
 
             for (var key of Object.keys(a)) {
-                //console.log(a[key] + ' ' + parseFloat(localMap.get(a.name)) + ' ' + key)
-                //console.log(a.name)
+                //console.debug(a[key] + ' ' + parseFloat(localMap.get(a.name)) + ' ' + key)
+                //console.debug(a.name)
                 if (a.name === 'Тест_на_свет' || a.name === 'Тест_на_сложение_визуально' ||
                     a.name === 'Тест_на_звук' || a.name === 'Тест_на_сложение_в_уме' ||
                     a.name === 'Тест_на_3_цвета' || a.name === 'Тест_на_слежение' ||
@@ -61,9 +64,10 @@ function conclusion(bestFromTests) {
             resul = 0
 
         })
+        console.log(resMap)
         return resMap
     }).then((res) =>{
-        //console.log(res)
+        //console.debug(res)
 
         let sens = 0
         let countSens = 0
@@ -84,7 +88,7 @@ function conclusion(bestFromTests) {
             }else if(r[0] === 'Тест_3лаба_легкий' || r[0] === 'Тест_3лаба_сложный'){
                 count3++
                 lab3 += r[1]
-                console.log(count3 + ' ' + lab3)
+                //console.log(count3 + ' ' + lab3)
             }else if(r[0] === 'Тест_на_слежение' || r[0] === 'Тест_на_преследование'){
                 count4++
                 lab4 += r[1]
@@ -101,15 +105,16 @@ function conclusion(bestFromTests) {
                         .set('Тесты_5-й_лабы', Math.floor(lab5 / count5))
 
     }).then((res)=> {
-
-        function makeObj(prof, pvk, state, requirement, your, test){
+        score += parseInt(res.get('Сенсомоторные тесты')) + parseInt(res.get('Тесты_3-й_лабы')) + parseInt(res.get('Тесты_4-й_лабы')) + parseInt(res.get('Тесты_5-й_лабы'))
+        function makeObj(prof, pvk, state, requirement, your, test, stat){
             return {
                 'профессия': prof,
                 'пвк': pvk,
                 'состояние': state,
                 'требуемо': requirement,
                 'ваше': your,
-                'тест': test
+                'тест': test,
+                'разница': stat
             }
         }
 
@@ -121,27 +126,27 @@ function conclusion(bestFromTests) {
             console.log(resTwo) // массив из бд
             resTwo.forEach((a)=>{
                 if (parseInt(a['Сенсомоторные_тесты']) > parseInt(res.get('Сенсомоторные тесты'))){
-                    console.log(a['Тесты_5-й_лабы'])
-                    console.log(res.get('Тесты_5-й_лабы'))
+                    //console.log(a['Тесты_5-й_лабы'])
+                    //console.log(res.get('Тесты_5-й_лабы'))
                     array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Сенсомоторные_тесты']), parseInt(res.get('Сенсомоторные тесты')), 'Сенсомоторные_тесты'))
                 }else{
-                    array.push(makeObj(a['профессия'], a['пвк'], true))
+                    array.push(makeObj(a['профессия'], a['пвк'], true, parseInt(a['Сенсомоторные_тесты']), parseInt(res.get('Сенсомоторные тесты')), 'Сенсомоторные_тесты', parseInt(res.get('Сенсомоторные тесты')) - parseInt(a['Сенсомоторные_тесты'])))
                 }
                 if (parseInt(a['Тесты_3-й_лабы']) > parseInt(res.get('Тесты_3-й_лабы'))){
                     array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Тесты_3-й_лабы']), parseInt(res.get('Тесты_3-й_лабы')), 'Тесты_3-й_лабы'))
                 }else{
-                    array.push(makeObj(a['профессия'], a['пвк'], true))
+                    array.push(makeObj(a['профессия'], a['пвк'], true, parseInt(a['Тесты_3-й_лабы']), parseInt(res.get('Тесты_3-й_лабы')), 'Тесты_3-й_лабы', parseInt(res.get('Тесты_3-й_лабы')) - parseInt(a['Тесты_3-й_лабы'])))
                 }
                 if (parseInt(a['Тесты_4-й_лабы']) > parseInt(res.get('Тесты_4-й_лабы'))){
                     array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Тесты_4-й_лабы']), parseInt(res.get('Тесты_4-й_лабы')), 'Тесты_4-й_лабы'))
                 }else{
-                    array.push(makeObj(a['профессия'], a['пвк'], true))
+                    array.push(makeObj(a['профессия'], a['пвк'], true, parseInt(a['Тесты_4-й_лабы']), parseInt(res.get('Тесты_4-й_лабы')), 'Тесты_4-й_лабы', parseInt(res.get('Тесты_4-й_лабы')) - parseInt(a['Тесты_4-й_лабы'])))
                 }
                 if (parseInt(a['Тесты_5-й_лабы']) > parseInt(res.get('Тесты_5-й_лабы'))){
                     array.push(makeObj(a['профессия'], a['пвк'], false, parseInt(a['Тесты_5-й_лабы']), parseInt(res.get('Тесты_5-й_лабы')), 'Тесты_5-й_лабы'))
                 }
                 else{
-                    array.push(makeObj(a['профессия'], a['пвк'], true))
+                    array.push(makeObj(a['профессия'], a['пвк'], true, parseInt(a['Тесты_5-й_лабы']), parseInt(res.get('Тесты_5-й_лабы')), 'Тесты_5-й_лабы', parseInt(res.get('Тесты_5-й_лабы')) - parseInt(a['Тесты_5-й_лабы'])))
                 }
 
             })
@@ -160,41 +165,47 @@ function conclusion(bestFromTests) {
                     lastCountProf = a['профессия']
                 }
             })
-            console.log(res)
+
             let lastProf = ''
-            let resStr = ''
             let resArray = []
-            let checkTrue = true
+            let resMap = new Map();
             let countAll = 0
             let countTrue = 0
             let count = 0
+            let difference = 0;
             if (countProf > 1){
                 res.forEach((a)=>{
                     count++
-
+                    console.log(a['профессия'] + ' ' + a['пвк'] + ' ' + a['ваше'] + ' ' + a['требуемо'] + ' ' + a['тест'])
                     if (a['профессия'] === lastProf){
                         //lastProf = a['профессия']
                         countAll++
                         if (!a['состояние']){
-                            resArray.push('Профессия: ' + lastProf + ' --- Вы не набрали необходимое кол-во баллов для пвк по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
+                            //resArray.push('Профессия: ' + lastProf + ' --- Вы не набрали необходимое кол-во баллов для пвк(' + a['пвк'] + ') по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
                             //return Promise.reject('не набрано необходимое кол-во баллов')
                         }else{
+                            difference += a['разница']
                             countTrue++
                         }
 
                     }else{
 
-                        if (countAll === countTrue && count > 1)
-                            resArray.unshift('Вам подходит профессия - ' + lastProf)
+                        if (countAll === countTrue && count > 1) {
+                            resArray.unshift('Вам подходит профессия - ' + lastProf + ' ' + difference)
+                            resMap.set(difference, 'Вам подходит профессия - ' + lastProf)
+                            sendResultToDB('../logic/DB/lab7-DB.php','../logic/DB/insertlab7-DB.php' , 'top', idSession, score, lastProf, difference);
+                        }
 
+                        difference = 0
                         lastProf = a['профессия']
                         countAll = 1
                         countTrue = 0
 
                         if (!a['состояние']){
-                            resArray.push('Профессия: ' + lastProf + ' --- Вы не набрали необходимое кол-во баллов для пвк по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
+                            //resArray.push('Профессия: ' + lastProf + ' --- Вы не набрали необходимое кол-во баллов для(' + a['пвк'] + ') пвк по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
                             //return Promise.reject('не набрано необходимое кол-во баллов')
                         }else {
+                            difference += a['разница']
                             countTrue++
                         }
                     }
@@ -206,14 +217,17 @@ function conclusion(bestFromTests) {
                 res.forEach((a)=> {
                     countAll++
                     if (!a['состояние']) {
-                        resArray.push('Вы не набрали необходимое кол-во баллов для пвк по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
+                        //resArray.push('Вы не набрали необходимое кол-во баллов для пвк(' + a['пвк'] + ') по - ' + a['тест'] + ' набрано - ' + a['ваше'] + ' из ' + a['требуемо'])
                         //return Promise.reject('не набрано необходимое кол-во баллов')
                     } else {
+                        difference += a['разница']
                         countTrue++
                     }
                 })
                 if (countAll === countTrue){
-                    resArray.unshift('Вам подходит профессия - ' + lastProf)
+                    resArray.unshift('Вам подходит профессия - ' + lastProf + ' ' + difference)
+                    resMap.set(difference, 'Вам подходит профессия - ' + lastProf)
+                    sendResultToDB('../logic/DB/lab7-DB.php','../logic/DB/insertlab7-DB.php' , 'top', idSession, score, lastProf, difference);
                 }
 
             }else if(countProf === 0){
@@ -221,16 +235,24 @@ function conclusion(bestFromTests) {
             }
 
             if(count === countPvk){
-                if (countAll === countTrue)
-                    resArray.unshift('Вам подходит профессия - ' + lastProf)
+                if (countAll === countTrue) {
+                    resArray.unshift('Вам подходит профессия - ' + lastProf + ' ' + difference)
+                    resMap.set(difference, 'Вам подходит профессия - ' + lastProf)
+                    sendResultToDB('../logic/DB/lab7-DB.php','../logic/DB/insertlab7-DB.php' , 'top', idSession, score, lastProf, difference);
+                }
             }
-            return resArray
+            return resMap
         }).then((res)=>{
-            console.log(res)
-            let resHTML = ''
-            res.forEach((a)=>{
-                resHTML += '<h4>' + a + '</h4>'
-            })
+
+            const mapSort = new Map([...res.entries()].reverse());
+
+            let resHTML = '<h4 style="color: darkblue">Профессии показаны от наиболее подходящих к менее</h4>'
+            for (const key of mapSort.keys()) {
+                resHTML += '<h4>' + mapSort.get(key) + '</h4>'
+            }
+            if (res.size === 0){
+                resHTML = '<h4 style="color: darkblue">Вам не подходит ни одна профессия</h4>'
+            }
             mainCol.innerHTML = resHTML
         })
     }).catch((err)=>{
@@ -249,6 +271,30 @@ function conclusion(bestFromTests) {
 }
 
 
+function sendResultToDB(urlDelete, urlInsert, table, idSession, score, prof, difference){
+    let formDataTwo = new FormData();
+    formDataTwo.append('table', table);
+    formDataTwo.append('id', idSession);
+    fetch(urlDelete, {
+        method: 'POST',
+        body: formDataTwo
+    }).then((res)=>{
+        let formData = new FormData();
+        formData.append('table', table);
+        formData.append('id', idSession);
+        formData.append('score', score);
+        formData.append('prof', prof);
+        formData.append('diff', difference);
+        fetch(urlInsert, {
+            method: 'POST',
+            body: formData
+        })
+    }).catch((err)=>{
+        console.warn(err.message)
+    })
+}
+
+
 let flag = true
 async function bestFromTests(promiseStat){
     let arrayRes = new Map();
@@ -261,7 +307,7 @@ async function bestFromTests(promiseStat){
         if (result.length !== 0) {
 
             result.forEach((a) => {
-                console.log(result)
+                //console.log(result)
                 if(a.length > 1) {
                     count++
                     //console.log(result)
@@ -271,6 +317,7 @@ async function bestFromTests(promiseStat){
                         if (typeof b === 'string') {
                             test = b;
                         }
+
                         if (test === 'Тест_на_свет' && typeof b !== 'string') {
                             console.log(b)
                             let res = parseFloat(b.time)
@@ -404,7 +451,7 @@ async function bestFromTests(promiseStat){
                     console.log('---------')
                 }else {
                     count++
-                    console.log(count)
+                    //console.log(count)
                     flag = false
                     arrayRes.set(result[count].test, 'Не пройден ни разу')
                     warnAlert = 'Вы не прошли еще ни одного теста в ' + result[count].test

@@ -34,6 +34,7 @@ include "logic/DB/database.php";
     <div id="expert-button" class="main-content container">
         <div class="row">
             <div class="main about col">
+                <h4>ВНИМАНИЕ! Кол-во попыток тестов - 3</h4>
                 <ul>
                     <li><a id="sensLight" href="<?php echo BASE_URL . 'sensLight.php'?>">Тест на свет</a></li>
                     <li><a id="sensSound" href="<?php echo BASE_URL . 'sensSound.php'?>">Тест на звук</a></li>

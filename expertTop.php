@@ -2,7 +2,6 @@
 <?php
 include("path.php");
 include "logic/DB/database.php";
-include "logic/Controllers/resultPVK.php";
 ?>
 <html lang="ru">
 <head>
@@ -15,7 +14,10 @@ include "logic/Controllers/resultPVK.php";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f8998f952b.js" crossorigin="anonymous"></script>
+    <script src="logic/Include/lock/getResultsInfo.js" crossorigin="anonymous" defer></script>
+    <script src="lab6/top.js" crossorigin="anonymous" defer></script>
 
+    <!--    <script src="logic/Include/resultTests.js" defer> </script> defer - запуск скрипта после загрузки html страницы -->
 </head>
 <body>
 
@@ -24,10 +26,11 @@ include "logic/Controllers/resultPVK.php";
 <!--Header-->
 
 <!--Main-->
-<div id="main" class="main container-fluid">
-    <div class="main-content container">
+<div id="main-result" class="main container-fluid">
+    <div id="result-button" class="main-content container">
         <div class="row">
-            <div class="main about col">
+            <div id="main-row" class="main-cols about col">
+
 
             </div>
         </div>

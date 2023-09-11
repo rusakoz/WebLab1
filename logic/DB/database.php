@@ -154,10 +154,10 @@ function delete($table, $id){
     dbError($query);
 }
 
-$dat = [
-
-    'group' => 'Личностные'
-];
+//$dat = [
+//
+//    'group' => 'Личностные'
+//];
 
 //$res = selectAll('pvk', $dat);
 
