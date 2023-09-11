@@ -49,5 +49,5 @@
 </div>
 
 <div class="footer-bottom container-fluid">
-    &copy; Демонстрационный сайт | create by Ruslan
+    &copy; Демонстрационный сайт | create by Ruslan & Alexander
 </div>

@@ -31,11 +31,11 @@ include "../logic/DB/database.php";
     <div id="lab6-button" class="main-content container">
         <div class="row">
             <div id="main-col" class="main about col">
-                <ul>
-
-                    <li><a id="pursuit" href="<?php echo BASE_URL . 'lab6/pursuit.php'?>">Реакция на движущийся объект</a></li>
-
-                </ul>
+<!--                <ul>-->
+<!---->
+<!--                    <li><a id="pursuit" href="--><?php //echo BASE_URL . 'lab6/pursuit.php'?><!--">Реакция на движущийся объект</a></li>-->
+<!---->
+<!--                </ul>-->
                 <button class="c-button" id="button" type="submit"> Узнать, какая профессия подходит</button>
             </div>
 

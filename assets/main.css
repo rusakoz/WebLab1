@@ -198,7 +198,7 @@ Registration
 
 .reg_form {
     background: #ded5d5;
-
+    min-height: 500px;
 }
 
 .reg_form label {
